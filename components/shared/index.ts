@@ -1,6 +1,5 @@
 export { Races } from "./races";
 
-
 export { HeaderGame } from "./header-game";
 
 export { ShopFighterLine } from "./shop-fighter-line";
@@ -21,3 +20,5 @@ export { Staff } from "./staff";
 export { MineralsTwo } from "./minerals-two";
 
 export { ShopModalOne } from "./shop-modal-one";
+
+export { Unit } from "./unit";

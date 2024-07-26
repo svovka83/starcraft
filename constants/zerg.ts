@@ -1,32 +1,36 @@
-export type droneType = {
+export type workerType = {
   id: number;
   name: string;
   health: number;
+  mana: number;
   attack: number;
   price: number;
 };
 
-export type zergType = {
+export type unitType = {
   id: number;
   name: string;
   health: number;
+  mana: number;
   attack: number;
   price: number;
 };
 
-export const DRONE: droneType = {
+export const DRONE: workerType = {
   id: 11,
   name: "Drone",
   health: 1,
+  mana: 1,
   attack: 1,
   price: 1,
 };
 
-export const ZERG: zergType[] = [
+export const ZERG: unitType[] = [
   {
     id: 1,
-    name: "Zergling",
+    name: "zergling",
     health: 1,
+    mana: 1,
     attack: 1,
     price: 1,
   },
@@ -34,6 +38,7 @@ export const ZERG: zergType[] = [
     id: 2,
     name: "Gydralisk",
     health: 2,
+    mana: 1,
     attack: 2,
     price: 2,
   },
@@ -41,6 +46,7 @@ export const ZERG: zergType[] = [
     id: 3,
     name: "Mutalisk",
     health: 3,
+    mana: 2,
     attack: 2,
     price: 3,
   },
@@ -48,6 +54,7 @@ export const ZERG: zergType[] = [
     id: 4,
     name: "Ultralisk",
     health: 8,
+    mana: 3,
     attack: 5,
     price: 6,
   },

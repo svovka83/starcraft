@@ -1,10 +1,10 @@
 import { create } from "zustand";
 
-import { droneType, zergType, DRONE, ZERG } from "@/constants/zerg";
+import { workerType, unitType, DRONE, ZERG } from "@/constants/zerg";
 
 interface GameState {
   player: {
-    units: zergType[];
+    units: unitType[];
     army: any[];
   };
   addUnitToArmy: (unitId: number) => void;
@@ -13,7 +13,16 @@ interface GameState {
 export const useGameStore = create<GameState>((set) => ({
   player: {
     units: ZERG,
-    army: [],
+    army: [
+      {
+        id: 1,
+        name: "zergling",
+        health: 1,
+        mana: 1,
+        attack: 1,
+        price: 1,
+      }
+    ],
   },
   addUnitToArmy: (unitId: number) =>
     set((state) => {

@@ -25,7 +25,7 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
       <div className="float-right w-[40px] h-[40px] text-center text-[28px] rounded-[50%] text-white bg-green-700">
         life
       </div>
-      {modal && <ShopModalOne />}
+      {modal && <ShopModalOne modal={modal} setModal={setModal} />}
     </Container>
   );
 };
