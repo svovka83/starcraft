@@ -9,7 +9,7 @@ export const HeaderGame: React.FC<Props> = ({ className }) => {
   return (
     <header
       className={cn(
-        "border h-[10vh] flex items-center justify-between text-[24px] font-extrabold px-2  shadow-lg shadow-black/15",
+        "border h-[10vh] flex items-center justify-between text-[24px] font-extrabold px-2  shadow-lg shadow-black/10",
         className
       )}
     >
