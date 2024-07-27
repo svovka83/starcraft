@@ -16,7 +16,7 @@ export type unitType = {
   price: number;
 };
 
-export const DRONE: workerType = {
+export const DRONE = {
   id: 11,
   name: "Drone",
   health: 1,
@@ -25,7 +25,7 @@ export const DRONE: workerType = {
   price: 1,
 };
 
-export const ZERG: unitType[] = [
+export const ZERG = [
   {
     id: 1,
     name: "zergling",

@@ -14,7 +14,7 @@ export const ShopModalOne: React.FC<Props> = ({
   setModal,
   className,
 }) => {
-  const playerUnits = useGameStore((state) => state.player.units);
+  const playerUnits = useGameStore((state) => state.one.units);
   const addUnit = useGameStore((state) => state.addUnitToArmy);
 
   return (

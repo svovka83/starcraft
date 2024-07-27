@@ -3,35 +3,63 @@ import { create } from "zustand";
 import { workerType, unitType, DRONE, ZERG } from "@/constants/zerg";
 
 interface GameState {
-  player: {
+  one: {
     units: unitType[];
     army: any[];
+    battleground: any[];
+    fighter: any;
   };
   addUnitToArmy: (unitId: number) => void;
+  addUnitToBattleground: (unitId: number) => void;
+  addUnitToFighter: (unitId: number) => void;
 }
 
 export const useGameStore = create<GameState>((set) => ({
-  player: {
+  one: {
     units: ZERG,
-    army: [
-      {
-        id: 1,
-        name: "zergling",
-        health: 1,
-        mana: 1,
-        attack: 1,
-        price: 1,
-      }
-    ],
+    army: [],
+    battleground: [],
+    fighter: {},
   },
   addUnitToArmy: (unitId: number) =>
     set((state) => {
-      const addUnit = state.player.units.find((unit) => unit.id === unitId);
+      const addUnit = state.one.units.find((unit) => unit.id === unitId);
 
       return {
-        player: {
-          ...state.player,
-          army: [...state.player.army, addUnit],
+        one: {
+          ...state.one,
+          army: [...state.one.army, addUnit],
+        },
+      };
+    }),
+  addUnitToBattleground: (unitId: number) =>
+    set((state) => {
+      const addUnit = state.one.army.find((unit) => unit.id === unitId);
+      const removeUnit = state.one.army.filter((unit) => unit.id !== unitId);
+
+      return {
+        one: {
+          ...state.one,
+          army: removeUnit,
+          battleground: [...state.one.battleground, addUnit],
+        },
+      };
+    }),
+  addUnitToFighter: (unitId: number) =>
+    set((state) => {
+      const addUnit = state.one.battleground.find((unit) => unit.id === unitId);
+      const removeUnit = state.one.battleground.filter(
+        (unit) => unit.id !== unitId
+      );
+      const returnFighter = state.one.fighter.name
+        ? [...removeUnit, state.one.fighter]
+        : removeUnit;
+
+      return {
+        one: {
+          ...state.one,
+          battleground: returnFighter,
+          fighter: addUnit,
         },
       };
     }),
