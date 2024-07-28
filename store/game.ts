@@ -8,10 +8,12 @@ interface GameState {
     army: any[];
     battleground: any[];
     fighter: any;
+    worker: any[];
   };
   addUnitToArmy: (unitId: number) => void;
   addUnitToBattleground: (unitId: number) => void;
   addUnitToFighter: (unitId: number) => void;
+  createWorker: () => void;
 }
 
 export const useGameStore = create<GameState>((set) => ({
@@ -20,6 +22,7 @@ export const useGameStore = create<GameState>((set) => ({
     army: [],
     battleground: [],
     fighter: {},
+    worker: [DRONE],
   },
   addUnitToArmy: (unitId: number) =>
     set((state) => {
@@ -60,6 +63,17 @@ export const useGameStore = create<GameState>((set) => ({
           ...state.one,
           battleground: returnFighter,
           fighter: addUnit,
+        },
+      };
+    }),
+  createWorker: () =>
+    set((state) => {
+      if (state.one.worker.length === 4) return state;
+
+      return {
+        one: {
+          ...state.one,
+          worker: [...state.one.worker, DRONE],
         },
       };
     }),
