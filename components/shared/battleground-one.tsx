@@ -18,11 +18,11 @@ export const BattlegroundOne: React.FC<Props> = ({ className }) => {
   return (
     <Container className={cn("flex flex-wrap justify-center", className)}>
       {battlegroundUnits.map(
-        ({ id, name, health, mana, attack, price }, index) => (
+        ({ id, name, image, health, mana, attack, price }, index) => (
           <div key={index} onClick={() => addUnit(id)}>
             <Unit
-              id={id}
               name={name}
+              image={image}
               health={health}
               mana={mana}
               attack={attack}

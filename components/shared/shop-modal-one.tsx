@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 import { useGameStore } from "@/store/game";
 
@@ -20,7 +21,7 @@ export const ShopModalOne: React.FC<Props> = ({
   return (
     <div className={cn("fixed top-[10vh] left-0 right-0 mx-[25%]", className)}>
       <div className="bg-blue-700 text-white px-10 py-2">
-        {playerUnits.map(({ id, name, health, mana, attack, price }) => (
+        {playerUnits.map(({ id, name, image, health, mana, attack, price }) => (
           <div
             key={id}
             className="grid grid-cols-5 gap-10 my-2 cursor-pointer"
@@ -30,6 +31,7 @@ export const ShopModalOne: React.FC<Props> = ({
             }}
           >
             <h1>{name}</h1>
+            <Image src={image} alt="unit" width={100} height={100} />
             <p>health: {health}</p>
             <p>mana: {mana}</p>
             <p>attack: {attack}</p>

@@ -1,12 +1,10 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-
 import Image from "next/image";
-
-import unit from "../../images/Drone_SC1_GameAnim1.webp";
 
 interface Props {
   name: string;
+  image: string;
   health: number;
   mana: number;
   attack: number;
@@ -16,6 +14,7 @@ interface Props {
 
 export const Unit: React.FC<Props> = ({
   name,
+  image,
   health,
   mana,
   attack,
@@ -25,7 +24,7 @@ export const Unit: React.FC<Props> = ({
     <div className={cn("w-[60px] mx-6 my-2 cursor-pointer", className)}>
       <h2 className="text-fuchsia-400 text-sm text-center">{name}</h2>
       <div className="h-1 bg-green-700"></div>
-      <Image src={unit} width={60} height={60} alt="unit" />
+      <Image src={image} width={60} height={60} alt="unit" />
       <div className="flex text-center text-sm text-white font-bold">
         <span className="w-[20px] bg-blue-500">{mana}</span>
         <span className="w-[20px] bg-green-600">{health}</span>

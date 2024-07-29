@@ -9,11 +9,14 @@ interface GameState {
     battleground: any[];
     fighter: any;
     worker: any[];
+    minerals: number;
+    mine: number;
   };
   addUnitToArmy: (unitId: number) => void;
   addUnitToBattleground: (unitId: number) => void;
   addUnitToFighter: (unitId: number) => void;
   createWorker: () => void;
+  addMinerals: () => void;
 }
 
 export const useGameStore = create<GameState>((set) => ({
@@ -23,6 +26,8 @@ export const useGameStore = create<GameState>((set) => ({
     battleground: [],
     fighter: {},
     worker: [DRONE],
+    minerals: 5,
+    mine: 10,
   },
   addUnitToArmy: (unitId: number) =>
     set((state) => {
@@ -68,7 +73,8 @@ export const useGameStore = create<GameState>((set) => ({
     }),
   createWorker: () =>
     set((state) => {
-      if (state.one.worker.length === 4) return state;
+      if (state.one.worker.length === 3) return state;
+      state.one.minerals -= DRONE.price;
 
       return {
         one: {
@@ -76,5 +82,17 @@ export const useGameStore = create<GameState>((set) => ({
           worker: [...state.one.worker, DRONE],
         },
       };
+    }),
+  addMinerals: () =>
+    set((state) => {
+      if (state.one.mine < 0) return state;
+      if (state.one.mine < state.one.worker.length) {
+        state.one.minerals += state.one.mine;
+        state.one.mine = 0;
+        return { ...state };
+      }
+      state.one.minerals += state.one.worker.length;
+      state.one.mine -= state.one.worker.length;
+      return { ...state };
     }),
 }));

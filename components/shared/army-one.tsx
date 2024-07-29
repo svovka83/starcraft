@@ -17,11 +17,11 @@ export const ArmyOne: React.FC<Props> = ({ className }) => {
 
   return (
     <Container className={cn("flex flex-wrap justify-center", className)}>
-      {armyUnits.map(({ id, name, health, mana, attack, price }, index) => (
+      {armyUnits.map(({ id, name, image, health, mana, attack, price }, index) => (
         <div key={index} onClick={() => battleUnit(id)}>
           <Unit
-            id={id}
             name={name}
+            image={image}
             health={health}
             mana={mana}
             attack={attack}

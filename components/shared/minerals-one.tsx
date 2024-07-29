@@ -14,6 +14,8 @@ interface Props {
 
 export const MineralsOne: React.FC<Props> = ({ className }) => {
   const worker = useGameStore((state) => state.one.worker);
+  const mine = useGameStore((state) => state.one.mine);
+  const addMinerals = useGameStore((state) => state.addMinerals);
 
   return (
     <Container className={cn("flex flex-col w-[40%]", className)}>
@@ -22,6 +24,7 @@ export const MineralsOne: React.FC<Props> = ({ className }) => {
           <Unit
             key={worker.id}
             name={worker.name}
+            image={worker.image}
             health={worker.health}
             mana={worker.mana}
             attack={worker.attack}
@@ -29,9 +32,14 @@ export const MineralsOne: React.FC<Props> = ({ className }) => {
           />
         ))}
       </div>
-      <div className="flex justify-center pt-4">
-        <Button variant="outline" size="sm">
-          AddMinerals
+      <div className="flex justify-end px-4 pt-2">
+        <Button
+          variant="outline"
+          size="lg"
+          className="text-[24px] font-bold"
+          onClick={addMinerals}
+        >
+          {mine}
         </Button>
       </div>
     </Container>

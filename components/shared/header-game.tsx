@@ -1,11 +1,17 @@
+"use client";
+
 import React from "react";
 import { cn } from "@/lib/utils";
+
+import { useGameStore } from "@/store/game";
 
 interface Props {
   className?: string;
 }
 
 export const HeaderGame: React.FC<Props> = ({ className }) => {
+  const minerals = useGameStore((state) => state.one.minerals);
+
   return (
     <header
       className={cn(
@@ -13,7 +19,7 @@ export const HeaderGame: React.FC<Props> = ({ className }) => {
         className
       )}
     >
-      <span>MineralsOne: 10</span>
+      <span>MineralsOne: {minerals}</span>
       <span className="uppercase">turn</span>
       <span>MineralsTwo: 10</span>
     </header>
