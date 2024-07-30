@@ -24,7 +24,7 @@ export const ShopModalOne: React.FC<Props> = ({
         {playerUnits.map(({ id, name, image, health, mana, attack, price }) => (
           <div
             key={id}
-            className="grid grid-cols-5 gap-10 my-2 cursor-pointer"
+            className="grid grid-cols-6 gap-10 my-2 cursor-pointer"
             onClick={() => {
               addUnit(id);
               setModal(!modal);

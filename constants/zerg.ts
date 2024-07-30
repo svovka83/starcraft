@@ -1,8 +1,9 @@
 import { StaticImageData } from "next/image";
 
-import drone from "/images/Drone_SC1_GameAnim1.webp";
-import gydralisk from "/images/Gydralisk_SC1_GameAnim1.webp";
-import mutalisk from "/images/Mutalisk_SC1_GameAnim1.webp";
+import drone from "/images/drone.webp";
+import zerling from "/images/zerling.webp";
+import gydralisk from "/images/gidralisk.webp";
+import mutalisk from "/images/mutalisk.webp";
 
 export type workerType = {
   id: number;
@@ -38,7 +39,7 @@ export const ZERG = [
   {
     id: 1,
     name: "zergling",
-    image: drone,
+    image: zerling,
     health: 1,
     mana: 1,
     attack: 1,
