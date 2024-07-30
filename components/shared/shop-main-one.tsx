@@ -16,28 +16,25 @@ interface Props {
 }
 
 export const ShopMainOne: React.FC<Props> = ({ className }) => {
-  const [focus, setFocus] = React.useState(true);
+  const [focus, setFocus] = React.useState(false);
   const [modal, setModal] = React.useState(false);
   const addWorker = useGameStore((state) => state.createWorker);
-
-  console.log(focus);
 
   const showShopUnits = () => {
     setModal(!modal);
   };
 
   return (
-    <Container className={cn("p-2", className)}>
+    <Container className={cn("p-1", className)}>
       <div className="flex justify-between">
         <div>
-          <Image
+        <Image
             onMouseMove={() => setFocus(true)}
             onMouseLeave={() => setFocus(false)}
             onClick={showShopUnits}
             src={Lair}
-            className="mx-auto hover:scale-105 hover:transition hover:duration-300 cursor-pointer"
+            className="h-[24vh] px-2 hover:scale-105 hover:transition hover:duration-300 cursor-pointer"
             alt="larva"
-            width={190}
           />
           <div
             className={cn(
@@ -61,7 +58,7 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
             alt="larva"
             width={50}
             height={50}
-            className="cursor-pointer hover:transform hover:scale-110 hover:transition hover:duration-300"
+            className="cursor-pointer rounded-[50%] hover:transform hover:scale-110 hover:transition hover:duration-300"
           />
         </div>
       </div>

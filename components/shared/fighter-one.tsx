@@ -17,14 +17,16 @@ export const FighterOne: React.FC<Props> = ({ className }) => {
 
   return (
     <Container className={cn("flex items-center justify-center", className)}>
-      <Unit
-        name={name}
-        image={image}
-        health={health}
-        mana={mana}
-        attack={attack}
-        price={price}
-      />
+      {fighter.name && (
+        <Unit
+          name={name}
+          image={image}
+          health={health}
+          mana={mana}
+          attack={attack}
+          price={price}
+        />
+      )}
     </Container>
   );
 };
