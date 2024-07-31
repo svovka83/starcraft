@@ -3,21 +3,20 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
+import { unitType } from "@/store/game";
+
 import { Container, Unit } from ".";
 
-import { useGameStore } from "@/store/game";
-
 interface Props {
+  fighter: unitType;
   className?: string;
 }
 
-export const FighterTwo: React.FC<Props> = ({ className }) => {
-  const fighter = useGameStore((state) => state.two.fighter);
+export const Fighter: React.FC<Props> = ({ fighter, className }) => {
   const { name, image, health, mana, attack, price } = fighter;
-
   return (
     <Container className={cn("flex items-center justify-center", className)}>
-      {fighter.name && (
+      {name && (
         <Unit
           name={name}
           image={image}

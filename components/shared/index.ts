@@ -3,14 +3,12 @@ export { Races } from "./races";
 export { HeaderGame } from "./header-game";
 
 export { ShopFighterLine } from "./shop-fighter-line";
-export { BattlegroundLine } from "./battleground-line";
 export { MineralsLine } from "./minerals-line";
 
 export { Container } from "./container";
 
 export { ShopMainOne } from "./shop-main-one";
-export { FighterOne } from "./fighter-one";
-export { FighterTwo } from "./fighter-two";
+export { Fighter } from "./fighter";
 export { ShopMainTwo } from "./shop-main-two";
 
 export { Army } from "./army";

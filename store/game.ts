@@ -19,7 +19,7 @@ type PlayerProps = {
   units: unitType[];
   army: unitType[];
   battleground: unitType[];
-  fighter: object;
+  fighter: any;
   worker: unitType[];
   minerals: number;
   mine: number;
@@ -95,10 +95,10 @@ export const useGameStore = create<GameState>((set) => ({
       const player = state.turn ? state.one : state.two;
 
       const addUnit = player.battleground.find(
-        (unit: unitType) => unit.id === unitId
+        (unit) => unit.id === unitId
       );
       const removeUnit = player.battleground.filter(
-        (unit: unitType) => unit.id !== unitId
+        (unit) => unit.id !== unitId
       );
       const returnFighter =
         Object.keys(player.fighter).length !== 0
