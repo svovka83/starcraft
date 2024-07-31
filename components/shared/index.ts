@@ -13,10 +13,8 @@ export { FighterOne } from "./fighter-one";
 export { FighterTwo } from "./fighter-two";
 export { ShopMainTwo } from "./shop-main-two";
 
-export { ArmyOne } from "./army-one";
-export { BattlegroundOne } from "./battleground-one";
-export { BattlegroundTwo } from "./battleground-two";
-export { ArmyTwo } from "./army-two";
+export { Army } from "./army";
+export { Battleground } from "./battleground";
 
 export { MineralsOne } from "./minerals-one";
 export { Staff } from "./staff";

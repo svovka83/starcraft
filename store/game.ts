@@ -5,7 +5,7 @@ import { StaticImageData } from "next/image";
 import { DRONE, ZERG } from "@/constants/zerg";
 import { PROBE, PROTOSS } from "@/constants/protoss";
 
-type unitType = {
+export type unitType = {
   id: number;
   name: string;
   image: StaticImageData;

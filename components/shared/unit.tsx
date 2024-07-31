@@ -1,10 +1,11 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { StaticImageData } from "next/image";
 
 interface Props {
   name: string;
-  image: string;
+  image: StaticImageData;
   health: number;
   mana: number;
   attack: number;

@@ -16,7 +16,7 @@ export const HideTurn: React.FC<Props> = ({ className }) => {
     <div
       className={cn(
         turn ? "left-[50%] w-[50%] text-red-500" : "right-[50%] left-0 text-blue-500",
-        "fixed top-[10vh] bottom-0 flex justify-center items-center text-5xl font-extrabold hover:-translate-y-2 hover:duration-200 cursor-pointer z-10",
+        "fixed top-[10vh] bottom-0 translate-y-3 flex justify-center items-center text-5xl font-extrabold transition hover:bg-black/5 hover:translate-y-0 hover:duration-300 ease-in cursor-pointer z-10",
         className
       )}
     >

@@ -3,16 +3,16 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
+import { unitType, useGameStore } from "@/store/game";
+
 import { Container, Unit } from ".";
 
-import { useGameStore } from "@/store/game";
-
 interface Props {
+  battlegroundUnits: unitType[];
   className?: string;
 }
 
-export const BattlegroundTwo: React.FC<Props> = ({ className }) => {
-  const battlegroundUnits = useGameStore((state) => state.two.battleground);
+export const Battleground: React.FC<Props> = ({battlegroundUnits, className }) => {
   const addUnit = useGameStore((state) => state.addUnitToFighter);
 
   return (
