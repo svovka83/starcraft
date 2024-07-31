@@ -10,7 +10,9 @@ interface Props {
 }
 
 export const HeaderGame: React.FC<Props> = ({ className }) => {
-  const minerals = useGameStore((state) => state.one.minerals);
+  const mineralOne = useGameStore((state) => state.one.minerals);
+  const mineralTwo = useGameStore((state) => state.two.minerals);
+  const turn = useGameStore((state) => state.turn);
 
   return (
     <header
@@ -19,9 +21,13 @@ export const HeaderGame: React.FC<Props> = ({ className }) => {
         className
       )}
     >
-      <span>MineralsOne: {minerals}</span>
-      <span className="uppercase">turn</span>
-      <span>MineralsTwo: 10</span>
+      <span>MineralsOne: {mineralOne}</span>
+      <span
+        className={cn("uppercase", turn ? "text-red-500" : "text-blue-500")}
+      >
+        {turn ? "Player One" : "Player Two"}
+      </span>
+      <span>MineralsTwo: {mineralTwo}</span>
     </header>
   );
 };

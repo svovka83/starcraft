@@ -1,32 +1,11 @@
-import { StaticImageData } from "next/image";
-
-import drone from "/images/drone.webp";
-import zerling from "/images/zerling.webp";
-import gydralisk from "/images/gidralisk.webp";
-import mutalisk from "/images/mutalisk.webp";
-
-export type workerType = {
-  id: number;
-  name: string;
-  image: StaticImageData;
-  health: number;
-  mana: number;
-  attack: number;
-  price: number;
-};
-
-export type unitType = {
-  id: number;
-  name: string;
-  image: StaticImageData;
-  health: number;
-  mana: number;
-  attack: number;
-  price: number;
-};
+import drone from "/images/imgZerg/drone.webp";
+import zerling from "/images/imgZerg/zerling.webp";
+import gydralisk from "/images/imgZerg/gidralisk.webp";
+import mutalisk from "/images/imgZerg/mutalisk.webp";
+import ultralisk from "/images/imgZerg/ultralisk.webp";
 
 export const DRONE = {
-  id: 11,
+  id: 1,
   name: "Drone",
   image: drone,
   health: 1,
@@ -66,7 +45,7 @@ export const ZERG = [
   {
     id: 4,
     name: "ultralisk",
-    image: drone,
+    image: ultralisk,
     health: 8,
     mana: 3,
     attack: 5,

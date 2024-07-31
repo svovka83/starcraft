@@ -2,14 +2,14 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 import { Container, ShopModalOne } from ".";
 
 import { useGameStore } from "@/store/game";
 
-import Lair from "/images/Lair.webp";
-import larva from "/images/larva.webp";
-import Image from "next/image";
+import Lair from "/images/imgZerg/Lair.webp";
+import larva from "/images/imgZerg/larva.webp";
 
 interface Props {
   className?: string;
@@ -38,7 +38,7 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
           />
           <div
             className={cn(
-              "absolute w-[190px] text-center invisible rounded-2xl bg-red-500 text-white transition-all opacity-0",
+              "absolute w-[150px] text-center invisible rounded-2xl bg-red-500 text-white transition-all opacity-0",
               focus && "visible rounded-2xl mt-4 p-4 duration-500 opacity-80"
             )}
           >

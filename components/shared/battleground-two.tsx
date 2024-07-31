@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const BattlegroundTwo: React.FC<Props> = ({ className }) => {
-  const battlegroundUnits = useGameStore((state) => state.one.battleground);
+  const battlegroundUnits = useGameStore((state) => state.two.battleground);
   const addUnit = useGameStore((state) => state.addUnitToFighter);
 
   return (

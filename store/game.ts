@@ -1,6 +1,8 @@
 import { create } from "zustand";
 
-import { workerType, unitType, DRONE, ZERG } from "@/constants/zerg";
+import { workerType, unitType } from "@/constants/types";
+import { DRONE, ZERG } from "@/constants/zerg";
+import { PROBE, PROTOSS } from "@/constants/protoss";
 
 interface GameState {
   one: {
@@ -12,6 +14,16 @@ interface GameState {
     minerals: number;
     mine: number;
   };
+  two: {
+    units: unitType[];
+    army: any[];
+    battleground: any[];
+    fighter: any;
+    worker: any[];
+    minerals: number;
+    mine: number;
+  };
+  turn: boolean;
   addUnitToArmy: (unitId: number) => void;
   addUnitToBattleground: (unitId: number) => void;
   addUnitToFighter: (unitId: number) => void;
@@ -26,73 +38,101 @@ export const useGameStore = create<GameState>((set) => ({
     battleground: [],
     fighter: {},
     worker: [DRONE],
-    minerals: 5,
-    mine: 10,
+    minerals: 10,
+    mine: 20,
   },
+  two: {
+    units: PROTOSS,
+    army: [],
+    battleground: [],
+    fighter: {},
+    worker: [PROBE],
+    minerals: 10,
+    mine: 20,
+  },
+  turn: true,
   addUnitToArmy: (unitId: number) =>
     set((state) => {
-      const addUnit = state.one.units.find((unit) => unit.id === unitId);
+      const player = state.turn ? state.one : state.two;
+
+      const addUnit = player.units.find((unit) => unit.id === unitId);
+
+      if (player.minerals < addUnit.price) return state;
+      const newMinerals = player.minerals - addUnit.price;
 
       return {
-        one: {
-          ...state.one,
-          army: [...state.one.army, addUnit],
+        [state.turn ? "one" : "two"]: {
+          ...player,
+          army: [...player.army, addUnit],
+          minerals: newMinerals,
         },
+        turn: !state.turn,
       };
     }),
   addUnitToBattleground: (unitId: number) =>
     set((state) => {
-      const addUnit = state.one.army.find((unit) => unit.id === unitId);
-      const removeUnit = state.one.army.filter((unit) => unit.id !== unitId);
+      const player = state.turn ? state.one : state.two;
+
+      const addUnit = player.army.find((unit) => unit.id === unitId);
+      const removeUnit = player.army.filter((unit) => unit.id !== unitId);
 
       return {
-        one: {
-          ...state.one,
+        [state.turn ? "one" : "two"]: {
+          ...player,
           army: removeUnit,
-          battleground: [...state.one.battleground, addUnit],
+          battleground: [...player.battleground, addUnit],
         },
+        turn: !state.turn,
       };
     }),
   addUnitToFighter: (unitId: number) =>
     set((state) => {
-      const addUnit = state.one.battleground.find((unit) => unit.id === unitId);
-      const removeUnit = state.one.battleground.filter(
+      const player = state.turn ? state.one : state.two;
+
+      const addUnit = player.battleground.find((unit) => unit.id === unitId);
+      const removeUnit = player.battleground.filter(
         (unit) => unit.id !== unitId
       );
-      const returnFighter = state.one.fighter.name
-        ? [...removeUnit, state.one.fighter]
+      const returnFighter = player.fighter.name
+        ? [...removeUnit, player.fighter]
         : removeUnit;
 
       return {
-        one: {
-          ...state.one,
+        [state.turn ? "one" : "two"]: {
+          ...player,
           battleground: returnFighter,
           fighter: addUnit,
         },
+        turn: !state.turn,
       };
     }),
   createWorker: () =>
     set((state) => {
-      if (state.one.worker.length === 3) return state;
-      state.one.minerals -= DRONE.price;
+      const player = state.turn ? state.one : state.two;
+
+      if (player.worker.length === 3) return state;
+      player.minerals -= DRONE.price;
 
       return {
-        one: {
-          ...state.one,
-          worker: [...state.one.worker, DRONE],
+        [state.turn ? "one" : "two"]: {
+          ...player,
+          worker: [...player.worker, state.turn ? DRONE : PROBE],
         },
+        turn: !state.turn,
       };
     }),
   addMinerals: () =>
     set((state) => {
-      if (state.one.mine < 0) return state;
-      if (state.one.mine < state.one.worker.length) {
-        state.one.minerals += state.one.mine;
-        state.one.mine = 0;
+      const player = state.turn ? state.one : state.two;
+
+      if (player.mine < 0) return state;
+      if (player.mine < player.worker.length) {
+        player.minerals += player.mine;
+        player.mine = 0;
         return { ...state };
       }
-      state.one.minerals += state.one.worker.length;
-      state.one.mine -= state.one.worker.length;
-      return { ...state };
+      player.minerals += player.worker.length;
+      player.mine -= player.worker.length;
+      return { ...state, turn: !state.turn };
     }),
 }));

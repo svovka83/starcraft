@@ -23,5 +23,6 @@ export { Staff } from "./staff";
 export { MineralsTwo } from "./minerals-two";
 
 export { ShopModalOne } from "./shop-modal-one";
+export { ShopModalTwo } from "./shop-modal-two";
 
 export { Unit } from "./unit";

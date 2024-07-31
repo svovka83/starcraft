@@ -10,12 +10,12 @@ interface Props {
   setModal: (modal: boolean) => void;
 }
 
-export const ShopModalOne: React.FC<Props> = ({
+export const ShopModalTwo: React.FC<Props> = ({
   modal,
   setModal,
   className,
 }) => {
-  const playerUnits = useGameStore((state) => state.one.units);
+  const playerUnits = useGameStore((state) => state.two.units);
   const addUnit = useGameStore((state) => state.addUnitToArmy);
 
   const addUnitToArmy = (unitId: number) => {

@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const FighterTwo: React.FC<Props> = ({ className }) => {
-  const fighter = useGameStore((state) => state.one.fighter);
+  const fighter = useGameStore((state) => state.two.fighter);
   const { name, image, health, mana, attack, price } = fighter;
 
   return (

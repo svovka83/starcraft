@@ -13,8 +13,8 @@ interface Props {
 }
 
 export const MineralsTwo: React.FC<Props> = ({ className }) => {
-  const worker = useGameStore((state) => state.one.worker);
-  const mine = useGameStore((state) => state.one.mine);
+  const worker = useGameStore((state) => state.two.worker);
+  const mine = useGameStore((state) => state.two.mine);
   const addMinerals = useGameStore((state) => state.addMinerals);
 
   return (

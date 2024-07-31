@@ -2,14 +2,14 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
-import { Container, ShopModalOne } from ".";
+import { Container, ShopModalTwo } from ".";
 
 import { useGameStore } from "@/store/game";
 
-import Lair from "/images/Lair.webp";
-import larva from "/images/larva.webp";
-import Image from "next/image";
+import Lair from "/images/imgZerg/Lair.webp";
+import larva from "/images/imgProtoss/probe.webp";
 
 interface Props {
   className?: string;
@@ -49,12 +49,12 @@ export const ShopMainTwo: React.FC<Props> = ({ className }) => {
             onMouseLeave={() => setFocus(false)}
             onClick={showShopUnits}
             src={Lair}
-            className="h-[24vh] px-2 hover:scale-105 hover:transition hover:duration-300 cursor-pointer"
+            className="relative h-[24vh] px-2 hover:scale-105 hover:transition hover:duration-300 cursor-pointer"
             alt="larva"
           />
           <div
             className={cn(
-              "absolute w-[190px] text-center invisible rounded-2xl bg-red-500 text-white transition-all opacity-0",
+              "absolute w-[150px] text-center invisible rounded-2xl bg-red-500 text-white transition-all opacity-0",
               focus && "visible rounded-2xl mt-4 p-4 duration-500 opacity-80"
             )}
           >
@@ -62,7 +62,7 @@ export const ShopMainTwo: React.FC<Props> = ({ className }) => {
           </div>
         </div>
       </div>
-      {modal && <ShopModalOne modal={modal} setModal={setModal} />}
+      {modal && <ShopModalTwo modal={modal} setModal={setModal} />}
     </Container>
   );
 };
