@@ -24,7 +24,7 @@ export const ShopModalTwo: React.FC<Props> = ({
   };
 
   return (
-    <div className={cn("fixed top-[10vh] left-0 right-0 mx-[25%]", className)}>
+    <div className={cn("fixed top-[10vh] left-0 right-0 mx-[25%] z-20", className)}>
       <div className="bg-blue-700 text-white px-10 py-2">
         {playerUnits.map(({ id, name, image, health, mana, attack, price }) => (
           <div

@@ -8,7 +8,7 @@ import { Container, ShopModalTwo } from ".";
 
 import { useGameStore } from "@/store/game";
 
-import Lair from "/images/imgZerg/Lair.webp";
+import Lair from "/images/imgProtoss/Nexus.webp";
 import larva from "/images/imgProtoss/probe.webp";
 
 interface Props {

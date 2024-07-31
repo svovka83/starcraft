@@ -25,4 +25,6 @@ export { MineralsTwo } from "./minerals-two";
 export { ShopModalOne } from "./shop-modal-one";
 export { ShopModalTwo } from "./shop-modal-two";
 
+export { HideTurn } from "./hide-turn";
+
 export { Unit } from "./unit";

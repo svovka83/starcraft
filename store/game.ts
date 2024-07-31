@@ -57,8 +57,8 @@ export const useGameStore = create<GameState>((set) => ({
 
       const addUnit = player.units.find((unit) => unit.id === unitId);
 
-      if (player.minerals < addUnit.price) return state;
-      const newMinerals = player.minerals - addUnit.price;
+      if (player.minerals < addUnit!.price) return state;
+      const newMinerals = player.minerals - addUnit!.price;
 
       return {
         [state.turn ? "one" : "two"]: {
