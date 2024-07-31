@@ -1,28 +1,33 @@
 import { create } from "zustand";
 
-import { workerType, unitType } from "@/constants/types";
+import { StaticImageData } from "next/image";
+
 import { DRONE, ZERG } from "@/constants/zerg";
 import { PROBE, PROTOSS } from "@/constants/protoss";
 
+type unitType = {
+  id: number;
+  name: string;
+  image: StaticImageData;
+  health: number;
+  mana: number;
+  attack: number;
+  price: number;
+};
+
+type PlayerProps = {
+  units: unitType[];
+  army: unitType[];
+  battleground: unitType[];
+  fighter: object;
+  worker: unitType[];
+  minerals: number;
+  mine: number;
+};
+
 interface GameState {
-  one: {
-    units: unitType[];
-    army: any[];
-    battleground: any[];
-    fighter: any;
-    worker: any[];
-    minerals: number;
-    mine: number;
-  };
-  two: {
-    units: unitType[];
-    army: any[];
-    battleground: any[];
-    fighter: any;
-    worker: any[];
-    minerals: number;
-    mine: number;
-  };
+  one: PlayerProps;
+  two: PlayerProps;
   turn: boolean;
   addUnitToArmy: (unitId: number) => void;
   addUnitToBattleground: (unitId: number) => void;
@@ -89,13 +94,16 @@ export const useGameStore = create<GameState>((set) => ({
     set((state) => {
       const player = state.turn ? state.one : state.two;
 
-      const addUnit = player.battleground.find((unit) => unit.id === unitId);
-      const removeUnit = player.battleground.filter(
-        (unit) => unit.id !== unitId
+      const addUnit = player.battleground.find(
+        (unit: unitType) => unit.id === unitId
       );
-      const returnFighter = player.fighter.name
-        ? [...removeUnit, player.fighter]
-        : removeUnit;
+      const removeUnit = player.battleground.filter(
+        (unit: unitType) => unit.id !== unitId
+      );
+      const returnFighter =
+        Object.keys(player.fighter).length !== 0
+          ? [...removeUnit, player.fighter]
+          : removeUnit;
 
       return {
         [state.turn ? "one" : "two"]: {
