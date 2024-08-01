@@ -3,18 +3,20 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
+import { unitType } from "@/store/game";
+
 import { Container, Unit } from ".";
 
 import { useGameStore } from "@/store/game";
 import { Button } from "../ui";
 
 interface Props {
+  worker: unitType[];
+  mine: number;
   className?: string;
 }
 
-export const MineralsOne: React.FC<Props> = ({ className }) => {
-  const worker = useGameStore((state) => state.one.worker);
-  const mine = useGameStore((state) => state.one.mine);
+export const Minerals: React.FC<Props> = ({ worker, mine, className }) => {
   const addMinerals = useGameStore((state) => state.addMinerals);
 
   return (
@@ -32,7 +34,7 @@ export const MineralsOne: React.FC<Props> = ({ className }) => {
           />
         ))}
       </div>
-      <div className="flex justify-end px-4 pt-2">
+      <div className="flex justify-center px-4 pt-4">
         <Button
           variant="outline"
           size="lg"

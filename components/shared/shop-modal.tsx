@@ -2,20 +2,21 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-import { useGameStore } from "@/store/game";
+import { unitType, useGameStore } from "@/store/game";
 
 interface Props {
-  className?: string;
+  playerUnits: unitType[];
   modal: boolean;
   setModal: (modal: boolean) => void;
+  className?: string;
 }
 
-export const ShopModalOne: React.FC<Props> = ({
+export const ShopModal: React.FC<Props> = ({
+  playerUnits,
   modal,
   setModal,
   className,
 }) => {
-  const playerUnits = useGameStore((state) => state.one.units);
   const addUnit = useGameStore((state) => state.addUnitToArmy);
 
   const addUnitToArmy = (unitId: number) => {
@@ -24,7 +25,9 @@ export const ShopModalOne: React.FC<Props> = ({
   };
 
   return (
-    <div className={cn("fixed top-[10vh] left-0 right-0 mx-[25%] z-20", className)}>
+    <div
+      className={cn("fixed top-[10vh] left-0 right-0 mx-[25%] z-20", className)}
+    >
       <div className="bg-blue-700 text-white px-10 py-2">
         {playerUnits.map(({ id, name, image, health, mana, attack, price }) => (
           <div

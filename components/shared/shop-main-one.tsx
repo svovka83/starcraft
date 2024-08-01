@@ -4,7 +4,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-import { Container, ShopModalOne } from ".";
+import { Container, ShopModal } from ".";
 
 import { useGameStore } from "@/store/game";
 
@@ -18,6 +18,7 @@ interface Props {
 export const ShopMainOne: React.FC<Props> = ({ className }) => {
   const [focus, setFocus] = React.useState(false);
   const [modal, setModal] = React.useState(false);
+  const playerUnitsOne = useGameStore((state) => state.one.units);
   const addWorker = useGameStore((state) => state.createWorker);
 
   const showShopUnits = () => {
@@ -62,7 +63,7 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
           />
         </div>
       </div>
-      {modal && <ShopModalOne modal={modal} setModal={setModal} />}
+      {modal && <ShopModal modal={modal} setModal={setModal} playerUnits={playerUnitsOne} />}
     </Container>
   );
 };
