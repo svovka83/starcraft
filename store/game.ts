@@ -1,5 +1,4 @@
 import { create } from "zustand";
-
 import { StaticImageData } from "next/image";
 
 import { DRONE, ZERG } from "@/constants/zerg";
@@ -19,10 +18,11 @@ type PlayerProps = {
   units: unitType[];
   army: unitType[];
   battleground: unitType[];
-  fighter: any;
+  fighter: unitType;
   worker: unitType[];
   minerals: number;
   mine: number;
+  boss: number;
 };
 
 interface GameState {
@@ -34,6 +34,8 @@ interface GameState {
   addUnitToFighter: (unitId: number) => void;
   createWorker: () => void;
   addMinerals: () => void;
+  fightUnit: () => void;
+  fightBoss: () => void;
 }
 
 export const useGameStore = create<GameState>((set) => ({
@@ -41,19 +43,21 @@ export const useGameStore = create<GameState>((set) => ({
     units: ZERG,
     army: [],
     battleground: [],
-    fighter: {},
+    fighter: {} as unitType,
     worker: [DRONE],
     minerals: 10,
     mine: 20,
+    boss: 25,
   },
   two: {
     units: PROTOSS,
     army: [],
     battleground: [],
-    fighter: {},
+    fighter: {} as unitType,
     worker: [PROBE],
     minerals: 10,
     mine: 20,
+    boss: 25,
   },
   turn: true,
   addUnitToArmy: (unitId: number) =>
@@ -94,9 +98,7 @@ export const useGameStore = create<GameState>((set) => ({
     set((state) => {
       const player = state.turn ? state.one : state.two;
 
-      const addUnit = player.battleground.find(
-        (unit) => unit.id === unitId
-      );
+      const addUnit = player.battleground.find((unit) => unit.id === unitId);
       const removeUnit = player.battleground.filter(
         (unit) => unit.id !== unitId
       );
@@ -142,5 +144,58 @@ export const useGameStore = create<GameState>((set) => ({
       player.minerals += player.worker.length;
       player.mine -= player.worker.length;
       return { ...state, turn: !state.turn };
+    }),
+  fightUnit: () =>
+    set((state) => {
+      const player = state.turn ? state.one : state.two;
+      const opponent = !state.turn ? state.one : state.two;
+
+      const opponentHealth = opponent.fighter.health - player.fighter.attack;
+      const playerHealth = player.fighter.health - opponent.fighter.attack / 2;
+
+      const opponentIs =
+        opponentHealth <= 0
+          ? {}
+          : { ...opponent.fighter, health: opponentHealth };
+      const playerIs =
+        playerHealth <= 0 ? {} : { ...player.fighter, health: playerHealth };
+
+      return {
+        ...state,
+        [!state.turn ? "one" : "two"]: {
+          ...opponent,
+          fighter: opponentIs,
+        },
+        [state.turn ? "one" : "two"]: {
+          ...player,
+          fighter: playerIs,
+        },
+        turn: !state.turn,
+      };
+    }),
+  fightBoss: () =>
+    set((state) => {
+      const player = state.turn ? state.one : state.two;
+      const opponent = !state.turn ? state.one : state.two;
+
+      const bossHealth = opponent.boss - player.fighter.attack;
+      const playerHealth = player.fighter.health - player.fighter.attack;
+
+      const bossIs = bossHealth <= 0 ? 0 : bossHealth;
+      const playerIs =
+        playerHealth <= 0 ? {} : { ...player.fighter, health: playerHealth };
+
+      return {
+        ...state,
+        [!state.turn ? "one" : "two"]: {
+          ...opponent,
+          boss: bossIs,
+        },
+        [state.turn ? "one" : "two"]: {
+          ...player,
+          fighter: playerIs,
+        },
+        turn: !state.turn,
+      };
     }),
 }));

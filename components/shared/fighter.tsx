@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +12,7 @@ interface Props {
 
 export const Fighter: React.FC<Props> = ({ fighter, className }) => {
   const { name, image, health, mana, attack, price } = fighter;
+
   return (
     <Container className={cn("flex items-center justify-center", className)}>
       {name && (

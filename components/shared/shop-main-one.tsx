@@ -20,6 +20,7 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
   const [modal, setModal] = React.useState(false);
   const playerUnitsOne = useGameStore((state) => state.one.units);
   const addWorker = useGameStore((state) => state.createWorker);
+  const bossLife = useGameStore((state) => state.one.boss);
 
   const showShopUnits = () => {
     setModal(!modal);
@@ -51,7 +52,7 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
             className="w-[50px] h-[50px] text-center text-[36px] rounded-[50%] text-white bg-green-800 cursor-pointer"
             title="LIFE"
           >
-            25
+            {bossLife}
           </span>
           <Image
             onClick={addWorker}

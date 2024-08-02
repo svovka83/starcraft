@@ -1,8 +1,9 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-
+import { Dialog } from "../ui";
 import { unitType, useGameStore } from "@/store/game";
+import { DialogContent } from "../ui/dialog";
 
 interface Props {
   playerUnits: unitType[];
@@ -25,25 +26,28 @@ export const ShopModal: React.FC<Props> = ({
   };
 
   return (
-    <div
-      className={cn("fixed top-[10vh] left-0 right-0 mx-[25%] z-20", className)}
-    >
-      <div className="bg-blue-700 text-white px-10 py-2">
+    <Dialog open={modal} onOpenChange={() => setModal(!modal)}>
+      <DialogContent
+        className={cn(
+          "px-12 w-[800px] max-w-[900px] min-h-[400px] bg-blue-700/70 text-white overflow-hidden",
+          className
+        )}
+      >
         {playerUnits.map(({ id, name, image, health, mana, attack, price }) => (
           <div
             key={id}
-            className="grid grid-cols-6 gap-10 my-2 cursor-pointer"
+            className="grid grid-cols-6 gap-10 pl-6 items-center cursor-pointer bg-black rounded-2xl hover:translate-x-2 duration-200"
             onClick={() => addUnitToArmy(id)}
           >
-            <h1>{name}</h1>
-            <Image src={image} alt="unit" width={100} height={100} />
+            <h1 className="text-xl">{name}</h1>
+            <Image src={image} alt="unit" width={80} height={80} />
             <p>health: {health}</p>
             <p>mana: {mana}</p>
             <p>attack: {attack}</p>
             <b>price: {price}</b>
           </div>
         ))}
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 };

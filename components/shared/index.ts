@@ -11,3 +11,5 @@ export { Staff } from "./staff";
 export { ShopModal } from "./shop-modal";
 export { HideTurn } from "./hide-turn";
 export { Unit } from "./unit";
+export { FightUnit } from "./fight-unit";
+export { FightBoss } from "./fight-boss"

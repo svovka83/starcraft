@@ -13,6 +13,8 @@ import {
   Fighter,
   ShopMainOne,
   ShopMainTwo,
+  FightUnit,
+  FightBoss,
 } from "@/components/shared";
 import { useGameStore } from "@/store/game";
 
@@ -53,6 +55,8 @@ export default function Game({ className }: Props) {
           <Minerals worker={workerTwo} mine={mineTwo} />
         </div>
         <HideTurn />
+        <FightUnit />
+        <FightBoss />
       </div>
     </>
   );
