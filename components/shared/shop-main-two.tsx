@@ -16,7 +16,6 @@ interface Props {
 }
 
 export const ShopMainTwo: React.FC<Props> = ({ className }) => {
-  const [focus, setFocus] = React.useState(false);
   const [modal, setModal] = React.useState(false);
   const playerUnitsTwo = useGameStore((state) => state.two.units);
   const addWorker = useGameStore((state) => state.createWorker);
@@ -47,21 +46,11 @@ export const ShopMainTwo: React.FC<Props> = ({ className }) => {
         </div>
         <div>
           <Image
-            onMouseMove={() => setFocus(true)}
-            onMouseLeave={() => setFocus(false)}
             onClick={showShopUnits}
             src={Lair}
-            className="relative h-[24vh] px-2 hover:scale-105 hover:transition hover:duration-300 cursor-pointer"
+            className="relative h-[24vh] px-2 cursor-pointer"
             alt="larva"
           />
-          <div
-            className={cn(
-              "absolute w-[150px] text-center invisible rounded-2xl bg-red-500 text-white transition-all opacity-0",
-              focus && "visible rounded-2xl mt-4 p-4 duration-500 opacity-80"
-            )}
-          >
-            Create Unit
-          </div>
         </div>
       </div>
       {modal && <ShopModal modal={modal} setModal={setModal} playerUnits={playerUnitsTwo} />}

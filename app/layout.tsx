@@ -20,6 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="shortcut icon" href="https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9AFA6795BA2A0" />
+      </head>
       <body className={nunito.className}>
         <main className="max-w-[1180px] h-screen mx-auto">{children}</main>
       </body>

@@ -33,13 +33,14 @@ export const ShopModal: React.FC<Props> = ({
           className
         )}
       >
+        <h1 className="text-2xl">Choose unit for your army</h1>
         {playerUnits.map(({ id, name, image, health, mana, attack, price }) => (
           <div
             key={id}
             className="grid grid-cols-6 gap-10 pl-6 items-center cursor-pointer bg-black rounded-2xl hover:translate-x-2 duration-200"
             onClick={() => addUnitToArmy(id)}
           >
-            <h1 className="text-xl">{name}</h1>
+            <p className="text-2xl">{name}</p>
             <Image src={image} alt="unit" width={80} height={80} />
             <p>health: {health}</p>
             <p>mana: {mana}</p>
