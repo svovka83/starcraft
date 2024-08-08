@@ -1,9 +1,10 @@
 import React from "react";
+import { useSet } from "react-use";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { Dialog } from "../ui";
+import { Button } from "../ui";
 import { unitType, useGameStore } from "@/store/game";
-import { DialogContent } from "../ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
+import { ShopContent } from ".";
 
 interface Props {
   playerUnits: unitType[];
@@ -18,6 +19,8 @@ export const ShopModal: React.FC<Props> = ({
   setModal,
   className,
 }) => {
+  const [activeUnit, setActiveUnit] = React.useState(0);
+
   const addUnit = useGameStore((state) => state.addUnitToArmy);
 
   const addUnitToArmy = (unitId: number) => {
@@ -33,21 +36,30 @@ export const ShopModal: React.FC<Props> = ({
           className
         )}
       >
-        <h1 className="text-2xl">Choose unit for your army</h1>
-        {playerUnits.map(({ id, name, image, health, mana, attack, price }) => (
-          <div
-            key={id}
-            className="grid grid-cols-6 gap-10 pl-6 items-center cursor-pointer bg-black rounded-2xl hover:translate-x-2 duration-200"
-            onClick={() => addUnitToArmy(id)}
-          >
-            <p className="text-2xl">{name}</p>
-            <Image src={image} alt="unit" width={80} height={80} />
-            <p>health: {health}</p>
-            <p>mana: {mana}</p>
-            <p>attack: {attack}</p>
-            <b>price: {price}</b>
-          </div>
+        <DialogTitle className="text-3xl">
+          Choose unit for your army
+        </DialogTitle>
+        {playerUnits.map((unit) => (
+          <ShopContent
+            key={unit.id}
+            id={unit.id}
+            name={unit.name}
+            image={unit.image}
+            health={unit.health}
+            mana={unit.mana}
+            attack={unit.attack}
+            price={unit.price}
+            setActiveUnit={setActiveUnit}
+            active={activeUnit === unit.id}
+          />
         ))}
+        <Button
+          onClick={() => addUnitToArmy(activeUnit)}
+          variant="secondary"
+          className="text-lg font-bold"
+        >
+          Buy Unit
+        </Button>
       </DialogContent>
     </Dialog>
   );
