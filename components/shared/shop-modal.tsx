@@ -21,7 +21,7 @@ export const ShopModal: React.FC<Props> = ({
 }) => {
   const [activeUnit, setActiveUnit] = React.useState(0);
 
-  const addUnit = useGameStore((state) => state.addUnitToArmy);
+  const addUnit = useGameStore((state) => state.buyUnit);
 
   const addUnitToArmy = (unitId: number) => {
     addUnit(unitId);
@@ -54,6 +54,7 @@ export const ShopModal: React.FC<Props> = ({
           />
         ))}
         <Button
+          disabled={!activeUnit}
           onClick={() => addUnitToArmy(activeUnit)}
           variant="secondary"
           className="text-lg font-bold"

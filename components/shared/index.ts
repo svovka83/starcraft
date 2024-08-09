@@ -4,7 +4,6 @@ export { Container } from "./container";
 export { ShopMainOne } from "./shop-main-one";
 export { Fighter } from "./fighter";
 export { ShopMainTwo } from "./shop-main-two";
-export { Army } from "./army";
 export { Battleground } from "./battleground";
 export { Minerals } from "./minerals";
 export { Staff } from "./staff";

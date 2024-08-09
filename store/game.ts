@@ -16,7 +16,6 @@ export type unitType = {
 
 type PlayerProps = {
   units: unitType[];
-  army: unitType[];
   battleground: unitType[];
   fighter: unitType;
   worker: unitType[];
@@ -29,9 +28,8 @@ interface GameState {
   one: PlayerProps;
   two: PlayerProps;
   turn: boolean;
-  addUnitToArmy: (unitId: number) => void;
-  addUnitToBattleground: (unitId: number) => void;
-  addUnitToFighter: (unitId: number) => void;
+  buyUnit: (unitId: number) => void;
+  moveUnitToFighter: (unitId: number) => void;
   createWorker: () => void;
   addMinerals: () => void;
   fightUnit: () => void;
@@ -41,7 +39,6 @@ interface GameState {
 export const useGameStore = create<GameState>((set) => ({
   one: {
     units: ZERG,
-    army: [],
     battleground: [],
     fighter: {} as unitType,
     worker: [DRONE],
@@ -51,7 +48,6 @@ export const useGameStore = create<GameState>((set) => ({
   },
   two: {
     units: PROTOSS,
-    army: [],
     battleground: [],
     fighter: {} as unitType,
     worker: [PROBE],
@@ -60,7 +56,7 @@ export const useGameStore = create<GameState>((set) => ({
     boss: 25,
   },
   turn: true,
-  addUnitToArmy: (unitId: number) =>
+  buyUnit: (unitId: number) =>
     set((state) => {
       const player = state.turn ? state.one : state.two;
 
@@ -72,29 +68,13 @@ export const useGameStore = create<GameState>((set) => ({
       return {
         [state.turn ? "one" : "two"]: {
           ...player,
-          army: [...player.army, addUnit],
+          battleground: [...player.battleground, addUnit],
           minerals: newMinerals,
         },
         turn: !state.turn,
       };
     }),
-  addUnitToBattleground: (unitId: number) =>
-    set((state) => {
-      const player = state.turn ? state.one : state.two;
-
-      const addUnit = player.army.find((unit) => unit.id === unitId);
-      const removeUnit = player.army.filter((unit) => unit.id !== unitId);
-
-      return {
-        [state.turn ? "one" : "two"]: {
-          ...player,
-          army: removeUnit,
-          battleground: [...player.battleground, addUnit],
-        },
-        turn: !state.turn,
-      };
-    }),
-  addUnitToFighter: (unitId: number) =>
+    moveUnitToFighter: (unitId: number) =>
     set((state) => {
       const player = state.turn ? state.one : state.two;
 

@@ -20,7 +20,7 @@ export const Minerals: React.FC<Props> = ({ worker, mine, className }) => {
   const addMinerals = useGameStore((state) => state.addMinerals);
 
   return (
-    <Container className={cn("flex flex-col w-[40%]", className)}>
+    <Container className={cn("flex flex-col", className)}>
       <div className="flex justify-around">
         {worker.map((worker) => (
           <Unit

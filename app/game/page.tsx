@@ -8,7 +8,6 @@ import {
   HideTurn,
   Minerals,
   Staff,
-  Army,
   Battleground,
   Fighter,
   ShopMainOne,
@@ -23,8 +22,6 @@ interface Props {
 }
 
 export default function Game({ className }: Props) {
-  const armyOneUnits = useGameStore((state) => state.one.army);
-  const armyTwoUnits = useGameStore((state) => state.two.army);
   const battlegroundOneUnits = useGameStore((state) => state.one.battleground);
   const battlegroundTwoUnits = useGameStore((state) => state.two.battleground);
   const fighterOne = useGameStore((state) => state.one.fighter);
@@ -44,13 +41,13 @@ export default function Game({ className }: Props) {
           <ShopMainTwo />
         </div>
         <div className={cn("flex h-[36vh] border", className)}>
-          <Army armyUnits={armyOneUnits} />
           <Battleground battlegroundUnits={battlegroundOneUnits} />
+          <Staff />
           <Battleground battlegroundUnits={battlegroundTwoUnits} />
-          <Army armyUnits={armyTwoUnits} />
         </div>
         <div className={cn("flex h-[28vh] border", className)}>
           <Minerals worker={workerOne} mine={mineOne} />
+          <Staff />
           <Staff />
           <Minerals worker={workerTwo} mine={mineTwo} />
         </div>
