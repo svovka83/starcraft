@@ -17,7 +17,7 @@ interface Props {
 
 export const ShopMainOne: React.FC<Props> = ({ className }) => {
   const [modal, setModal] = React.useState(false);
-  const playerUnitsOne = useGameStore((state) => state.one.units);
+  const [playerUnitsOne, minerals] = useGameStore((state) => [state.one.units, state.one.minerals]);
   const addWorker = useGameStore((state) => state.createWorker);
   const bossLife = useGameStore((state) => state.one.boss);
 
@@ -29,7 +29,7 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
     <Container className={cn("p-1", className)}>
       <div className="flex justify-between">
         <div>
-        <Image
+          <Image
             onClick={showShopUnits}
             src={Lair}
             className="h-[24vh] px-2 cursor-pointer"
@@ -53,7 +53,12 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
           />
         </div>
       </div>
-      {modal && <ShopModal modal={modal} setModal={setModal} playerUnits={playerUnitsOne} />}
+      <ShopModal
+        modal={modal}
+        setModal={setModal}
+        minerals={minerals}
+        playerUnits={playerUnitsOne}
+      />
     </Container>
   );
 };

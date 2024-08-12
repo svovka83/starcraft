@@ -2,6 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { CircleCheck } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
+import toast from "react-hot-toast";
 
 interface Props {
   id: number;
@@ -13,6 +14,7 @@ interface Props {
   price: number;
   setActiveUnit: (id: number) => void;
   active?: boolean;
+  disabled?: boolean;
   className?: string;
 }
 
@@ -26,17 +28,26 @@ export const ShopContent: React.FC<Props> = ({
   price,
   setActiveUnit,
   active,
+  disabled,
   className,
 }) => {
+  const activated = () => {
+    setActiveUnit(id);
+    toast.success("Unit selected");
+  };
+
   return (
     <div className={cn("", className)}>
       <div
         key={id}
         className={cn(
           "relative grid grid-cols-6 gap-10 pl-6 border-2 border-black items-center cursor-pointer bg-black rounded-2xl hover:translate-x-2 duration-200",
-          active && "border-2 border-white"
+          {
+            "border-2 border-white": active,
+            "opacity-50 pointer-events-none": disabled,
+          }
         )}
-        onClick={() => setActiveUnit(id)}
+        onClick={activated}
       >
         <p className="text-2xl ml-3">{name}</p>
         <Image src={image} alt="unit" width={80} height={80} />

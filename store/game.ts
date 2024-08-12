@@ -12,6 +12,7 @@ export type unitType = {
   mana: number;
   attack: number;
   price: number;
+  disabled?: boolean;
 };
 
 type PlayerProps = {
@@ -42,7 +43,7 @@ export const useGameStore = create<GameState>((set) => ({
     battleground: [],
     fighter: {} as unitType,
     worker: [DRONE],
-    minerals: 10,
+    minerals: 5,
     mine: 20,
     boss: 25,
   },
@@ -51,7 +52,7 @@ export const useGameStore = create<GameState>((set) => ({
     battleground: [],
     fighter: {} as unitType,
     worker: [PROBE],
-    minerals: 10,
+    minerals: 5,
     mine: 20,
     boss: 25,
   },
@@ -74,7 +75,7 @@ export const useGameStore = create<GameState>((set) => ({
         turn: !state.turn,
       };
     }),
-    moveUnitToFighter: (unitId: number) =>
+  moveUnitToFighter: (unitId: number) =>
     set((state) => {
       const player = state.turn ? state.one : state.two;
 

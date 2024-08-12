@@ -17,7 +17,7 @@ interface Props {
 
 export const ShopMainTwo: React.FC<Props> = ({ className }) => {
   const [modal, setModal] = React.useState(false);
-  const playerUnitsTwo = useGameStore((state) => state.two.units);
+  const [playerUnitsTwo, minerals] = useGameStore((state) => [state.two.units, state.two.minerals]);
   const addWorker = useGameStore((state) => state.createWorker);
   const bossLife = useGameStore((state) => state.two.boss);
 
@@ -53,7 +53,7 @@ export const ShopMainTwo: React.FC<Props> = ({ className }) => {
           />
         </div>
       </div>
-      {modal && <ShopModal modal={modal} setModal={setModal} playerUnits={playerUnitsTwo} />}
+      {modal && <ShopModal minerals={minerals} modal={modal} setModal={setModal} playerUnits={playerUnitsTwo} />}
     </Container>
   );
 };

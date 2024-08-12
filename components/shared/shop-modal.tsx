@@ -1,15 +1,16 @@
 import React from "react";
-import { useSet } from "react-use";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui";
 import { unitType, useGameStore } from "@/store/game";
 import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
 import { ShopContent } from ".";
+import toast from "react-hot-toast";
 
 interface Props {
   playerUnits: unitType[];
   modal: boolean;
   setModal: (modal: boolean) => void;
+  minerals: number;
   className?: string;
 }
 
@@ -17,6 +18,7 @@ export const ShopModal: React.FC<Props> = ({
   playerUnits,
   modal,
   setModal,
+  minerals,
   className,
 }) => {
   const [activeUnit, setActiveUnit] = React.useState(0);
@@ -26,6 +28,8 @@ export const ShopModal: React.FC<Props> = ({
   const addUnitToArmy = (unitId: number) => {
     addUnit(unitId);
     setModal(!modal);
+    setActiveUnit(0);
+    toast.success("Unit added to your army", { duration: 3000 });
   };
 
   return (
@@ -51,6 +55,7 @@ export const ShopModal: React.FC<Props> = ({
             price={unit.price}
             setActiveUnit={setActiveUnit}
             active={activeUnit === unit.id}
+            disabled={minerals < unit.price}
           />
         ))}
         <Button
