@@ -13,7 +13,7 @@ interface Props {
   attack: number;
   price: number;
   active?: boolean;
-  setActiveUnit: (id: number) => void;
+  setActiveUnit?: (id: number) => void;
   className?: string;
 }
 
@@ -31,7 +31,7 @@ export const Unit: React.FC<Props> = ({
   return (
     <div
       className={cn("relative w-[60px] mx-6 my-2 cursor-pointer", className)}
-      onClick={() => setActiveUnit(id)}
+      onClick={() => setActiveUnit?.(id)}
     >
       <h2 className="text-fuchsia-400 text-sm text-center">{name}</h2>
       <div className="h-1 bg-green-700"></div>

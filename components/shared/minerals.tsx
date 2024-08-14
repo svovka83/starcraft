@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { cn } from "@/lib/utils";
 
@@ -20,10 +18,11 @@ export const Minerals: React.FC<Props> = ({ worker, mine, className }) => {
   const addMinerals = useGameStore((state) => state.addMinerals);
 
   return (
-    <Container className={cn("flex flex-col", className)}>
-      <div className="flex justify-around">
+    <Container className="flex flex-col">
+      <div className={cn("flex flex-row-3", className)}>
         {worker.map((worker) => (
           <Unit
+            id={worker.id}
             key={worker.id}
             name={worker.name}
             image={worker.image}
@@ -31,14 +30,15 @@ export const Minerals: React.FC<Props> = ({ worker, mine, className }) => {
             mana={worker.mana}
             attack={worker.attack}
             price={worker.price}
+            className="mx-4"
           />
         ))}
       </div>
-      <div className="flex justify-center px-4 pt-4">
+      <div className={cn("flex", className)}>
         <Button
           variant="outline"
           size="lg"
-          className="text-[24px] font-bold"
+          className="text-[24px] font-bold my-2 mx-4"
           onClick={addMinerals}
         >
           {mine}

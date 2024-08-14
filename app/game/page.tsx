@@ -22,14 +22,26 @@ interface Props {
 }
 
 export default function Game({ className }: Props) {
-  const battlegroundOneUnits = useGameStore((state) => state.one.battleground);
-  const battlegroundTwoUnits = useGameStore((state) => state.two.battleground);
-  const fighterOne = useGameStore((state) => state.one.fighter);
-  const fighterTwo = useGameStore((state) => state.two.fighter);
-  const workerOne = useGameStore((state) => state.one.worker);
-  const mineOne = useGameStore((state) => state.one.mine);
-  const workerTwo = useGameStore((state) => state.two.worker);
-  const mineTwo = useGameStore((state) => state.two.mine);
+  const [
+    battlegroundOneUnits,
+    battlegroundTwoUnits,
+    fighterOne,
+    fighterTwo,
+    workerOne,
+    mineOne,
+    workerTwo,
+    mineTwo,
+  ] = useGameStore((state) => [
+    state.one.battleground,
+    state.two.battleground,
+    state.one.fighter,
+    state.two.fighter,
+    state.one.worker,
+    state.one.mine,
+    state.two.worker,
+    state.two.mine,
+  ]);
+
   return (
     <>
       <div>
@@ -41,15 +53,25 @@ export default function Game({ className }: Props) {
           <ShopMainTwo />
         </div>
         <div className={cn("flex h-[36vh] border", className)}>
-          <Battleground battlegroundUnits={battlegroundOneUnits} />
+          <Battleground
+            battlegroundUnits={battlegroundOneUnits}
+            className="flex-row"
+          />
           <Staff />
-          <Battleground battlegroundUnits={battlegroundTwoUnits} />
+          <Battleground
+            battlegroundUnits={battlegroundTwoUnits}
+            className="flex-row-reverse"
+          />
         </div>
         <div className={cn("flex h-[28vh] border", className)}>
-          <Minerals worker={workerOne} mine={mineOne} />
+          <Minerals worker={workerOne} mine={mineOne} className="justify-end" />
           <Staff />
           <Staff />
-          <Minerals worker={workerTwo} mine={mineTwo} />
+          <Minerals
+            worker={workerTwo}
+            mine={mineTwo}
+            className="justify-start"
+          />
         </div>
         <HideTurn />
         <FightUnit />

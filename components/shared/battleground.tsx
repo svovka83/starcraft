@@ -43,8 +43,18 @@ export const Battleground: React.FC<Props> = ({
         )}
       </div>
       <div className="flex flex-1 flex-col justify-around">
-        <Button disabled={!activeUnit} onClick={() => moveUnitToFight(activeUnit)}><MoveUp /></Button>
-        <Button disabled={!activeUnit} ><MoveDown /></Button>
+        <Button
+          disabled={!activeUnit}
+          onClick={() => {
+            moveUnitToFight(activeUnit);
+            setActiveUnit(0); // подумати як забрати галочку при переході ходу
+          }}
+        >
+          <MoveUp />
+        </Button>
+        <Button disabled={!activeUnit}>
+          <MoveDown />
+        </Button>
       </div>
     </Container>
   );
