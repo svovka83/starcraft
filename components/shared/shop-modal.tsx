@@ -8,16 +8,16 @@ import toast from "react-hot-toast";
 
 interface Props {
   playerUnits: unitType[];
-  modal: boolean;
-  setModal: (modal: boolean) => void;
+  showModalShop: boolean;
+  closeModal: () => void;
   minerals: number;
   className?: string;
 }
 
 export const ShopModal: React.FC<Props> = ({
   playerUnits,
-  modal,
-  setModal,
+  showModalShop,
+  closeModal,
   minerals,
   className,
 }) => {
@@ -27,13 +27,13 @@ export const ShopModal: React.FC<Props> = ({
 
   const addUnitToArmy = (unitId: number) => {
     addUnit(unitId);
-    setModal(!modal);
+    closeModal();
     setActiveUnit(0);
     toast.success("Unit added to your army", { duration: 3000 });
   };
 
   return (
-    <Dialog open={modal} onOpenChange={() => setModal(!modal)}>
+    <Dialog open={showModalShop} onOpenChange={closeModal}>
       <DialogContent
         className={cn(
           "px-12 w-[800px] max-w-[900px] min-h-[400px] bg-blue-700/70 text-white overflow-hidden",

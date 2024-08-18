@@ -16,14 +16,13 @@ interface Props {
 }
 
 export const ShopMainTwo: React.FC<Props> = ({ className }) => {
-  const [modal, setModal] = React.useState(false);
-  const [playerUnitsTwo, minerals] = useGameStore((state) => [state.two.units, state.two.minerals]);
+  const [showModalShop, setShowModalShop] = React.useState(false);
+  const [playerUnitsTwo, minerals] = useGameStore((state) => [
+    state.two.units,
+    state.two.minerals,
+  ]);
   const addWorker = useGameStore((state) => state.createWorker);
   const bossLife = useGameStore((state) => state.two.boss);
-
-  const showShopUnits = () => {
-    setModal(!modal);
-  };
 
   return (
     <Container className={cn("p-1", className)}>
@@ -46,14 +45,19 @@ export const ShopMainTwo: React.FC<Props> = ({ className }) => {
         </div>
         <div>
           <Image
-            onClick={showShopUnits}
+            onClick={() => setShowModalShop(true)}
             src={Lair}
             className="relative h-[24vh] px-2 cursor-pointer"
             alt="larva"
           />
         </div>
       </div>
-      {modal && <ShopModal minerals={minerals} modal={modal} setModal={setModal} playerUnits={playerUnitsTwo} />}
+      <ShopModal
+        showModalShop={showModalShop}
+        closeModal={() => setShowModalShop(false)}
+        minerals={minerals}
+        playerUnits={playerUnitsTwo}
+      />
     </Container>
   );
 };
