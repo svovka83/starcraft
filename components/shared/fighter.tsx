@@ -18,7 +18,6 @@ export const Fighter: React.FC<Props> = ({ fighter, className }) => {
       {name && (
         <Unit
           id={id}
-          key={id}
           name={name}
           image={image}
           health={health}
