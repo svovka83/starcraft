@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { cn } from "@/lib/utils";
 
 import {
   HeaderGame,
@@ -17,11 +16,7 @@ import {
 } from "@/components/shared";
 import { useGameStore } from "@/store/game";
 
-interface Props {
-  className?: string;
-}
-
-export default function Game({ className }: Props) {
+export default function Game() {
   const [
     battlegroundOneUnits,
     battlegroundTwoUnits,
@@ -46,13 +41,13 @@ export default function Game({ className }: Props) {
     <>
       <div>
         <HeaderGame />
-        <div className={cn("flex h-[26vh] border", className)}>
+        <div className="flex h-[26vh] border">
           <ShopMainOne />
           <Fighter fighter={fighterOne} />
           <Fighter fighter={fighterTwo} />
           <ShopMainTwo />
         </div>
-        <div className={cn("flex h-[36vh] border", className)}>
+        <div className="flex h-[36vh] border">
           <Battleground
             battlegroundUnits={battlegroundOneUnits}
             className="flex-row"
@@ -63,7 +58,7 @@ export default function Game({ className }: Props) {
             className="flex-row-reverse"
           />
         </div>
-        <div className={cn("flex h-[28vh] border", className)}>
+        <div className="flex h-[28vh] border">
           <Minerals worker={workerOne} mine={mineOne} className="justify-end" />
           <Staff />
           <Staff />
