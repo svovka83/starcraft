@@ -1,10 +1,6 @@
-"use client";
-
 import React from "react";
 import { cn } from "@/lib/utils";
-
 import { unitType, useGameStore } from "@/store/game";
-
 import { Container, Unit } from ".";
 import { Button } from "../ui";
 import { MoveDown, MoveUp } from "lucide-react";
@@ -35,7 +31,7 @@ export const Battleground: React.FC<Props> = ({
                 mana={mana}
                 attack={attack}
                 price={price}
-                setActiveUnit={setActiveUnit}
+                setActiveUnit={() => setActiveUnit(id)}
                 active={activeUnit === id}
               />
             </div>

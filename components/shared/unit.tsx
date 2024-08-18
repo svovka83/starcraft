@@ -13,7 +13,7 @@ interface Props {
   attack: number;
   price: number;
   active?: boolean;
-  setActiveUnit?: (id: number) => void;
+  setActiveUnit?: VoidFunction;
   className?: string;
 }
 
@@ -30,8 +30,12 @@ export const Unit: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={cn("relative w-[60px] mx-6 my-2 cursor-pointer", className)}
-      onClick={() => setActiveUnit?.(id)}
+      className={cn(
+        "relative w-[60px] mx-6 my-2 cursor-pointer",
+        { "bg-green-700": active },
+        className
+      )}
+      onClick={setActiveUnit}
     >
       <h2 className="text-fuchsia-400 text-sm text-center">{name}</h2>
       <div className="h-1 bg-green-700"></div>
@@ -41,7 +45,9 @@ export const Unit: React.FC<Props> = ({
         <span className="w-[20px] bg-green-600">{health}</span>
         <span className="w-[20px] bg-red-500">{attack}</span>
       </div>
-      {active && <CircleCheck size={18} className="absolute text-white top-7 right-1" />}
+      {active && (
+        <CircleCheck size={18} className="absolute text-white top-7 right-1" />
+      )}
     </div>
   );
 };

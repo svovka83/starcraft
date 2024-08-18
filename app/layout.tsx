@@ -23,8 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link
+          type="image/png"
           rel="shortcut icon"
-          href="https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9AFA6795BA2A0"
+          href="../images/imgTerran/marine.png"
         />
       </head>
       <body className={nunito.className}>
