@@ -13,7 +13,10 @@ export const Battleground: React.FC<Props> = ({
   className,
 }) => {
   const [activeUnit, setActiveUnit] = React.useState(0);
-  const moveUnitToFight = useGameStore((state) => state.moveUnitToFighter);
+  const [moveUnitUp, moveUnitDown] = useGameStore((state) => [
+    state.moveUnitUp,
+    state.moveUnitDown,
+  ]);
 
   return (
     <Container className={cn("w-[40%] flex", className)}>
@@ -39,7 +42,8 @@ export const Battleground: React.FC<Props> = ({
 
       <ChooseUnitSide
         activeUnit={activeUnit}
-        moveUnitToFight={() => moveUnitToFight(activeUnit)}
+        moveUnitUp={() => moveUnitUp(activeUnit)}
+        moveUnitDown={() => moveUnitDown(activeUnit)}
       />
     </Container>
   );

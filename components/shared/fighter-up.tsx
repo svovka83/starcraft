@@ -10,7 +10,7 @@ interface Props {
   className?: string;
 }
 
-export const Fighter: React.FC<Props> = ({ fighter, className }) => {
+export const FighterUp: React.FC<Props> = ({ fighter, className }) => {
   const { id, name, image, health, mana, attack, price } = fighter;
 
   return (

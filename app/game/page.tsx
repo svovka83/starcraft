@@ -6,7 +6,8 @@ import {
   Minerals,
   Staff,
   Battleground,
-  Fighter,
+  FighterUp,
+  FighterDown,
   ShopMainOne,
   ShopMainTwo,
   FightUnit,
@@ -18,17 +19,21 @@ export default function Game() {
   const [
     battlegroundOneUnits,
     battlegroundTwoUnits,
-    fighterOne,
-    fighterTwo,
+    fighterOneUp,
+    fighterTwoUp,
+    fighterOneDown,
+    fighterTwoDown,
     workerOne,
-    mineOne,
+    mineralsOne,
     workerTwo,
-    mineTwo,
+    mineralsTwo,
   ] = useGameStore((state) => [
     state.one.battleground,
     state.two.battleground,
-    state.one.fighter,
-    state.two.fighter,
+    state.one.fighterUp,
+    state.two.fighterUp,
+    state.one.fighterDown,
+    state.two.fighterDown,
     state.one.worker,
     state.one.mine,
     state.two.worker,
@@ -41,8 +46,8 @@ export default function Game() {
         <HeaderGame />
         <div className="flex h-[26vh] border">
           <ShopMainOne />
-          <Fighter fighter={fighterOne} />
-          <Fighter fighter={fighterTwo} />
+          <FighterUp fighter={fighterOneUp} />
+          <FighterUp fighter={fighterTwoUp} />
           <ShopMainTwo />
         </div>
         <div className="flex h-[36vh] border">
@@ -57,12 +62,16 @@ export default function Game() {
           />
         </div>
         <div className="flex h-[28vh] border">
-          <Minerals worker={workerOne} mine={mineOne} className="justify-end" />
-          <Staff />
-          <Staff />
+          <Minerals
+            worker={workerOne}
+            mine={mineralsOne}
+            className="justify-end"
+          />
+          <FighterDown fighter={fighterOneDown} />
+          <FighterDown fighter={fighterTwoDown} />
           <Minerals
             worker={workerTwo}
-            mine={mineTwo}
+            mine={mineralsTwo}
             className="justify-start"
           />
         </div>

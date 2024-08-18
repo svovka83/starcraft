@@ -4,20 +4,22 @@ import { MoveDown, MoveUp } from "lucide-react";
 
 interface Props {
   activeUnit: number;
-  moveUnitToFight: VoidFunction;
+  moveUnitUp: VoidFunction;
+  moveUnitDown: VoidFunction;
   className?: string;
 }
 
 export const ChooseUnitSide: React.FC<Props> = ({
   activeUnit,
-  moveUnitToFight,
+  moveUnitUp,
+  moveUnitDown,
 }) => {
   return (
     <div className="flex flex-col justify-around">
-      <Button disabled={!activeUnit} onClick={moveUnitToFight}>
+      <Button disabled={!activeUnit} onClick={moveUnitUp}>
         <MoveUp />
       </Button>
-      <Button disabled={!activeUnit}>
+      <Button disabled={!activeUnit} onClick={moveUnitDown}>
         <MoveDown />
       </Button>
     </div>

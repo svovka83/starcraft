@@ -6,8 +6,8 @@ import { useGameStore } from "@/store/game";
 export const FightBoss = () => {
   const fight = useGameStore((state) => state.fightBoss);
   const turn = useGameStore((state) => state.turn);
-  const visibleOne = useGameStore((state) => state.one.fighter.health);
-  const visibleTwo = useGameStore((state) => state.two.fighter.health);
+  const visibleOne = useGameStore((state) => state.one.fighterUp.health);
+  const visibleTwo = useGameStore((state) => state.two.fighterUp.health);
 
   return (
     <div
