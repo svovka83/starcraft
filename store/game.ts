@@ -102,9 +102,10 @@ export const useGameStore = create<GameState>((set) => ({
       const player = state.turn ? state.one : state.two;
 
       if (player.worker.length === 3) return state;
-      player.minerals -= DRONE.price;
 
-      if (player.minerals < 0) return state;
+      if (player.minerals === 0) return state;
+      
+      player.minerals -= DRONE.price;
 
       return {
         [state.turn ? "one" : "two"]: {

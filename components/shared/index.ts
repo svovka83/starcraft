@@ -13,3 +13,4 @@ export { HideTurn } from "./hide-turn";
 export { Unit } from "./unit";
 export { FightUnit } from "./fight-unit";
 export { FightBoss } from "./fight-boss";
+export { ChooseUnitSide } from "./choose-unit-side";

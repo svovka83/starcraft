@@ -1,9 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { unitType, useGameStore } from "@/store/game";
-import { Container, Unit } from ".";
-import { Button } from "../ui";
-import { MoveDown, MoveUp } from "lucide-react";
+import { ChooseUnitSide, Container, Unit } from ".";
 
 interface Props {
   battlegroundUnits: unitType[];
@@ -19,7 +17,7 @@ export const Battleground: React.FC<Props> = ({
 
   return (
     <Container className={cn("w-[40%] flex", className)}>
-      <div className="flex flex-wrap justify-around w-[85%]">
+      <div className={cn("flex flex-wrap mx-8 gap-6 w-[90%]", className)}>
         {battlegroundUnits.map(
           ({ id, name, image, health, mana, attack, price }, index) => (
             <div key={index}>
@@ -38,20 +36,11 @@ export const Battleground: React.FC<Props> = ({
           )
         )}
       </div>
-      <div className="flex flex-1 flex-col justify-around">
-        <Button
-          disabled={!activeUnit}
-          onClick={() => {
-            moveUnitToFight(activeUnit);
-            setActiveUnit(0); // подумати як забрати галочку при переході ходу
-          }}
-        >
-          <MoveUp />
-        </Button>
-        <Button disabled={!activeUnit}>
-          <MoveDown />
-        </Button>
-      </div>
+
+      <ChooseUnitSide
+        activeUnit={activeUnit}
+        moveUnitToFight={() => moveUnitToFight(activeUnit)}
+      />
     </Container>
   );
 };

@@ -9,7 +9,7 @@ import { Container, ShopModal } from ".";
 import { useGameStore } from "@/store/game";
 
 import Lair from "/images/imgZerg/Lair.webp";
-import larva from "/images/imgZerg/larva.webp";
+import larva from "/images/imgZerg/drone.webp";
 
 interface Props {
   className?: string;

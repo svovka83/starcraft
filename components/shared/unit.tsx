@@ -31,7 +31,7 @@ export const Unit: React.FC<Props> = ({
   return (
     <div
       className={cn(
-        "relative w-[60px] mx-6 my-2 cursor-pointer",
+        "relative w-[60px] cursor-pointer",
         { "bg-green-700": active },
         className
       )}
