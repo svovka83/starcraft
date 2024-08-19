@@ -1,13 +1,8 @@
-"use client";
-
 import React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-
 import { Container, ShopModal } from ".";
-
 import { useGameStore } from "@/store/game";
-
 import Lair from "/images/imgZerg/Lair.webp";
 import larva from "/images/imgZerg/drone.webp";
 

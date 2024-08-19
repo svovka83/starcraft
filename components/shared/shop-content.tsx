@@ -33,7 +33,7 @@ export const ShopContent: React.FC<Props> = ({
 }) => {
   const activated = () => {
     setActiveUnit(id);
-    toast.success("Unit selected");
+    toast.success(`Unit ${name} selected`);
   };
 
   return (

@@ -27,9 +27,9 @@ export const ShopModal: React.FC<Props> = ({
 
   const addUnitToArmy = (unitId: number) => {
     addUnit(unitId);
-    closeModal();
     setActiveUnit(0);
-    toast.success("Unit added to your army", { duration: 3000 });
+    closeModal();
+    toast.success(`Unit added to your army`);
   };
 
   return (
@@ -43,21 +43,23 @@ export const ShopModal: React.FC<Props> = ({
         <DialogTitle className="text-3xl">
           Choose unit for your army
         </DialogTitle>
-        {playerUnits.map((unit) => (
-          <ShopContent
-            key={unit.id}
-            id={unit.id}
-            name={unit.name}
-            image={unit.image}
-            health={unit.health}
-            mana={unit.mana}
-            attack={unit.attack}
-            price={unit.price}
-            setActiveUnit={setActiveUnit}
-            active={activeUnit === unit.id}
-            disabled={minerals < unit.price}
-          />
-        ))}
+        {playerUnits
+          .map((unit) => (
+            <ShopContent
+              key={unit.id}
+              id={unit.id}
+              name={unit.name}
+              image={unit.image}
+              health={unit.health}
+              mana={unit.mana}
+              attack={unit.attack}
+              price={unit.price}
+              setActiveUnit={setActiveUnit}
+              active={activeUnit === unit.id}
+              disabled={minerals < unit.price}
+            />
+          ))
+          .slice(1, 4)}
         <Button
           disabled={!activeUnit}
           onClick={() => addUnitToArmy(activeUnit)}

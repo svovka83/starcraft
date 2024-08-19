@@ -13,7 +13,7 @@ export const FightBoss = () => {
     <div
       className={cn(
         "fixed top-[10vh]",
-        turn ? "right-[50%]" : "left-[50%]",
+        turn ? "right-[55%]" : "left-[55%]",
         (visibleOne && !visibleTwo && turn) ||
           (!visibleOne && visibleTwo && !turn)
           ? "visible"
@@ -22,7 +22,7 @@ export const FightBoss = () => {
     >
       <Button
         variant="destructive"
-        size="lg"
+        size="default"
         onClick={fight}
         className="text-slate-100 text-[20px] font-bold"
       >

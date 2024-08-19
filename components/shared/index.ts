@@ -12,6 +12,7 @@ export { ShopModal } from "./shop-modal";
 export { ShopContent } from "./shop-content";
 export { HideTurn } from "./hide-turn";
 export { Unit } from "./unit";
-export { FightUnit } from "./fight-unit";
+export { FightUnitUp } from "./fight-unit-up";
+export { FightUnitDown } from "./fight-unit-down";
 export { FightBoss } from "./fight-boss";
 export { ChooseUnitSide } from "./choose-unit-side";

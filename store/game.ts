@@ -35,7 +35,8 @@ interface GameState {
   moveUnitDown: (unitId: number) => void;
   createWorker: () => void;
   addMinerals: () => void;
-  fightUnit: () => void;
+  fightUnitUp: () => void;
+  fightUnitDown: () => void;
   fightBoss: () => void;
 }
 
@@ -155,7 +156,7 @@ export const useGameStore = create<GameState>((set) => ({
       player.mine -= player.worker.length;
       return { ...state, turn: !state.turn };
     }),
-  fightUnit: () =>
+  fightUnitUp: () =>
     set((state) => {
       const player = state.turn ? state.one : state.two;
       const opponent = !state.turn ? state.one : state.two;
@@ -176,11 +177,41 @@ export const useGameStore = create<GameState>((set) => ({
         ...state,
         [!state.turn ? "one" : "two"]: {
           ...opponent,
-          fighter: opponentIs,
+          fighterUp: opponentIs,
         },
         [state.turn ? "one" : "two"]: {
           ...player,
-          fighter: playerIs,
+          fighterUp: playerIs,
+        },
+        turn: !state.turn,
+      };
+    }),
+  fightUnitDown: () =>
+    set((state) => {
+      const player = state.turn ? state.one : state.two;
+      const opponent = !state.turn ? state.one : state.two;
+
+      const opponentHealth =
+        opponent.fighterDown.health - player.fighterDown.attack;
+      const playerHealth =
+        player.fighterDown.health - opponent.fighterDown.attack / 2;
+
+      const opponentIs =
+        opponentHealth <= 0
+          ? {}
+          : { ...opponent.fighterDown, health: opponentHealth };
+      const playerIs =
+        playerHealth <= 0 ? {} : { ...player.fighterDown, health: playerHealth };
+
+      return {
+        ...state,
+        [!state.turn ? "one" : "two"]: {
+          ...opponent,
+          fighterDown: opponentIs,
+        },
+        [state.turn ? "one" : "two"]: {
+          ...player,
+          fighterDown: playerIs,
         },
         turn: !state.turn,
       };

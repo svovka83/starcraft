@@ -10,8 +10,9 @@ import {
   FighterDown,
   ShopMainOne,
   ShopMainTwo,
-  FightUnit,
+  FightUnitUp,
   FightBoss,
+  FightUnitDown,
 } from "@/components/shared";
 import { useGameStore } from "@/store/game";
 
@@ -44,7 +45,7 @@ export default function Game() {
     <>
       <div>
         <HeaderGame />
-        <div className="flex h-[26vh] border">
+        <div className="flex h-[27vh] border">
           <ShopMainOne />
           <FighterUp fighter={fighterOneUp} />
           <FighterUp fighter={fighterTwoUp} />
@@ -61,7 +62,7 @@ export default function Game() {
             className="flex-row-reverse"
           />
         </div>
-        <div className="flex h-[28vh] border">
+        <div className="flex h-[27vh] border">
           <Minerals
             worker={workerOne}
             mine={mineralsOne}
@@ -76,7 +77,8 @@ export default function Game() {
           />
         </div>
         <HideTurn />
-        <FightUnit />
+        <FightUnitUp />
+        <FightUnitDown />
         <FightBoss />
       </div>
     </>
