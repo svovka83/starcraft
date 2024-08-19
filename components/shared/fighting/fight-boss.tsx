@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui";
+import { Button } from "../../ui";
 import { useGameStore } from "@/store/game";
 
 export const FightBoss = () => {

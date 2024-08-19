@@ -29,6 +29,8 @@ export default function Game() {
     mineralsOne,
     workerTwo,
     mineralsTwo,
+    bossOne,
+    bossTwo,
   ] = useGameStore((state) => [
     state.one.battleground,
     state.two.battleground,
@@ -40,9 +42,14 @@ export default function Game() {
     state.one.mine,
     state.two.worker,
     state.two.mine,
+    state.one.boss,
+    state.two.boss,
   ]);
 
-  console.log(workerTwo.length)
+  if (bossOne === 0 || bossTwo === 0) {
+    alert("Game Over");
+    window.location.href = "/";
+  }
 
   return (
     <>

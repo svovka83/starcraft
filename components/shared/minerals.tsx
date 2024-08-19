@@ -43,9 +43,9 @@ export const Minerals: React.FC<Props> = ({ worker, mine, className }) => {
         <Button
           variant="outline"
           size="sm"
-          disabled={worker.length === 0}
           className={cn("text-[20px] font-bold my-4")}
           onClick={addMinerals}
+          disabled={worker.length === 0}
         >
           <span>
             Add <b>{worker.length}</b>

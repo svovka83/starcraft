@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui";
+import { Button } from "../../ui";
 import { useGameStore } from "@/store/game";
 import { ArrowBigLeftDash, ArrowBigRightDash } from "lucide-react";
 
@@ -27,14 +27,14 @@ export const FightUnitUp = () => {
         Fight
       </Button>
       {turn ? (
-        <ArrowBigRightDash
+        <ArrowBigRightDash // fix bug with animation when arrow come back !!!
           size={70}
-          className="absolute top-1/2 translate-x-[4vh] translate-y-[6vh] opacity-0 invisible text-red-500 font-bold transition-all group-hover:translate-x-[36vh] group-hover:opacity-100 group-hover:visible duration-1000"
+          className="absolute top-1/2 translate-x-[7vh] translate-y-[6vh] opacity-0 invisible text-red-500 font-bold transition-all group-hover:translate-x-[34vh] group-hover:opacity-100 group-hover:visible duration-1000"
         />
       ) : (
-        <ArrowBigLeftDash
+        <ArrowBigLeftDash // fix bug with animation when arrow come back !!!
           size={70}
-          className="absolute top-1/2 -translate-x-[2vh] translate-y-[6vh] opacity-100 text-red-500 font-bold transition-all -group-hover:translate-x-[72vh] group-hover:opacity-100 group-hover:visible duration-1000"
+          className="absolute top-1/2 -translate-x-[7vh] translate-y-[6vh] opacity-0 invisible text-red-500 font-bold transition-all group-hover:-translate-x-[34vh] group-hover:opacity-100 group-hover:visible duration-1000"
         />
       )}
     </div>

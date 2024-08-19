@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useGameStore } from "@/store/game";
-import { Button } from "../ui";
+import { Button } from "../../ui";
 
 export const FightWorker = () => {
   const fight = useGameStore((state) => state.fightWorker);
