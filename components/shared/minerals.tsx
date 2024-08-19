@@ -1,10 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-
 import { unitType } from "@/store/game";
-
 import { Container, Unit } from ".";
-
 import { useGameStore } from "@/store/game";
 import { Button } from "../ui";
 
@@ -18,8 +15,8 @@ export const Minerals: React.FC<Props> = ({ worker, mine, className }) => {
   const addMinerals = useGameStore((state) => state.addMinerals);
 
   return (
-    <Container className="flex flex-col">
-      <div className={cn("flex flex-row-3", className)}>
+    <Container className={cn("flex flex-col justify-around")}>
+      <div className={cn("flex flex-row-4 gap-2", className)}>
         {worker.map((worker) => (
           <Unit
             id={worker.id}
@@ -30,18 +27,28 @@ export const Minerals: React.FC<Props> = ({ worker, mine, className }) => {
             mana={worker.mana}
             attack={worker.attack}
             price={worker.price}
-            className="mx-4"
           />
         ))}
       </div>
-      <div className={cn("flex", className)}>
+      <div className={cn("flex items-center justify-around")}>
+        <Button
+          variant="secondary"
+          size="sm"
+          className="text-[20px] font-bold my-2"
+        >
+          <span>
+            Left <b>{mine}</b> minerals:
+          </span>
+        </Button>
         <Button
           variant="outline"
-          size="lg"
-          className="text-[24px] font-bold my-2 mx-4"
+          size="sm"
+          className="text-[20px] font-bold my-2"
           onClick={addMinerals}
         >
-          {mine}
+          <span className="text-">
+            Add <b>{worker.length}</b>
+          </span>
         </Button>
       </div>
     </Container>

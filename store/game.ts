@@ -129,7 +129,7 @@ export const useGameStore = create<GameState>((set) => ({
     set((state) => {
       const player = state.turn ? state.one : state.two;
 
-      if (player.worker.length === 3) return state;
+      if (player.worker.length === 4) return state;
 
       if (player.minerals === 0) return state;
 

@@ -14,7 +14,6 @@ interface Props {
   price: number;
   active?: boolean;
   setActiveUnit?: VoidFunction;
-  className?: string;
 }
 
 export const Unit: React.FC<Props> = ({
@@ -26,22 +25,19 @@ export const Unit: React.FC<Props> = ({
   attack,
   active,
   setActiveUnit,
-  className,
 }) => {
   return (
     <div
-      className={cn(
-        "relative w-[60px] cursor-pointer",
-        { "bg-green-700": active },
-        className
-      )}
+      className={cn("relative w-[60px] cursor-pointer", {
+        "bg-green-700": active,
+      })}
       onClick={setActiveUnit}
     >
       <h2 className="text-fuchsia-400 text-sm text-center">{name}</h2>
       <Image src={image} className="w-[60px] h-[60px]" alt="unit" />
       <div className="flex text-center text-sm text-white font-bold">
-        <span className="w-[20px] bg-blue-500">{mana}</span>
         <span className="w-[20px] bg-green-600">{health}</span>
+        <span className="w-[20px] bg-blue-500">{mana}</span>
         <span className="w-[20px] bg-red-500">{attack}</span>
       </div>
       {active && (
