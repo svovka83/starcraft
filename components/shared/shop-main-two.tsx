@@ -3,13 +3,10 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-
 import { Container, ShopModal } from ".";
-
 import { useGameStore } from "@/store/game";
-
 import Lair from "/images/imgProtoss/Nexus.webp";
-import larva from "/images/imgProtoss/probe.webp";
+import KSM from "/images/imgTerran/KSM.png";
 
 interface Props {
   className?: string;
@@ -36,7 +33,7 @@ export const ShopMainTwo: React.FC<Props> = ({ className }) => {
           </span>
           <Image
             onClick={addWorker}
-            src={larva}
+            src={KSM}
             alt="larva"
             width={50}
             height={50}

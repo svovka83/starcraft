@@ -1,8 +1,9 @@
 import { create } from "zustand";
 import { StaticImageData } from "next/image";
 
-import { DRONE, ZERG } from "@/constants/zerg";
-import { PROBE, PROTOSS } from "@/constants/protoss";
+import { ZERG } from "@/constants/zerg";
+import { TERRAN } from "@/constants/terran";
+import { PROTOSS } from "@/constants/protoss";
 
 export type unitType = {
   id: number;
@@ -46,17 +47,17 @@ export const useGameStore = create<GameState>((set) => ({
     battleground: [],
     fighterUp: {} as unitType,
     fighterDown: {} as unitType,
-    worker: [DRONE],
+    worker: [ZERG[0]],
     minerals: 5,
     mine: 20,
     boss: 25,
   },
   two: {
-    units: PROTOSS,
+    units: TERRAN,
     battleground: [],
     fighterUp: {} as unitType,
     fighterDown: {} as unitType,
-    worker: [PROBE],
+    worker: [TERRAN[0]],
     minerals: 5,
     mine: 20,
     boss: 25,
@@ -137,7 +138,7 @@ export const useGameStore = create<GameState>((set) => ({
       return {
         [state.turn ? "one" : "two"]: {
           ...player,
-          worker: [...player.worker, state.turn ? DRONE : PROBE],
+          worker: [...player.worker, state.turn ? ZERG[0] : TERRAN[0]],
         },
         turn: !state.turn,
       };
@@ -201,7 +202,9 @@ export const useGameStore = create<GameState>((set) => ({
           ? {}
           : { ...opponent.fighterDown, health: opponentHealth };
       const playerIs =
-        playerHealth <= 0 ? {} : { ...player.fighterDown, health: playerHealth };
+        playerHealth <= 0
+          ? {}
+          : { ...player.fighterDown, health: playerHealth };
 
       return {
         ...state,

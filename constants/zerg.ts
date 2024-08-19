@@ -4,19 +4,18 @@ import gydralisk from "/images/imgZerg/gidralisk.webp";
 import mutalisk from "/images/imgZerg/mutalisk.webp";
 import ultralisk from "/images/imgZerg/ultralisk.webp";
 
-export const DRONE = {
-  id: 1,
-  name: "Drone",
-  image: drone,
-  health: 1,
-  mana: 1,
-  attack: 1,
-  price: 1,
-};
-
 export const ZERG = [
   {
     id: 1,
+    name: "Drone",
+    image: drone,
+    health: 1,
+    mana: 1,
+    attack: 1,
+    price: 1,
+  },
+  {
+    id: 2,
     name: "zergling",
     image: zerling,
     health: 1,
@@ -25,7 +24,7 @@ export const ZERG = [
     price: 1,
   },
   {
-    id: 2,
+    id: 3,
     name: "gydralisk",
     image: gydralisk,
     health: 2,
@@ -34,7 +33,7 @@ export const ZERG = [
     price: 2,
   },
   {
-    id: 3,
+    id: 4,
     name: "mutalisk",
     image: mutalisk,
     health: 3,
@@ -43,7 +42,7 @@ export const ZERG = [
     price: 3,
   },
   {
-    id: 4,
+    id: 5,
     name: "ultralisk",
     image: ultralisk,
     health: 8,

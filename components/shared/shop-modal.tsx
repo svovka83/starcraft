@@ -59,7 +59,7 @@ export const ShopModal: React.FC<Props> = ({
               disabled={minerals < unit.price}
             />
           ))
-          .slice(1, 4)}
+          .slice(1, 5)}
         <Button
           disabled={!activeUnit}
           onClick={() => addUnitToArmy(activeUnit)}

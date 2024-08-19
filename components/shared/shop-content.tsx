@@ -50,7 +50,7 @@ export const ShopContent: React.FC<Props> = ({
         onClick={activated}
       >
         <p className="text-2xl ml-3">{name}</p>
-        <Image src={image} alt="unit" width={80} height={80} />
+        <Image src={image} className="w-[80px] h-[80px]" alt="unit" />
         <p>health: {health}</p>
         <p>mana: {mana}</p>
         <p>attack: {attack}</p>
