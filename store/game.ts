@@ -39,6 +39,7 @@ interface GameState {
   fightUnitUp: () => void;
   fightUnitDown: () => void;
   fightBoss: () => void;
+  fightWorker: () => void;
 }
 
 export const useGameStore = create<GameState>((set) => ({
@@ -227,19 +228,46 @@ export const useGameStore = create<GameState>((set) => ({
       const bossHealth = opponent.boss - player.fighterUp.attack;
       const playerHealth = player.fighterUp.health - player.fighterUp.attack;
 
-      const bossIs = bossHealth <= 0 ? 0 : bossHealth;
-      const playerIs =
+      const isBoss = bossHealth <= 0 ? 0 : bossHealth;
+      const isPlayer =
         playerHealth <= 0 ? {} : { ...player.fighterUp, health: playerHealth };
 
       return {
         ...state,
         [!state.turn ? "one" : "two"]: {
           ...opponent,
-          boss: bossIs,
+          boss: isBoss,
         },
         [state.turn ? "one" : "two"]: {
           ...player,
-          fighterUp: playerIs,
+          fighterUp: isPlayer,
+        },
+        turn: !state.turn,
+      };
+    }),
+  fightWorker: () =>
+    set((state) => {
+      const player = state.turn ? state.one : state.two;
+      const opponent = !state.turn ? state.one : state.two;
+
+      if (opponent.worker.length === 0) return state;
+
+      const playerHealth = player.fighterDown.health - 1;
+      opponent.worker.pop?.();
+
+      const isPlayer =
+        playerHealth <= 0
+          ? {}
+          : { ...player.fighterDown, health: playerHealth };
+
+      return {
+        ...state,
+        [!state.turn ? "one" : "two"]: {
+          ...opponent,
+        },
+        [state.turn ? "one" : "two"]: {
+          ...player,
+          fighterDown: isPlayer,
         },
         turn: !state.turn,
       };

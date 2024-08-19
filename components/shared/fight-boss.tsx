@@ -22,7 +22,7 @@ export const FightBoss = () => {
     >
       <Button
         variant="destructive"
-        size="default"
+        size="sm"
         onClick={fight}
         className="text-slate-100 text-[20px] font-bold"
       >

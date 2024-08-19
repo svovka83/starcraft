@@ -15,4 +15,5 @@ export { Unit } from "./unit";
 export { FightUnitUp } from "./fight-unit-up";
 export { FightUnitDown } from "./fight-unit-down";
 export { FightBoss } from "./fight-boss";
+export { FightWorker } from "./fight-worker";
 export { ChooseUnitSide } from "./choose-unit-side";

@@ -36,10 +36,12 @@ export const Unit: React.FC<Props> = ({
       <h2 className="text-fuchsia-400 text-sm text-center">{name}</h2>
       <Image src={image} className="w-[60px] h-[60px]" alt="unit" />
       <div className="flex text-center text-sm text-white font-bold">
-        <span className="w-[20px] bg-green-600">{health}</span>
-        <span className="w-[20px] bg-blue-500">{mana}</span>
-        <span className="w-[20px] bg-red-500">{attack}</span>
+        <span className="w-[30px] h-[18px] bg-green-600">{health}</span>
+        <span className="w-[30px] h-[18px] bg-red-500">{attack}</span>
       </div>
+      <span className="absolute top-0 w-[18px] translate-y-5 h-[18px] text-center text-sm text-white font-bold bg-blue-500">
+        {mana}
+      </span>
       {active && (
         <CircleCheck size={18} className="absolute text-white top-4 right-1" />
       )}

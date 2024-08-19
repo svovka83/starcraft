@@ -13,6 +13,7 @@ import {
   FightUnitUp,
   FightBoss,
   FightUnitDown,
+  FightWorker,
 } from "@/components/shared";
 import { useGameStore } from "@/store/game";
 
@@ -40,6 +41,8 @@ export default function Game() {
     state.two.worker,
     state.two.mine,
   ]);
+
+  console.log(workerTwo.length)
 
   return (
     <>
@@ -80,6 +83,7 @@ export default function Game() {
         <FightUnitUp />
         <FightUnitDown />
         <FightBoss />
+        <FightWorker />
       </div>
     </>
   );
