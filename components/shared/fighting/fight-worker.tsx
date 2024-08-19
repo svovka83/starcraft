@@ -2,6 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useGameStore } from "@/store/game";
 import { Button } from "../../ui";
+import { ArrowBigLeftDash, ArrowBigRightDash } from "lucide-react";
 
 export const FightWorker = () => {
   const fight = useGameStore((state) => state.fightWorker);
@@ -14,8 +15,8 @@ export const FightWorker = () => {
   return (
     <div
       className={cn(
-        "fixed top-[73vh]",
-        turn ? "right-[55%]" : "left-[55%]",
+        "fixed top-[73vh] group",
+        turn ? "right-[57%]" : "left-[57%]",
         (visibleOne && !visibleTwo && turn && workersTwo !== 0) ||
           (!visibleOne && visibleTwo && !turn && workersOne !== 0)
           ? "visible"
@@ -28,8 +29,19 @@ export const FightWorker = () => {
         onClick={fight}
         className="text-slate-100 text-[20px] font-bold"
       >
-        kick worker
+        attack
       </Button>
+      {turn ? (
+        <ArrowBigRightDash // need make refactoring !!!
+          size={70}
+          className="absolute translate-x-[60vh] -translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
+        />
+      ) : (
+        <ArrowBigLeftDash
+          size={70}
+          className="absolute -translate-x-[58vh] -translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
+        />
+      )}
     </div>
   );
 };

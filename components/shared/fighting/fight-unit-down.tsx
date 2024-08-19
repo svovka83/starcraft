@@ -24,17 +24,17 @@ export const FightUnitDown = () => {
         onClick={fight}
         className="text-slate-100 text-[18px] font-bold"
       >
-        Fight
+        attack
       </Button>
       {turn ? (
-        <ArrowBigRightDash // fix bug with animation when arrow come back !!!
+        <ArrowBigRightDash // need make refactoring !!!
           size={70}
-          className="absolute top-1/2 translate-x-[7vh] translate-y-[6vh] opacity-0 invisible text-red-500 font-bold group-hover:translate-x-[34vh] group-hover:opacity-100 group-hover:visible duration-1000"
+          className="absolute translate-x-[34vh] translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
         />
       ) : (
-        <ArrowBigLeftDash // fix bug with animation when arrow come back !!!
+        <ArrowBigLeftDash
           size={70}
-          className="absolute top-1/2 -translate-x-[7vh] translate-y-[6vh] opacity-0 invisible text-red-500 font-bold group-hover:-translate-x-[34vh] group-hover:opacity-100 group-hover:visible duration-1000"
+          className="absolute -translate-x-[33vh] translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
         />
       )}
     </div>

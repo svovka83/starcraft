@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Container, ShopModal } from ".";
 import { useGameStore } from "@/store/game";
-import Lair from "/images/imgProtoss/Nexus.webp";
+import Lair from "/images/imgTerran/command.png";
 import KSM from "/images/imgTerran/KSM.png";
 
 interface Props {
