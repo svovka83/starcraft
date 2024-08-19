@@ -1,8 +1,5 @@
-"use client";
-
 import React from "react";
 import { cn } from "@/lib/utils";
-
 import { useGameStore } from "@/store/game";
 
 interface Props {
@@ -22,11 +19,13 @@ export const HeaderGame: React.FC<Props> = ({ className }) => {
       )}
     >
       <span>MineralsOne: {mineralOne}</span>
+      <span>ManaOne: 3</span>
       <span
         className={cn("uppercase", turn ? "text-red-500" : "text-blue-500")}
       >
         {turn ? "Player One" : "Player Two"}
       </span>
+      <span>ManaTwo: 3</span>
       <span>MineralsTwo: {mineralTwo}</span>
     </header>
   );

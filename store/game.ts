@@ -239,7 +239,7 @@ export const useGameStore = create<GameState>((set) => ({
         },
         [state.turn ? "one" : "two"]: {
           ...player,
-          fighter: playerIs,
+          fighterUp: playerIs,
         },
         turn: !state.turn,
       };

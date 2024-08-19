@@ -11,18 +11,20 @@ interface Props {
 
 export const Races: React.FC<Props> = ({ className }) => {
   return (
-    <div className={cn("flex items-center justify-around mx-20 mb-8", className)}>
-      <div>
-        <h1>Terran</h1>
+    <div
+      className={cn("flex items-center justify-around mx-20 mb-8", className)}
+    >
+      <div className="cursor-pointer">
         <Image src={terran} width={220} alt="terran" />
+        <p className="text-[28px] text-blue-700  font-extrabold">Terran</p>
       </div>
-      <div>
-        <h1>Zerg</h1>
+      <div className="cursor-pointer">
         <Image src={zerg} width={220} alt="zerg" />
+        <p className="text-[28px] text-red-700 font-extrabold">Zerg</p>
       </div>
-      <div>
-        <h1>Protoss</h1>
+      <div className="cursor-pointer">
         <Image src={protoss} width={220} alt="protoss" />
+        <p className="text-[28px] text-yellow-700  font-extrabold">Protoss</p>
       </div>
     </div>
   );
