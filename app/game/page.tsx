@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  HeaderGame,
+  GameHeader,
   HideTurn,
   Minerals,
   Staff,
@@ -54,7 +54,7 @@ export default function Game() {
   return (
     <>
       <div>
-        <HeaderGame />
+        <GameHeader />
         <div className="flex h-[27vh] border">
           <ShopMainOne />
           <FighterUp fighter={fighterOneUp} />

@@ -34,7 +34,7 @@ interface GameState {
   one: PlayerProps;
   two: PlayerProps;
   turn: boolean;
-  chooseRaceOne: (CONTENT: unitType[]) => void;
+  chooseRace: (one: unitType[], two: unitType[]) => void;
   buyUnit: (unitId: number) => void;
   moveUnitUp: (unitId: number) => void;
   moveUnitDown: (unitId: number) => void;
@@ -58,23 +58,28 @@ export const useGameStore = create<GameState>((set, get) => ({
     boss: 25,
   },
   two: {
-    units: PLAYER_TWO,
+    units: [],
     battleground: [],
     fighterUp: {} as unitType,
     fighterDown: {} as unitType,
-    worker: [PLAYER_TWO[0]],
+    worker: [],
     minerals: 5,
     mine: 20,
     boss: 25,
   },
   turn: true,
-  chooseRaceOne: (CONTENT: unitType[]) => {
+  chooseRace: (raceOne: unitType[], raceTwo: unitType[]) => {
     set((state) => {
       return {
         ["one"]: {
           ...state.one,
-          units: CONTENT,
-          worker: [CONTENT[0]],
+          units: raceOne,
+          worker: [raceOne[0]],
+        },
+        ["two"]: {
+          ...state.one,
+          units: raceTwo,
+          worker: [raceTwo[0]],
         },
       };
     });

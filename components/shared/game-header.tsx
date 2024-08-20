@@ -6,7 +6,7 @@ interface Props {
   className?: string;
 }
 
-export const HeaderGame: React.FC<Props> = ({ className }) => {
+export const GameHeader: React.FC<Props> = ({ className }) => {
   const mineralOne = useGameStore((state) => state.one.minerals);
   const mineralTwo = useGameStore((state) => state.two.minerals);
   const turn = useGameStore((state) => state.turn);

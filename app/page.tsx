@@ -1,21 +1,13 @@
-import Link from "next/link";
-import { Races } from "@/components/shared";
-import { Button } from "@/components/ui";
+import { HomeHeader, ChooseRaces } from "@/components/shared";
 import Image from "next/image";
 import craft from "/images/utils/mainImage.jpg";
 
 export default function Home() {
   return (
     <div className="text-center">
-      <h1 className="text-[110px] text-violet-700 font-bold">StarCraft</h1>
+      <HomeHeader />
 
-      <Races />
-
-      <Link href="/game" className="text-[24px]">
-        <Button variant="default" size="lg" className="text-[24px]">
-          Start
-        </Button>
-      </Link>
+      <ChooseRaces />
 
       <Image
         src={craft}
