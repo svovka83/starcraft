@@ -1,5 +1,5 @@
-export { HomeHeader } from "./home-header";
-export { ChooseRaces } from "./choose-races";
+export { HomeHeader } from "./start-page/home-header";
+export { ChooseRaces } from "./start-page/choose-races";
 export { GameHeader } from "./game-header";
 export { Container } from "./container";
 export { ShopMainOne } from "./shop-main-one";

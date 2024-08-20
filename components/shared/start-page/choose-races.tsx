@@ -3,6 +3,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Button } from "../../ui";
 import Image from "next/image";
 import zerg from "/images/races/zerg.png";
 import terran from "/images/races/terran.png";
@@ -12,35 +13,38 @@ import { unitType } from "@/store/game";
 import { ZERG } from "@/constants/zerg";
 import { TERRAN } from "@/constants/terran";
 import { PROTOSS } from "@/constants/protoss";
-import { Button } from "../ui";
 
 export const ChooseRaces: React.FC = () => {
-  const [active, setActive] = React.useState<unitType[]>([] ||
-    ZERG || TERRAN || PROTOSS
+  const [active, setActive] = React.useState<unitType[]>([]);
+  const [currentPlayer, setCurrentPlayer] = React.useState(
+    "playerOne" || "playerTwo"
   );
-
-  const [currentChoose, setCurrentChoose] = React.useState<unitType[]>([]);
-  const [chooseOne, setChooseOne] = React.useState<unitType[]>([]);
-  const [chooseTwo, setChooseTwo] = React.useState<unitType[]>([]);
-
-  const confirm = useGameStore((state) => state.chooseRace);
-
-  const confirmRace = (one: unitType[], two: unitType[]) => {
-    confirm(one, two);
-  };
-
-  console.log(currentChoose, chooseOne, chooseTwo);
+  const [chooseOne, chooseTwo] = useGameStore((state) => [
+    state.chooseOne,
+    state.chooseTwo,
+  ]);
 
   return (
     <div>
       <div className="flex justify-between mb-8">
-        <Button onClick={() => setChooseOne(currentChoose)}>Confirm 1</Button>
+        <Button
+          className={cn("ml-2 border-2 border-blue-600", {
+            "border-2 border-white": currentPlayer === "playerOne",
+          })}
+          onClick={() => setCurrentPlayer("playerOne")}
+        >
+          Player 1
+        </Button>
 
         <div
           className="cursor-pointer"
           onClick={() => {
-            setCurrentChoose(TERRAN);
             setActive(TERRAN);
+            if (currentPlayer === "playerOne") {
+              chooseOne(TERRAN);
+            } else {
+              chooseTwo(TERRAN);
+            }
           }}
         >
           <Image
@@ -56,8 +60,12 @@ export const ChooseRaces: React.FC = () => {
         <div
           className="cursor-pointer"
           onClick={() => {
-            setCurrentChoose(ZERG);
             setActive(ZERG);
+            if (currentPlayer === "playerOne") {
+              chooseOne(ZERG);
+            } else {
+              chooseTwo(ZERG);
+            }
           }}
         >
           <Image
@@ -73,8 +81,12 @@ export const ChooseRaces: React.FC = () => {
         <div
           className="cursor-pointer"
           onClick={() => {
-            setCurrentChoose(PROTOSS);
             setActive(PROTOSS);
+            if (currentPlayer === "playerOne") {
+              chooseOne(PROTOSS);
+            } else {
+              chooseTwo(PROTOSS);
+            }
           }}
         >
           <Image
@@ -87,15 +99,22 @@ export const ChooseRaces: React.FC = () => {
           <p className="text-[28px] text-yellow-700  font-extrabold">Protoss</p>
         </div>
 
-        <Button onClick={() => setChooseTwo(currentChoose)}>Confirm 2</Button>
+        <Button
+          className={cn("mr-2 border-2 border-blue-600", {
+            "border-2 border-white": currentPlayer === "playerTwo",
+          })}
+          onClick={() => setCurrentPlayer("playerTwo")}
+        >
+          Player 2
+        </Button>
       </div>
 
       <Link href="/game" className="text-[24px]">
         <Button
+          disabled={!chooseOne && !chooseTwo}
           variant="default"
           size="lg"
           className="text-[24px]"
-          onClick={() => confirmRace(chooseOne, chooseTwo)}
         >
           Start
         </Button>

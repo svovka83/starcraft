@@ -1,13 +1,6 @@
 import { create } from "zustand";
 import { StaticImageData } from "next/image";
 
-import { ZERG } from "@/constants/zerg";
-import { TERRAN } from "@/constants/terran";
-import { PROTOSS } from "@/constants/protoss";
-
-export const PLAYER_ONE = ZERG || TERRAN || PROTOSS;
-export const PLAYER_TWO = ZERG || TERRAN || PROTOSS;
-
 export type unitType = {
   id: number;
   name: string;
@@ -34,7 +27,8 @@ interface GameState {
   one: PlayerProps;
   two: PlayerProps;
   turn: boolean;
-  chooseRace: (one: unitType[], two: unitType[]) => void;
+  chooseOne: (one: unitType[]) => void;
+  chooseTwo: (two: unitType[]) => void;
   buyUnit: (unitId: number) => void;
   moveUnitUp: (unitId: number) => void;
   moveUnitDown: (unitId: number) => void;
@@ -68,7 +62,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     boss: 25,
   },
   turn: true,
-  chooseRace: (raceOne: unitType[], raceTwo: unitType[]) => {
+  chooseOne: (raceOne: unitType[]) => {
     set((state) => {
       return {
         ["one"]: {
@@ -76,6 +70,12 @@ export const useGameStore = create<GameState>((set, get) => ({
           units: raceOne,
           worker: [raceOne[0]],
         },
+      };
+    });
+  },
+  chooseTwo: (raceTwo: unitType[]) => {
+    set((state) => {
+      return {
         ["two"]: {
           ...state.one,
           units: raceTwo,
