@@ -33,7 +33,7 @@ export const ShopMainTwo: React.FC<Props> = ({ className }) => {
           </span>
           <Image
             onClick={addWorker}
-            src={KSM}
+            src={playerUnitsTwo[0].image}
             alt="larva"
             width={50}
             height={50}

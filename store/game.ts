@@ -5,6 +5,9 @@ import { ZERG } from "@/constants/zerg";
 import { TERRAN } from "@/constants/terran";
 import { PROTOSS } from "@/constants/protoss";
 
+export const PLAYER_ONE = ZERG || TERRAN || PROTOSS;
+export const PLAYER_TWO = ZERG || TERRAN || PROTOSS;
+
 export type unitType = {
   id: number;
   name: string;
@@ -31,6 +34,7 @@ interface GameState {
   one: PlayerProps;
   two: PlayerProps;
   turn: boolean;
+  chooseRaceOne: (CONTENT: unitType[]) => void;
   buyUnit: (unitId: number) => void;
   moveUnitUp: (unitId: number) => void;
   moveUnitDown: (unitId: number) => void;
@@ -42,28 +46,39 @@ interface GameState {
   fightWorker: () => void;
 }
 
-export const useGameStore = create<GameState>((set) => ({
+export const useGameStore = create<GameState>((set, get) => ({
   one: {
-    units: ZERG,
+    units: [],
     battleground: [],
     fighterUp: {} as unitType,
     fighterDown: {} as unitType,
-    worker: [ZERG[0]],
+    worker: [],
     minerals: 5,
     mine: 20,
     boss: 25,
   },
   two: {
-    units: TERRAN,
+    units: PLAYER_TWO,
     battleground: [],
     fighterUp: {} as unitType,
     fighterDown: {} as unitType,
-    worker: [TERRAN[0]],
+    worker: [PLAYER_TWO[0]],
     minerals: 5,
     mine: 20,
     boss: 25,
   },
   turn: true,
+  chooseRaceOne: (CONTENT: unitType[]) => {
+    set((state) => {
+      return {
+        ["one"]: {
+          ...state.one,
+          units: CONTENT,
+          worker: [CONTENT[0]],
+        },
+      };
+    });
+  },
   buyUnit: (unitId: number) =>
     set((state) => {
       const player = state.turn ? state.one : state.two;
@@ -139,7 +154,10 @@ export const useGameStore = create<GameState>((set) => ({
       return {
         [state.turn ? "one" : "two"]: {
           ...player,
-          worker: [...player.worker, state.turn ? ZERG[0] : TERRAN[0]],
+          worker: [
+            ...player.worker,
+            state.turn ? state.one.units[0] : state.two.units[0],
+          ],
         },
         turn: !state.turn,
       };

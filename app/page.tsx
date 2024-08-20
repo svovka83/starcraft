@@ -19,7 +19,7 @@ export default function Home() {
 
       <Image
         src={craft}
-        className="fixed top-0 left-0 right-0 bottom-0 -z-10"
+        className="fixed h-[100vh] top-0 left-0 right-0 bottom-0 -z-10"
         alt="main"
       />
     </div>

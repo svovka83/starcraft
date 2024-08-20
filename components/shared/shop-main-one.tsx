@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Container, ShopModal } from ".";
 import { useGameStore } from "@/store/game";
 import Lair from "/images/imgZerg/Lair.webp";
-import larva from "/images/imgZerg/drone.webp";
 
 interface Props {
   className?: string;
@@ -36,7 +35,7 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
           </span>
           <Image
             onClick={addWorker}
-            src={larva}
+            src={playerUnitsOne[0].image}
             alt="larva"
             width={50}
             height={50}
