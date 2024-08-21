@@ -1,5 +1,4 @@
 import React from "react";
-import { cn } from "@/lib/utils";
 import { Button } from "../ui";
 import { unitType, useGameStore } from "@/store/game";
 import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
@@ -11,7 +10,6 @@ interface Props {
   showModalShop: boolean;
   closeModal: () => void;
   minerals: number;
-  className?: string;
 }
 
 export const ShopModal: React.FC<Props> = ({
@@ -19,7 +17,6 @@ export const ShopModal: React.FC<Props> = ({
   showModalShop,
   closeModal,
   minerals,
-  className,
 }) => {
   const [activeUnit, setActiveUnit] = React.useState(0);
 
@@ -34,12 +31,7 @@ export const ShopModal: React.FC<Props> = ({
 
   return (
     <Dialog open={showModalShop} onOpenChange={closeModal}>
-      <DialogContent
-        className={cn(
-          "px-12 w-[800px] max-w-[900px] min-h-[400px] bg-blue-700/70 text-white overflow-hidden",
-          className
-        )}
-      >
+      <DialogContent className="px-12 w-[800px] max-w-[900px] min-h-[400px] bg-blue-700/70 text-white overflow-hidden">
         <DialogTitle className="text-3xl">
           Choose unit for your army
         </DialogTitle>

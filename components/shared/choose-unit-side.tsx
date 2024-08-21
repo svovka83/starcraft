@@ -6,7 +6,6 @@ interface Props {
   activeUnit: number;
   moveUnitUp: VoidFunction;
   moveUnitDown: VoidFunction;
-  className?: string;
 }
 
 export const ChooseUnitSide: React.FC<Props> = ({

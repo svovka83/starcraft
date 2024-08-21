@@ -26,7 +26,7 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
             onClick={() => setShowModalShop(true)}
             src={base}
             className="h-[24vh] px-2 cursor-pointer"
-            alt="larva"
+            alt="base"
           />
         </div>
         <div className="float-right flex flex-col justify-between">
@@ -39,10 +39,10 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
           <Image
             onClick={addWorker}
             src={playerUnitsOne[0].image}
-            alt="larva"
+            alt="worker"
             width={50}
             height={50}
-            className="cursor-pointer rounded-[50%] hover:transform hover:scale-110 hover:duration-300"
+            className="cursor-pointer"
           />
         </div>
       </div>

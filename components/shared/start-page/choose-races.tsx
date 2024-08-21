@@ -8,13 +8,13 @@ import Image from "next/image";
 import zerg from "/images/races/zerg.png";
 import terran from "/images/races/terran.png";
 import protoss from "/images/races/protoss.png";
-import { useGameStore,unitType } from "@/store/game";
+import { useGameStore } from "@/store/game";
 import { ZERG, INFO_Z } from "@/constants/zerg";
 import { TERRAN, INFO_T } from "@/constants/terran";
 import { PROTOSS, INFO_P } from "@/constants/protoss";
 
 export const ChooseRaces: React.FC = () => {
-  const [active, setActive] = React.useState<unitType[]>([]);
+  const [active, setActive] = React.useState<string>("");
   const [currentPlayer, setCurrentPlayer] = React.useState(
     "playerOne" || "playerTwo"
   );
@@ -38,7 +38,7 @@ export const ChooseRaces: React.FC = () => {
         <div
           className="cursor-pointer"
           onClick={() => {
-            setActive(TERRAN);
+            setActive(INFO_T.name);
             if (currentPlayer === "playerOne") {
               chooseOne(TERRAN, INFO_T);
             } else {
@@ -49,7 +49,7 @@ export const ChooseRaces: React.FC = () => {
           <Image
             src={terran}
             className={cn("w-[35vh] h-[55vh]", {
-              "border-2 border-white": active === TERRAN,
+              "border-2 border-white": active === INFO_T.name,
             })}
             alt="terran"
           />
@@ -59,7 +59,7 @@ export const ChooseRaces: React.FC = () => {
         <div
           className="cursor-pointer"
           onClick={() => {
-            setActive(ZERG);
+            setActive(INFO_Z.name);
             if (currentPlayer === "playerOne") {
               chooseOne(ZERG, INFO_Z);
             } else {
@@ -70,7 +70,7 @@ export const ChooseRaces: React.FC = () => {
           <Image
             src={zerg}
             className={cn("w-[35vh] h-[55vh]", {
-              "border-2 border-white": active === ZERG,
+              "border-2 border-white": active === INFO_Z.name,
             })}
             alt="zerg"
           />
@@ -80,7 +80,7 @@ export const ChooseRaces: React.FC = () => {
         <div
           className="cursor-pointer"
           onClick={() => {
-            setActive(PROTOSS);
+            setActive(INFO_P.name);
             if (currentPlayer === "playerOne") {
               chooseOne(PROTOSS, INFO_P);
             } else {
@@ -91,7 +91,7 @@ export const ChooseRaces: React.FC = () => {
           <Image
             src={protoss}
             className={cn("w-[35vh] h-[55vh]", {
-              "border-2 border-white": active === PROTOSS,
+              "border-2 border-white": active === INFO_P.name,
             })}
             alt="protoss"
           />
@@ -110,7 +110,7 @@ export const ChooseRaces: React.FC = () => {
 
       <Link href="/game" className="text-[24px]">
         <Button
-          disabled={!chooseOne && !chooseTwo}
+          disabled={!chooseOne && !chooseTwo} // ???
           variant="default"
           size="lg"
           className="text-[24px]"

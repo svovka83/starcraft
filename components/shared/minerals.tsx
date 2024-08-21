@@ -8,15 +8,15 @@ import { Button } from "../ui";
 interface Props {
   worker: unitType[];
   mine: number;
-  className?: string;
+  reverse: boolean;
 }
 
-export const Minerals: React.FC<Props> = ({ worker, mine, className }) => {
+export const Minerals: React.FC<Props> = ({ worker, mine, reverse }) => {
   const addMinerals = useGameStore((state) => state.addMinerals);
 
   return (
-    <Container className={cn("flex flex-col justify-between")}>
-      <div className={cn("flex flex-row-4 gap-2", className)}>
+    <Container className="flex flex-col justify-between">
+      <div className={cn("flex flex-row-4 gap-2", { "justify-end": !reverse })}>
         {worker.map((worker, index) => (
           <Unit
             id={worker.id}
@@ -27,10 +27,11 @@ export const Minerals: React.FC<Props> = ({ worker, mine, className }) => {
             mana={worker.mana}
             attack={worker.attack}
             price={worker.price}
+            reverse={reverse}
           />
         ))}
       </div>
-      <div className={cn("flex items-center justify-around")}>
+      <div className="flex items-center justify-around">
         <Button
           variant="secondary"
           size="sm"
@@ -43,7 +44,7 @@ export const Minerals: React.FC<Props> = ({ worker, mine, className }) => {
         <Button
           variant="outline"
           size="sm"
-          className={cn("text-[20px] font-bold my-4")}
+          className="text-[20px] font-bold my-4"
           onClick={addMinerals}
           disabled={worker.length === 0}
         >

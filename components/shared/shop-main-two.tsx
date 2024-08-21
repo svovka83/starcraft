@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -33,18 +31,18 @@ export const ShopMainTwo: React.FC<Props> = ({ className }) => {
           <Image
             onClick={addWorker}
             src={playerUnitsTwo[0].image}
-            alt="larva"
+            alt="worker"
             width={50}
             height={50}
-            className="cursor-pointer rounded-[50%] hover:transform hover:scale-110 hover:transition hover:duration-300"
+            className="cursor-pointer scale-x-[-1]"
           />
         </div>
         <div>
           <Image
             onClick={() => setShowModalShop(true)}
             src={base}
-            className="relative h-[24vh] px-2 cursor-pointer"
-            alt="larva"
+            className="relative h-[24vh] px-2 cursor-pointer scale-x-[-1]"
+            alt="base"
           />
         </div>
       </div>

@@ -57,34 +57,26 @@ export default function Game() {
         <GameHeader />
         <div className="flex h-[27vh] border">
           <ShopMainOne />
-          <FighterUp fighter={fighterOneUp} />
-          <FighterUp fighter={fighterTwoUp} />
+          <FighterUp fighter={fighterOneUp} reverse={false} />
+          <FighterUp fighter={fighterTwoUp} reverse={true} />
           <ShopMainTwo />
         </div>
         <div className="flex h-[36vh] border">
           <Battleground
             battlegroundUnits={battlegroundOneUnits}
-            className="flex-row"
+            reverse={false}
           />
           <Staff />
           <Battleground
             battlegroundUnits={battlegroundTwoUnits}
-            className="flex-row-reverse"
+            reverse={true}
           />
         </div>
         <div className="flex h-[27vh] border">
-          <Minerals
-            worker={workerOne}
-            mine={mineralsOne}
-            className="justify-end"
-          />
-          <FighterDown fighter={fighterOneDown} />
-          <FighterDown fighter={fighterTwoDown} />
-          <Minerals
-            worker={workerTwo}
-            mine={mineralsTwo}
-            className="justify-start"
-          />
+          <Minerals worker={workerOne} mine={mineralsOne} reverse={false} />
+          <FighterDown fighter={fighterOneDown} reverse={false} />
+          <FighterDown fighter={fighterTwoDown} reverse={true} />
+          <Minerals worker={workerTwo} mine={mineralsTwo} reverse={true} />
         </div>
         <HideTurn />
         <FightUnitUp />

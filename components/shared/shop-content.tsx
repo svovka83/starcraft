@@ -15,7 +15,6 @@ interface Props {
   setActiveUnit: (id: number) => void;
   active?: boolean;
   disabled?: boolean;
-  className?: string;
 }
 
 export const ShopContent: React.FC<Props> = ({
@@ -29,7 +28,6 @@ export const ShopContent: React.FC<Props> = ({
   setActiveUnit,
   active,
   disabled,
-  className,
 }) => {
   const activated = () => {
     setActiveUnit(id);
@@ -37,26 +35,24 @@ export const ShopContent: React.FC<Props> = ({
   };
 
   return (
-    <div className={cn("", className)}>
-      <div
-        key={id}
-        className={cn(
-          "relative grid grid-cols-6 gap-10 pl-6 border-2 border-black items-center cursor-pointer bg-black rounded-2xl hover:translate-x-2 duration-200",
-          {
-            "border-2 border-white": active,
-            "opacity-50 pointer-events-none": disabled,
-          }
-        )}
-        onClick={activated}
-      >
-        <p className="text-2xl ml-3">{name}</p>
-        <Image src={image} className="w-[80px] h-[80px]" alt="unit" />
-        <p>health: {health}</p>
-        <p>mana: {mana}</p>
-        <p>attack: {attack}</p>
-        <b>price: {price}</b>
-        {active && <CircleCheck className="absolute top-2 left-2" />}
-      </div>
+    <div
+      key={id}
+      className={cn(
+        "relative grid grid-cols-6 gap-10 pl-6 border-2 border-black items-center cursor-pointer bg-black rounded-2xl hover:translate-x-2 duration-200",
+        {
+          "border-2 border-white": active,
+          "opacity-50 pointer-events-none": disabled,
+        }
+      )}
+      onClick={activated}
+    >
+      <p className="text-2xl ml-3">{name}</p>
+      <Image src={image} className="w-[80px] h-[80px]" alt="unit" />
+      <p>health: {health}</p>
+      <p>mana: {mana}</p>
+      <p>attack: {attack}</p>
+      <b>price: {price}</b>
+      {active && <CircleCheck className="absolute top-2 left-2" />}
     </div>
   );
 };
