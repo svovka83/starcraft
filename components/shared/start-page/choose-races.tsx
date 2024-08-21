@@ -9,7 +9,7 @@ import zerg from "/images/races/zerg.png";
 import terran from "/images/races/terran.png";
 import protoss from "/images/races/protoss.png";
 import { useGameStore } from "@/store/game";
-import { unitType, infoType } from "@/store/game";
+import { unitType } from "@/store/game";
 import { ZERG, INFO_Z } from "@/constants/zerg";
 import { TERRAN, INFO_T } from "@/constants/terran";
 import { PROTOSS, INFO_P } from "@/constants/protoss";
