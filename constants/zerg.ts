@@ -13,7 +13,7 @@ export const INFO_Z = {
 export const ZERG = [
   {
     id: 1,
-    name: "Drone",
+    name: "drone",
     image: drone,
     health: 1,
     mana: 1,

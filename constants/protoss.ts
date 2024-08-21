@@ -1,9 +1,9 @@
 import nexus from "/images/imgProtoss/nexus.webp";
-import probe from "/images/imgProtoss/probe.webp";
-import zealot from "/images/imgProtoss/zealot.webp";
-import stalker from "/images/imgProtoss/stalker.webp";
-import colossus from "/images/imgProtoss/colossus.webp";
-import carrier from "/images/imgProtoss/carrier.webp";
+import probe from "/images/imgProtoss/probe.png";
+import zealot from "/images/imgProtoss/zealot.png";
+import stalker from "/images/imgProtoss/stalker.png";
+import colossus from "/images/imgProtoss/colossus.png";
+import carrier from "/images/imgProtoss/carrier.png";
 
 export const INFO_P = {
   name: "Protoss",
@@ -13,7 +13,7 @@ export const INFO_P = {
 export const PROTOSS = [
   {
     id: 1,
-    name: "Probe",
+    name: "probe",
     image: probe,
     health: 1,
     mana: 1,
