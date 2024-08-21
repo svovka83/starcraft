@@ -24,6 +24,7 @@ export const ChooseRaces: React.FC = () => {
     state.chooseTwo,
   ]);
 
+  
   return (
     <div>
       <div className="flex justify-between mb-8">
