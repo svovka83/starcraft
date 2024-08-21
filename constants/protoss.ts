@@ -1,8 +1,14 @@
+import nexus from "/images/imgProtoss/nexus.webp";
 import probe from "/images/imgProtoss/probe.webp";
 import zealot from "/images/imgProtoss/zealot.webp";
 import stalker from "/images/imgProtoss/stalker.webp";
 import colossus from "/images/imgProtoss/colossus.webp";
 import carrier from "/images/imgProtoss/carrier.webp";
+
+export const INFO_P = {
+  name: "Protoss",
+  image: nexus,
+};
 
 export const PROTOSS = [
   {

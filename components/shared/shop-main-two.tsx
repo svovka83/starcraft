@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Container, ShopModal } from ".";
 import { useGameStore } from "@/store/game";
-import Lair from "/images/imgTerran/command.png";
-import KSM from "/images/imgTerran/KSM.png";
 
 interface Props {
   className?: string;
@@ -14,7 +12,8 @@ interface Props {
 
 export const ShopMainTwo: React.FC<Props> = ({ className }) => {
   const [showModalShop, setShowModalShop] = React.useState(false);
-  const [playerUnitsTwo, minerals] = useGameStore((state) => [
+  const [base, playerUnitsTwo, minerals] = useGameStore((state) => [
+    state.two.info.image,
     state.two.units,
     state.two.minerals,
   ]);
@@ -43,7 +42,7 @@ export const ShopMainTwo: React.FC<Props> = ({ className }) => {
         <div>
           <Image
             onClick={() => setShowModalShop(true)}
-            src={Lair}
+            src={base}
             className="relative h-[24vh] px-2 cursor-pointer"
             alt="larva"
           />

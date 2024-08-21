@@ -1,8 +1,14 @@
+import lair from "/images/imgZerg/lair.webp";
 import drone from "/images/imgZerg/drone.webp";
 import zerling from "/images/imgZerg/zerling.webp";
 import gydralisk from "/images/imgZerg/gidralisk.webp";
 import mutalisk from "/images/imgZerg/mutalisk.webp";
 import ultralisk from "/images/imgZerg/ultralisk.webp";
+
+export const INFO_Z = {
+  name: "Zerg",
+  image: lair,
+};
 
 export const ZERG = [
   {

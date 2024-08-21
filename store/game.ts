@@ -1,6 +1,11 @@
 import { create } from "zustand";
 import { StaticImageData } from "next/image";
 
+export type infoType = {
+  name: string;
+  image: StaticImageData;
+};
+
 export type unitType = {
   id: number;
   name: string;
@@ -13,6 +18,7 @@ export type unitType = {
 };
 
 type PlayerProps = {
+  info: infoType;
   units: unitType[];
   battleground: unitType[];
   fighterUp: unitType;
@@ -27,8 +33,8 @@ interface GameState {
   one: PlayerProps;
   two: PlayerProps;
   turn: boolean;
-  chooseOne: (one: unitType[]) => void;
-  chooseTwo: (two: unitType[]) => void;
+  chooseOne: (one: unitType[], infoOne: infoType) => void;
+  chooseTwo: (two: unitType[], infoTwo: infoType) => void;
   buyUnit: (unitId: number) => void;
   moveUnitUp: (unitId: number) => void;
   moveUnitDown: (unitId: number) => void;
@@ -40,8 +46,9 @@ interface GameState {
   fightWorker: () => void;
 }
 
-export const useGameStore = create<GameState>((set, get) => ({
+export const useGameStore = create<GameState>((set) => ({
   one: {
+    info: {} as infoType,
     units: [],
     battleground: [],
     fighterUp: {} as unitType,
@@ -52,6 +59,7 @@ export const useGameStore = create<GameState>((set, get) => ({
     boss: 25,
   },
   two: {
+    info: {} as infoType,
     units: [],
     battleground: [],
     fighterUp: {} as unitType,
@@ -62,22 +70,24 @@ export const useGameStore = create<GameState>((set, get) => ({
     boss: 25,
   },
   turn: true,
-  chooseOne: (raceOne: unitType[]) => {
+  chooseOne: (raceOne: unitType[], infoOne: infoType) => {
     set((state) => {
       return {
         ["one"]: {
           ...state.one,
+          info: infoOne,
           units: raceOne,
           worker: [raceOne[0]],
         },
       };
     });
   },
-  chooseTwo: (raceTwo: unitType[]) => {
+  chooseTwo: (raceTwo: unitType[], infoTwo: infoType) => {
     set((state) => {
       return {
         ["two"]: {
-          ...state.one,
+          ...state.two,
+          info: infoTwo,
           units: raceTwo,
           worker: [raceTwo[0]],
         },

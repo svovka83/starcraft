@@ -1,8 +1,14 @@
+import command from "/images/imgTerran/command.png";
 import KSM from "/images/imgTerran/KSM.png";
 import marine from "/images/imgTerran/marine.png";
 import fireman from "/images/imgTerran/fireman.png";
 import maroder from "/images/imgTerran/maroder.png";
 import tank from "/images/imgTerran/tank.png";
+
+export const INFO_T = {
+  name: "Terran",
+  image: command,
+};
 
 export const TERRAN = [
   {

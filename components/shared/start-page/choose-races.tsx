@@ -9,10 +9,10 @@ import zerg from "/images/races/zerg.png";
 import terran from "/images/races/terran.png";
 import protoss from "/images/races/protoss.png";
 import { useGameStore } from "@/store/game";
-import { unitType } from "@/store/game";
-import { ZERG } from "@/constants/zerg";
-import { TERRAN } from "@/constants/terran";
-import { PROTOSS } from "@/constants/protoss";
+import { unitType, infoType } from "@/store/game";
+import { ZERG, INFO_Z } from "@/constants/zerg";
+import { TERRAN, INFO_T } from "@/constants/terran";
+import { PROTOSS, INFO_P } from "@/constants/protoss";
 
 export const ChooseRaces: React.FC = () => {
   const [active, setActive] = React.useState<unitType[]>([]);
@@ -41,9 +41,9 @@ export const ChooseRaces: React.FC = () => {
           onClick={() => {
             setActive(TERRAN);
             if (currentPlayer === "playerOne") {
-              chooseOne(TERRAN);
+              chooseOne(TERRAN, INFO_T);
             } else {
-              chooseTwo(TERRAN);
+              chooseTwo(TERRAN, INFO_T);
             }
           }}
         >
@@ -62,9 +62,9 @@ export const ChooseRaces: React.FC = () => {
           onClick={() => {
             setActive(ZERG);
             if (currentPlayer === "playerOne") {
-              chooseOne(ZERG);
+              chooseOne(ZERG, INFO_Z);
             } else {
-              chooseTwo(ZERG);
+              chooseTwo(ZERG, INFO_Z);
             }
           }}
         >
@@ -83,9 +83,9 @@ export const ChooseRaces: React.FC = () => {
           onClick={() => {
             setActive(PROTOSS);
             if (currentPlayer === "playerOne") {
-              chooseOne(PROTOSS);
+              chooseOne(PROTOSS, INFO_P);
             } else {
-              chooseTwo(PROTOSS);
+              chooseTwo(PROTOSS, INFO_P);
             }
           }}
         >

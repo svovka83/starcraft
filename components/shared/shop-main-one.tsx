@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Container, ShopModal } from ".";
 import { useGameStore } from "@/store/game";
-import Lair from "/images/imgZerg/Lair.webp";
 
 interface Props {
   className?: string;
@@ -11,7 +10,11 @@ interface Props {
 
 export const ShopMainOne: React.FC<Props> = ({ className }) => {
   const [showModalShop, setShowModalShop] = React.useState(false);
-  const [playerUnitsOne, minerals] = useGameStore((state) => [state.one.units, state.one.minerals]);
+  const [base, playerUnitsOne, minerals] = useGameStore((state) => [
+    state.one.info.image,
+    state.one.units,
+    state.one.minerals,
+  ]);
   const addWorker = useGameStore((state) => state.createWorker);
   const bossLife = useGameStore((state) => state.one.boss);
 
@@ -21,7 +24,7 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
         <div>
           <Image
             onClick={() => setShowModalShop(true)}
-            src={Lair}
+            src={base}
             className="h-[24vh] px-2 cursor-pointer"
             alt="larva"
           />
