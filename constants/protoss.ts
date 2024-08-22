@@ -1,4 +1,4 @@
-import nexus from "/images/imgProtoss/nexus.webp";
+import nexus from "/images/imgProtoss/nexus.png";
 import probe from "/images/imgProtoss/probe.png";
 import zealot from "/images/imgProtoss/zealot.png";
 import stalker from "/images/imgProtoss/stalker.png";

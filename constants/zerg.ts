@@ -1,4 +1,4 @@
-import lair from "/images/imgZerg/lair.webp";
+import lair from "/images/imgZerg/lair.png";
 import drone from "/images/imgZerg/drone.webp";
 import zerling from "/images/imgZerg/zerling.webp";
 import gydralisk from "/images/imgZerg/gidralisk.webp";
