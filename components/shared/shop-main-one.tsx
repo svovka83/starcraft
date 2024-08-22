@@ -1,14 +1,9 @@
 import React from "react";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Container, ShopModal } from ".";
 import { useGameStore } from "@/store/game";
 
-interface Props {
-  className?: string;
-}
-
-export const ShopMainOne: React.FC<Props> = ({ className }) => {
+export const ShopMainOne: React.FC = () => {
   const [showModalShop, setShowModalShop] = React.useState(false);
 
   const [base, playerUnitsOne, minerals, bossLife, addWorker] = useGameStore(
@@ -22,21 +17,18 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
   );
 
   return (
-    <Container className={cn("p-1", className)}>
+    <Container className="p-1">
       <div className="flex justify-between">
         <div>
           <Image
             onClick={() => setShowModalShop(true)}
             src={base}
-            className="h-[24vh] px-2 cursor-pointer"
             alt="base"
+            className="h-[24vh] px-2 cursor-pointer"
           />
         </div>
         <div className="float-right flex flex-col justify-between">
-          <span
-            className="w-[50px] h-[50px] text-center text-[36px] rounded-[50%] text-white bg-green-800 cursor-pointer"
-            title="LIFE"
-          >
+          <span className="w-[50px] h-[50px] text-center text-[36px] rounded-[50%] text-white bg-green-800 cursor-pointer">
             {bossLife}
           </span>
           <Image
@@ -49,11 +41,12 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
           />
         </div>
       </div>
+
       <ShopModal
         showModalShop={showModalShop}
         closeModal={() => setShowModalShop(false)}
-        minerals={minerals}
         playerUnits={playerUnitsOne}
+        minerals={minerals}
       />
     </Container>
   );

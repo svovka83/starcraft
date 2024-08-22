@@ -1,9 +1,9 @@
 import lair from "/images/imgZerg/lair.png";
-import drone from "/images/imgZerg/drone.webp";
-import zerling from "/images/imgZerg/zerling.webp";
-import gydralisk from "/images/imgZerg/gidralisk.webp";
-import mutalisk from "/images/imgZerg/mutalisk.webp";
-import ultralisk from "/images/imgZerg/ultralisk.webp";
+import drone from "/images/imgZerg/drone.png";
+import zerling from "/images/imgZerg/zerling.png";
+import gydral from "/images/imgZerg/gidral.png";
+import mutalisk from "/images/imgZerg/mutalisk.png";
+import ultralisk from "/images/imgZerg/ultralisk.png";
 
 export const INFO_Z = {
   name: "Zerg",
@@ -31,8 +31,8 @@ export const ZERG = [
   },
   {
     id: 3,
-    name: "gydralisk",
-    image: gydralisk,
+    name: "gydral",
+    image: gydral,
     health: 2,
     mana: 1,
     attack: 2,

@@ -1,15 +1,11 @@
 import React from "react";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Container, ShopModal } from ".";
 import { useGameStore } from "@/store/game";
 
-interface Props {
-  className?: string;
-}
-
-export const ShopMainTwo: React.FC<Props> = ({ className }) => {
+export const ShopMainTwo: React.FC = () => {
   const [showModalShop, setShowModalShop] = React.useState(false);
+
   const [base, playerUnitsTwo, minerals, bossLife, addWorker] = useGameStore(
     (state) => [
       state.two.info.image,
@@ -21,13 +17,10 @@ export const ShopMainTwo: React.FC<Props> = ({ className }) => {
   );
 
   return (
-    <Container className={cn("p-1", className)}>
+    <Container className="p-1">
       <div className="flex justify-between">
         <div className="float-right flex flex-col justify-between">
-          <span
-            className="w-[50px] h-[50px] text-center text-[36px] rounded-[50%] text-white bg-green-800 cursor-pointer"
-            title="LIFE"
-          >
+          <span className="w-[50px] h-[50px] text-center text-[36px] rounded-[50%] text-white bg-green-800 cursor-pointer">
             {bossLife}
           </span>
           <Image
@@ -48,6 +41,7 @@ export const ShopMainTwo: React.FC<Props> = ({ className }) => {
           />
         </div>
       </div>
+
       <ShopModal
         showModalShop={showModalShop}
         closeModal={() => setShowModalShop(false)}
