@@ -4,8 +4,10 @@ import React from "react";
 import { useGameStore } from "@/store/game";
 
 export const HomeHeader: React.FC = () => {
-  const infoOne = useGameStore((state) => state.one.info);
-  const infoTwo = useGameStore((state) => state.two.info);
+  const [infoOne, infoTwo] = useGameStore((state) => [
+    state.one.info,
+    state.two.info,
+  ]);
 
   return (
     <div className="grid grid-cols-3 items-center justify-around">

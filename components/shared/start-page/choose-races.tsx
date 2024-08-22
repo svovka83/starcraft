@@ -3,8 +3,8 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Button } from "../../ui";
 import Image from "next/image";
+import { Button } from "../../ui";
 import zerg from "/images/races/zerg.png";
 import terran from "/images/races/terran.png";
 import protoss from "/images/races/protoss.png";
@@ -18,7 +18,9 @@ export const ChooseRaces: React.FC = () => {
   const [currentPlayer, setCurrentPlayer] = React.useState(
     "playerOne" || "playerTwo"
   );
-  const [chooseOne, chooseTwo] = useGameStore((state) => [
+  const [infoOne, infoTwo, chooseOne, chooseTwo] = useGameStore((state) => [
+    state.one.info,
+    state.two.info,
     state.chooseOne,
     state.chooseTwo,
   ]);
@@ -108,12 +110,15 @@ export const ChooseRaces: React.FC = () => {
         </Button>
       </div>
 
-      <Link href="/game" className="text-[24px]">
+      <Link
+        href="/game"
+        className={cn("text-[24px]", {
+          "pointer-events-none": infoOne.name && infoTwo.name ? false : true,
+        })}
+      >
         <Button
-          disabled={!chooseOne && !chooseTwo} // ???
-          variant="default"
           size="lg"
-          className="text-[24px]"
+          disabled={infoOne.name && infoTwo.name ? false : true}
         >
           Start
         </Button>
