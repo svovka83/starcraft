@@ -1,9 +1,9 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { unitType } from "@/store/game";
-import { Container, Unit } from ".";
+import { Container, Unit } from "..";
 import { useGameStore } from "@/store/game";
-import { Button } from "../ui";
+import { Button } from "../../ui";
 
 interface Props {
   worker: unitType[];

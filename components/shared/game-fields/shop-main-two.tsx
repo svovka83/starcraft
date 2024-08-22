@@ -1,17 +1,17 @@
 import React from "react";
 import Image from "next/image";
-import { Container, ShopModal } from ".";
+import { Container, ShopModal } from "..";
 import { useGameStore } from "@/store/game";
 
-export const ShopMainOne: React.FC = () => {
+export const ShopMainTwo: React.FC = () => {
   const [showModalShop, setShowModalShop] = React.useState(false);
 
-  const [base, playerUnitsOne, minerals, bossLife, addWorker] = useGameStore(
+  const [base, playerUnitsTwo, minerals, bossLife, addWorker] = useGameStore(
     (state) => [
-      state.one.info.image,
-      state.one.units,
-      state.one.minerals,
-      state.one.boss,
+      state.two.info.image,
+      state.two.units,
+      state.two.minerals,
+      state.two.boss,
       state.createWorker,
     ]
   );
@@ -19,25 +19,25 @@ export const ShopMainOne: React.FC = () => {
   return (
     <Container className="p-1">
       <div className="flex justify-between">
-        <div>
-          <Image
-            onClick={() => setShowModalShop(true)}
-            src={base}
-            alt="base"
-            className="h-[24vh] px-2 cursor-pointer"
-          />
-        </div>
         <div className="float-right flex flex-col justify-between">
           <span className="w-[50px] h-[50px] text-center text-[36px] rounded-[50%] text-white bg-green-800 cursor-pointer">
             {bossLife}
           </span>
           <Image
             onClick={addWorker}
-            src={playerUnitsOne[0]?.image}
+            src={playerUnitsTwo[0]?.image}
             alt="worker"
             width={50}
             height={50}
-            className="cursor-pointer"
+            className="cursor-pointer scale-x-[-1]"
+          />
+        </div>
+        <div>
+          <Image
+            onClick={() => setShowModalShop(true)}
+            src={base}
+            className="relative h-[24vh] px-2 cursor-pointer scale-x-[-1]"
+            alt="base"
           />
         </div>
       </div>
@@ -45,8 +45,8 @@ export const ShopMainOne: React.FC = () => {
       <ShopModal
         showModalShop={showModalShop}
         closeModal={() => setShowModalShop(false)}
-        playerUnits={playerUnitsOne}
         minerals={minerals}
+        playerUnits={playerUnitsTwo}
       />
     </Container>
   );

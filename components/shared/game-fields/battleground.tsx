@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { unitType, useGameStore } from "@/store/game";
-import { ChooseUnitSide, Container, Unit } from ".";
+import { ChooseUnitSide, Container, Unit } from "..";
 
 interface Props {
   battlegroundUnits: unitType[];

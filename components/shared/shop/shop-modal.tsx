@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "../ui";
+import { Button } from "../../ui";
 import { unitType, useGameStore } from "@/store/game";
-import { Dialog, DialogContent, DialogTitle } from "../ui/dialog";
-import { ShopContent } from ".";
+import { Dialog, DialogContent, DialogTitle } from "../../ui/dialog";
+import { ShopContent } from "..";
 import toast from "react-hot-toast";
 
 interface Props {

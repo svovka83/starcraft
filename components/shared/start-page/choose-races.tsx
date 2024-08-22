@@ -26,6 +26,7 @@ export const ChooseRaces: React.FC = () => {
   ]);
 
   return (
+    // make refactoring !!!
     <div>
       <div className="flex justify-between mb-8">
         <Button

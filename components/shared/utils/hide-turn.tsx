@@ -3,11 +3,7 @@ import { cn } from "@/lib/utils";
 import { useGameStore } from "@/store/game";
 import { MoveLeft, MoveRight } from "lucide-react";
 
-interface Props {
-  className?: string;
-}
-
-export const HideTurn: React.FC<Props> = ({ className }) => {
+export const HideTurn: React.FC = () => {
   const turn = useGameStore((state) => state.turn);
 
   return (
@@ -16,8 +12,7 @@ export const HideTurn: React.FC<Props> = ({ className }) => {
         turn
           ? "w-[590px] left-[50%] text-red-500"
           : "w-[590px] right-[50%] text-blue-500",
-        "fixed top-[10vh] bg-black/0 bottom-0 flex justify-center items-center text-6xl font-extrabold cursor-pointer z-30 group transition-all hover:bg-black/0 duration-300",
-        className
+        "fixed top-[10vh] bg-black/0 bottom-0 flex justify-center items-center text-6xl font-extrabold cursor-pointer z-30 group transition-all hover:bg-black/0 duration-300"
       )}
     >
       {turn ? (
