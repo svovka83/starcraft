@@ -10,13 +10,16 @@ interface Props {
 
 export const ShopMainOne: React.FC<Props> = ({ className }) => {
   const [showModalShop, setShowModalShop] = React.useState(false);
-  const [base, playerUnitsOne, minerals] = useGameStore((state) => [
-    state.one.info.image,
-    state.one.units,
-    state.one.minerals,
-  ]);
-  const addWorker = useGameStore((state) => state.createWorker);
-  const bossLife = useGameStore((state) => state.one.boss);
+
+  const [base, playerUnitsOne, minerals, bossLife, addWorker] = useGameStore(
+    (state) => [
+      state.one.info.image,
+      state.one.units,
+      state.one.minerals,
+      state.one.boss,
+      state.createWorker,
+    ]
+  );
 
   return (
     <Container className={cn("p-1", className)}>
@@ -38,7 +41,7 @@ export const ShopMainOne: React.FC<Props> = ({ className }) => {
           </span>
           <Image
             onClick={addWorker}
-            src={playerUnitsOne[0].image}
+            src={playerUnitsOne[0]?.image}
             alt="worker"
             width={50}
             height={50}
