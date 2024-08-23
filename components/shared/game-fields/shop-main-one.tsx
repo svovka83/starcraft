@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { ChangeBossLife, Container, ShopModal } from "..";
+import { ChangeValue, Container, ShopModal } from "..";
 import { useGameStore } from "@/store/game";
 
 export const ShopMainOne: React.FC = () => {
@@ -28,10 +28,10 @@ export const ShopMainOne: React.FC = () => {
           />
         </div>
         <div className="relative float-right flex flex-col justify-between">
-          <ChangeBossLife
-            className="absolute -right-8"
+          <ChangeValue
             value={attack}
             key={bossLife}
+            className="absolute -right-8 text-red-500"
           />
           <span className="w-[50px] h-[50px] text-center text-[36px] rounded-[50%] text-white bg-green-800 cursor-pointer">
             {bossLife}

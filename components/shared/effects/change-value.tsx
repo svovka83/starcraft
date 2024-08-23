@@ -9,14 +9,10 @@ interface Props {
   key: number;
   className?: string;
 }
-export const ChangeBossLife: React.FC<Props> = ({
-  value,
-  key,
-  className,
-}) => {
+export const ChangeValue: React.FC<Props> = ({ value, key, className }) => {
   return (
     <motion.span
-      className={cn("text-xl text-red-500 font-bold", className)}
+      className={cn("text-xl font-bold", className)}
       initial={{ y: 35, opacity: 1 }}
       animate={{
         y: -10,

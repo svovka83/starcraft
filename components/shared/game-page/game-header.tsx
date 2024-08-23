@@ -1,15 +1,22 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useGameStore } from "@/store/game";
+import { ChangeValue } from "..";
 
 interface Props {
   className?: string;
 }
 
 export const GameHeader: React.FC<Props> = ({ className }) => {
-  const mineralOne = useGameStore((state) => state.one.minerals);
-  const mineralTwo = useGameStore((state) => state.two.minerals);
-  const turn = useGameStore((state) => state.turn);
+  const [mineralOne, mineralTwo, priceOne, priceTwo, turn] = useGameStore(
+    (state) => [
+      state.one.minerals,
+      state.two.minerals,
+      state.one.battleground[state.one.battleground.length - 1]?.price,
+      state.two.battleground[state.two.battleground.length - 1]?.price,
+      state.turn,
+    ]
+  );
 
   return (
     <header
@@ -18,7 +25,14 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
         className
       )}
     >
-      <span>MineralsOne: {mineralOne}</span>
+      <div className="relative mr-8">
+        <span>Minerals: {mineralOne}</span>
+        <ChangeValue
+          value={priceOne}
+          key={mineralOne}
+          className="absolute -top-2 -right-6 text-blue-700"
+        />
+      </div>
       <span>ManaOne: 3</span>
       <span
         className={cn("uppercase", turn ? "text-red-500" : "text-blue-500")}
@@ -26,7 +40,14 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
         {turn ? "Player One" : "Player Two"}
       </span>
       <span>ManaTwo: 3</span>
-      <span>MineralsTwo: {mineralTwo}</span>
+      <div className="relative mr-8">
+        <span>Minerals: {mineralOne}</span>
+        <ChangeValue
+          value={priceTwo}
+          key={mineralTwo}
+          className="absolute -top-2 -right-6 text-blue-700"
+        />
+      </div>
     </header>
   );
 };

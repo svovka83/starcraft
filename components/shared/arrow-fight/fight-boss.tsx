@@ -13,8 +13,8 @@ export const FightBoss = () => {
   return (
     <div
       className={cn(
-        "fixed top-[10vh] group",
-        turn ? "right-[57%]" : "left-[57%]",
+        "fixed top-[25vh] group",
+        turn ? "right-[52%]" : "left-[52%]",
         (visibleOne && !visibleTwo && turn) ||
           (!visibleOne && visibleTwo && !turn)
           ? "visible"
@@ -32,12 +32,12 @@ export const FightBoss = () => {
       {turn ? (
         <ArrowBigRightDash // need make refactoring !!!
           size={70}
-          className="absolute translate-x-[60vh] -translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
+          className="absolute left-0 translate-x-[45vh] -translate-y-[20vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
         />
       ) : (
         <ArrowBigLeftDash
           size={70}
-          className="absolute -translate-x-[58vh] -translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
+          className="absolute right-0 -translate-x-[45vh] -translate-y-[20vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
         />
       )}
     </div>
