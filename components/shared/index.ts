@@ -18,3 +18,4 @@ export { FightUnitDown } from "./arrow-fight/fight-unit-down";
 export { FightBoss } from "./arrow-fight/fight-boss";
 export { FightWorker } from "./arrow-fight/fight-worker";
 export { ChooseUnitSide } from "./utils/choose-unit-side";
+export { ChangeBossLife } from "./effects/change-boss-life";

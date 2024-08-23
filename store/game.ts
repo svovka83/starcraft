@@ -253,17 +253,13 @@ export const useGameStore = create<GameState>((set) => ({
         turn: !state.turn,
       };
     }),
-  fightBoss: () =>
+  fightBoss: () => {
     set((state) => {
       const player = state.turn ? state.one : state.two;
       const opponent = !state.turn ? state.one : state.two;
 
       const bossHealth = opponent.boss - player.fighterUp.attack;
-      const playerHealth = player.fighterUp.health - player.fighterUp.attack;
-
       const isBoss = bossHealth <= 0 ? 0 : bossHealth;
-      const isPlayer =
-        playerHealth <= 0 ? {} : { ...player.fighterUp, health: playerHealth };
 
       return {
         ...state,
@@ -271,13 +267,29 @@ export const useGameStore = create<GameState>((set) => ({
           ...opponent,
           boss: isBoss,
         },
-        [state.turn ? "one" : "two"]: {
-          ...player,
-          fighterUp: isPlayer,
-        },
-        turn: !state.turn,
       };
-    }),
+    });
+    setTimeout(() => {
+      set((state) => {
+        const player = state.turn ? state.one : state.two;
+
+        const playerHealth = player.fighterUp.health - player.fighterUp.attack;
+        const isPlayer =
+          playerHealth <= 0
+            ? {}
+            : { ...player.fighterUp, health: playerHealth };
+
+        return {
+          ...state,
+          [state.turn ? "one" : "two"]: {
+            ...player,
+            fighterUp: isPlayer,
+          },
+          turn: !state.turn,
+        };
+      });
+    }, 3000);
+  },
   fightWorker: () =>
     set((state) => {
       const player = state.turn ? state.one : state.two;
