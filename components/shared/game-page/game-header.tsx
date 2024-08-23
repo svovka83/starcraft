@@ -8,15 +8,16 @@ interface Props {
 }
 
 export const GameHeader: React.FC<Props> = ({ className }) => {
-  const [mineralOne, mineralTwo, priceOne, priceTwo, turn] = useGameStore(
-    (state) => [
+  const [mineralOne, mineralTwo, mineOne, mineTwo, addOne, addTwo, turn] =
+    useGameStore((state) => [
       state.one.minerals,
       state.two.minerals,
-      state.one.battleground[state.one.battleground.length - 1]?.price,
-      state.two.battleground[state.two.battleground.length - 1]?.price,
+      state.one.mine,
+      state.two.mine,
+      state.one.worker.length,
+      state.two.worker.length,
       state.turn,
-    ]
-  );
+    ]);
 
   return (
     <header
@@ -25,12 +26,19 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
         className
       )}
     >
-      <div className="relative mr-8">
+      <div className="relative mr-6">
         <span>Minerals: {mineralOne}</span>
         <ChangeValue
-          value={priceOne}
-          key={mineralOne}
-          className="absolute -top-2 -right-6 text-blue-700"
+          sign="+"
+          value={addOne}
+          key={mineOne}
+          className="absolute -top-2 -right-7 text-blue-700"
+        />
+        <ChangeValue
+          sign="-"
+          value={1}
+          key={addOne}
+          className="absolute -top-2 -right-7 text-blue-700"
         />
       </div>
       <span>ManaOne: 3</span>
@@ -40,12 +48,19 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
         {turn ? "Player One" : "Player Two"}
       </span>
       <span>ManaTwo: 3</span>
-      <div className="relative mr-8">
-        <span>Minerals: {mineralOne}</span>
+      <div className="relative mr-6">
+        <span>Minerals: {mineralTwo}</span>
         <ChangeValue
-          value={priceTwo}
-          key={mineralTwo}
-          className="absolute -top-2 -right-6 text-blue-700"
+          sign="+"
+          value={addTwo}
+          key={mineTwo}
+          className="absolute -top-2 -right-7 text-blue-700"
+        />
+        <ChangeValue
+          sign="-"
+          value={1}
+          key={addTwo}
+          className="absolute -top-2 -right-7 text-blue-700"
         />
       </div>
     </header>

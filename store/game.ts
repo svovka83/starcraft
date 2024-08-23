@@ -285,7 +285,6 @@ export const useGameStore = create<GameState>((set) => ({
             ...player,
             fighterUp: isPlayer,
           },
-          turn: !state.turn,
         };
       });
     }, 3000);

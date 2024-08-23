@@ -5,10 +5,20 @@ import { useGameStore } from "@/store/game";
 import { ArrowBigLeftDash, ArrowBigRightDash } from "lucide-react";
 
 export const FightBoss = () => {
+  const [disabledFight, setDisabledFight] = React.useState(false);
+
   const fight = useGameStore((state) => state.fightBoss);
   const turn = useGameStore((state) => state.turn);
   const visibleOne = useGameStore((state) => state.one.fighterUp.health);
   const visibleTwo = useGameStore((state) => state.two.fighterUp.health);
+
+  const attackBoss = () => {
+    setDisabledFight(true);
+    fight();
+    setTimeout(() => {
+      setDisabledFight(false);
+    }, 3000);
+  };
 
   return (
     <div
@@ -24,8 +34,10 @@ export const FightBoss = () => {
       <Button
         variant="destructive"
         size="sm"
-        onClick={fight}
-        className="text-slate-100 text-[20px] font-bold"
+        onClick={attackBoss}
+        className={cn("text-slate-100 text-[20px] font-bold", {
+          invisible: disabledFight,
+        })}
       >
         attack
       </Button>

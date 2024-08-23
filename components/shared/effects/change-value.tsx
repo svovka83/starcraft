@@ -5,11 +5,17 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 interface Props {
+  sign: "+" | "-";
   value: number;
   key: number;
   className?: string;
 }
-export const ChangeValue: React.FC<Props> = ({ value, key, className }) => {
+export const ChangeValue: React.FC<Props> = ({
+  sign,
+  value,
+  key,
+  className,
+}) => {
   return (
     <motion.span
       className={cn("text-xl font-bold", className)}
@@ -21,7 +27,8 @@ export const ChangeValue: React.FC<Props> = ({ value, key, className }) => {
       }}
       key={key}
     >
-      -{value}
+      {sign}
+      {value}
     </motion.span>
   );
 };

@@ -21,6 +21,7 @@ export const ShopMainTwo: React.FC = () => {
       <div className="flex justify-between">
         <div className="relative float-right flex flex-col justify-between">
           <ChangeValue
+            sign="-"
             value={attack}
             key={bossLife}
             className="absolute -left-8 text-red-500"
