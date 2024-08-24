@@ -10,6 +10,7 @@ interface Props {
   showModalShop: boolean;
   closeModal: () => void;
   minerals: number;
+  mana: number;
 }
 
 export const ShopModal: React.FC<Props> = ({
@@ -17,6 +18,7 @@ export const ShopModal: React.FC<Props> = ({
   showModalShop,
   closeModal,
   minerals,
+  mana,
 }) => {
   const [activeUnit, setActiveUnit] = React.useState(0);
 
@@ -48,7 +50,7 @@ export const ShopModal: React.FC<Props> = ({
               price={unit.price}
               setActiveUnit={setActiveUnit}
               active={activeUnit === unit.id}
-              disabled={minerals < unit.price}
+              disabled={minerals < unit.price || mana < unit.mana}
             />
           ))
           .slice(1, 5)}

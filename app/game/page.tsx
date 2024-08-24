@@ -19,6 +19,8 @@ import { useGameStore } from "@/store/game";
 
 export default function Game() {
   const [
+    manaOne,
+    manaTwo,
     battlegroundOneUnits,
     battlegroundTwoUnits,
     fighterOneUp,
@@ -32,6 +34,8 @@ export default function Game() {
     bossOne,
     bossTwo,
   ] = useGameStore((state) => [
+    state.one.mana,
+    state.two.mana,
     state.one.battleground,
     state.two.battleground,
     state.one.fighterUp,
@@ -64,11 +68,13 @@ export default function Game() {
         <div className="flex h-[36vh] border">
           <Battleground
             battlegroundUnits={battlegroundOneUnits}
+            mana={manaOne}
             reverse={false}
           />
           <Staff />
           <Battleground
             battlegroundUnits={battlegroundTwoUnits}
+            mana={manaTwo}
             reverse={true}
           />
         </div>

@@ -6,9 +6,10 @@ import { useGameStore } from "@/store/game";
 export const ShopMainOne: React.FC = () => {
   const [showModalShop, setShowModalShop] = React.useState(false);
 
-  const [base, playerUnitsOne, minerals, attack, bossLife, addWorker] =
+  const [base, mana, playerUnitsOne, minerals, attack, bossLife, addWorker] =
     useGameStore((state) => [
       state.one.info.image,
+      state.one.mana,
       state.one.units,
       state.one.minerals,
       state.two.fighterUp.attack,
@@ -53,6 +54,7 @@ export const ShopMainOne: React.FC = () => {
         closeModal={() => setShowModalShop(false)}
         playerUnits={playerUnitsOne}
         minerals={minerals}
+        mana={mana}
       />
     </Container>
   );

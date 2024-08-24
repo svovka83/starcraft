@@ -48,8 +48,8 @@ export const ShopContent: React.FC<Props> = ({
     >
       <p className="text-2xl ml-3">{name}</p>
       <Image src={image} className="w-[80px] h-[80px]" alt="unit" />
-      <p>health: {health}</p>
       <p>mana: {mana}</p>
+      <p>health: {health}</p>
       <p>attack: {attack}</p>
       <b>price: {price}</b>
       {active && <CircleCheck className="absolute top-2 left-2" />}

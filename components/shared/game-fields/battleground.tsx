@@ -5,23 +5,25 @@ import { ChooseUnitSide, Container, Unit } from "..";
 
 interface Props {
   battlegroundUnits: unitType[];
+  mana: number;
   reverse: boolean;
 }
 
 export const Battleground: React.FC<Props> = ({
   battlegroundUnits,
+  mana,
   reverse,
 }) => {
   const [activeUnit, setActiveUnit] = React.useState(0);
-  const [moveUnitUp, moveUnitDown, turn] = useGameStore((state) => [
+
+  const [moveUnitUp, moveUnitDown] = useGameStore((state) => [
     state.moveUnitUp,
     state.moveUnitDown,
-    state.turn,
   ]);
 
   React.useEffect(() => {
     setActiveUnit(0);
-  }, [turn]);
+  }, [mana]);
 
   return (
     <Container className={cn("w-[40%] flex", { "flex-row-reverse": reverse })}>

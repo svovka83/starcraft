@@ -29,12 +29,12 @@ export const FightUnitDown = () => {
       {turn ? (
         <ArrowBigRightDash // need make refactoring !!!
           size={70}
-          className="absolute left-0 translate-x-[20vh] translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
+          className="fixed bottom-[10vh] left-[50%] translate-x-10 opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
         />
       ) : (
         <ArrowBigLeftDash
           size={70}
-          className="absolute right-0 -translate-x-[20vh] translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
+          className="fixed bottom-[10vh] right-[50%] -translate-x-10 opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
         />
       )}
     </div>

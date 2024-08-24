@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { StaticImageData } from "next/image";
+import { manaCounter } from "@/functions";
 
 export type infoType = {
   name: string;
@@ -10,15 +11,15 @@ export type unitType = {
   id: number;
   name: string;
   image: StaticImageData;
-  health: number;
   mana: number;
+  health: number;
   attack: number;
   price: number;
-  disabled?: boolean;
 };
 
 type PlayerProps = {
   info: infoType;
+  mana: number;
   units: unitType[];
   battleground: unitType[];
   fighterUp: unitType;
@@ -33,6 +34,7 @@ interface GameState {
   one: PlayerProps;
   two: PlayerProps;
   turn: boolean;
+  endTurn: () => void;
   chooseOne: (one: unitType[], infoOne: infoType) => void;
   chooseTwo: (two: unitType[], infoTwo: infoType) => void;
   buyUnit: (unitId: number) => void;
@@ -49,6 +51,7 @@ interface GameState {
 export const useGameStore = create<GameState>((set) => ({
   one: {
     info: {} as infoType,
+    mana: 3,
     units: [],
     battleground: [],
     fighterUp: {} as unitType,
@@ -60,6 +63,7 @@ export const useGameStore = create<GameState>((set) => ({
   },
   two: {
     info: {} as infoType,
+    mana: 3,
     units: [],
     battleground: [],
     fighterUp: {} as unitType,
@@ -70,6 +74,19 @@ export const useGameStore = create<GameState>((set) => ({
     boss: 25,
   },
   turn: true,
+  endTurn: () => {
+    set((state) => ({
+      ["one"]: {
+        ...state.one,
+        mana: 3,
+      },
+      ["two"]: {
+        ...state.two,
+        mana: 3,
+      },
+      turn: !state.turn,
+    }));
+  },
   chooseOne: (raceOne: unitType[], infoOne: infoType) => {
     set((state) => {
       return {
@@ -100,16 +117,19 @@ export const useGameStore = create<GameState>((set) => ({
 
       const addUnit = player.units.find((unit) => unit.id === unitId);
 
+      const mana = manaCounter(player.mana, addUnit!.mana);
+      if (mana < 0) return state;
+
       if (player.minerals < addUnit!.price) return state;
       const newMinerals = player.minerals - addUnit!.price;
 
       return {
         [state.turn ? "one" : "two"]: {
           ...player,
+          mana,
           battleground: [...player.battleground, addUnit],
           minerals: newMinerals,
         },
-        turn: !state.turn,
       };
     }),
   moveUnitUp: (unitId: number) =>
@@ -117,6 +137,10 @@ export const useGameStore = create<GameState>((set) => ({
       const player = state.turn ? state.one : state.two;
 
       const addUnit = player.battleground.find((unit) => unit.id === unitId);
+
+      const mana = manaCounter(player.mana, addUnit!.mana);
+      if (mana < 0) return state;
+
       const removeUnit = player.battleground.filter(
         (unit) => unit.id !== unitId
       );
@@ -128,10 +152,10 @@ export const useGameStore = create<GameState>((set) => ({
       return {
         [state.turn ? "one" : "two"]: {
           ...player,
+          mana,
           battleground: returnFighter,
           fighterUp: addUnit,
         },
-        turn: !state.turn,
       };
     }),
   moveUnitDown: (unitId: number) =>
@@ -139,6 +163,10 @@ export const useGameStore = create<GameState>((set) => ({
       const player = state.turn ? state.one : state.two;
 
       const addUnit = player.battleground.find((unit) => unit.id === unitId);
+
+      const mana = manaCounter(player.mana, addUnit!.mana);
+      if (mana < 0) return state;
+
       const removeUnit = player.battleground.filter(
         (unit) => unit.id !== unitId
       );
@@ -150,15 +178,18 @@ export const useGameStore = create<GameState>((set) => ({
       return {
         [state.turn ? "one" : "two"]: {
           ...player,
+          mana,
           battleground: returnFighter,
           fighterDown: addUnit,
         },
-        turn: !state.turn,
       };
     }),
   createWorker: () =>
     set((state) => {
       const player = state.turn ? state.one : state.two;
+
+      const mana = manaCounter(player.mana, 1);
+      if (mana < 0) return state;
 
       if (player.worker.length === 4) return state;
 
@@ -169,17 +200,20 @@ export const useGameStore = create<GameState>((set) => ({
       return {
         [state.turn ? "one" : "two"]: {
           ...player,
+          mana,
           worker: [
             ...player.worker,
             state.turn ? state.one.units[0] : state.two.units[0],
           ],
         },
-        turn: !state.turn,
       };
     }),
   addMinerals: () =>
     set((state) => {
       const player = state.turn ? state.one : state.two;
+
+      const mana = manaCounter(player.mana, 1);
+      if (mana < 0) return state;
 
       if (player.mine < 0) return state;
       if (player.mine < player.worker.length) {
@@ -189,17 +223,21 @@ export const useGameStore = create<GameState>((set) => ({
       }
       player.minerals += player.worker.length;
       player.mine -= player.worker.length;
-      return { ...state, turn: !state.turn };
+      player.mana = mana;
+
+      return { ...state };
     }),
   fightUnitUp: () =>
     set((state) => {
       const player = state.turn ? state.one : state.two;
       const opponent = !state.turn ? state.one : state.two;
 
+      const mana = manaCounter(player.mana, player.fighterUp.mana);
+      if (mana < 0) return state;
+
       const opponentHealth =
         opponent.fighterUp.health - player.fighterUp.attack;
-      const playerHealth =
-        player.fighterUp.health - opponent.fighterUp.attack / 2;
+      const playerHealth = player.fighterUp.health - opponent.fighterUp.attack;
 
       const opponentIs =
         opponentHealth <= 0
@@ -216,9 +254,9 @@ export const useGameStore = create<GameState>((set) => ({
         },
         [state.turn ? "one" : "two"]: {
           ...player,
+          mana,
           fighterUp: playerIs,
         },
-        turn: !state.turn,
       };
     }),
   fightUnitDown: () =>
@@ -226,10 +264,13 @@ export const useGameStore = create<GameState>((set) => ({
       const player = state.turn ? state.one : state.two;
       const opponent = !state.turn ? state.one : state.two;
 
+      const mana = manaCounter(player.mana, player.fighterDown.mana);
+      if (mana < 0) return state;
+
       const opponentHealth =
         opponent.fighterDown.health - player.fighterDown.attack;
       const playerHealth =
-        player.fighterDown.health - opponent.fighterDown.attack / 2;
+        player.fighterDown.health - opponent.fighterDown.attack;
 
       const opponentIs =
         opponentHealth <= 0
@@ -248,15 +289,18 @@ export const useGameStore = create<GameState>((set) => ({
         },
         [state.turn ? "one" : "two"]: {
           ...player,
+          mana,
           fighterDown: playerIs,
         },
-        turn: !state.turn,
       };
     }),
   fightBoss: () => {
     set((state) => {
       const player = state.turn ? state.one : state.two;
       const opponent = !state.turn ? state.one : state.two;
+
+      const mana = manaCounter(player.mana, player.fighterUp.mana);
+      if (mana < 0) return state;
 
       const bossHealth = opponent.boss - player.fighterUp.attack;
       const isBoss = bossHealth <= 0 ? 0 : bossHealth;
@@ -273,6 +317,9 @@ export const useGameStore = create<GameState>((set) => ({
       set((state) => {
         const player = state.turn ? state.one : state.two;
 
+        const mana = manaCounter(player.mana, player.fighterUp.mana);
+        if (mana < 0) return state;
+
         const playerHealth = player.fighterUp.health - player.fighterUp.attack;
         const isPlayer =
           playerHealth <= 0
@@ -283,6 +330,7 @@ export const useGameStore = create<GameState>((set) => ({
           ...state,
           [state.turn ? "one" : "two"]: {
             ...player,
+            mana,
             fighterUp: isPlayer,
           },
         };
@@ -293,6 +341,9 @@ export const useGameStore = create<GameState>((set) => ({
     set((state) => {
       const player = state.turn ? state.one : state.two;
       const opponent = !state.turn ? state.one : state.two;
+
+      const mana = manaCounter(player.mana, player.fighterDown.mana);
+      if (mana < 0) return state;
 
       if (opponent.worker.length === 0) return state;
 
@@ -311,9 +362,9 @@ export const useGameStore = create<GameState>((set) => ({
         },
         [state.turn ? "one" : "two"]: {
           ...player,
+          mana,
           fighterDown: isPlayer,
         },
-        turn: !state.turn,
       };
     }),
 }));
