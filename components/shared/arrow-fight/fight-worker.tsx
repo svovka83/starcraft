@@ -16,7 +16,7 @@ export const FightWorker = () => {
     <div
       className={cn(
         "fixed top-[73vh] group",
-        turn ? "right-[57%]" : "left-[57%]",
+        turn ? "right-[52%]" : "left-[52%]",
         (visibleOne && !visibleTwo && turn && workersTwo !== 0) ||
           (!visibleOne && visibleTwo && !turn && workersOne !== 0)
           ? "visible"
@@ -34,12 +34,12 @@ export const FightWorker = () => {
       {turn ? (
         <ArrowBigRightDash // need make refactoring !!!
           size={70}
-          className="absolute translate-x-[60vh] -translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
+          className="absolute left-0 translate-x-[48vh] -translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
         />
       ) : (
         <ArrowBigLeftDash
           size={70}
-          className="absolute -translate-x-[58vh] -translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
+          className="absolute right-0 -translate-x-[48vh] -translate-y-[3vh] opacity-0 text-red-500 font-bold group-hover:opacity-100 duration-300"
         />
       )}
     </div>

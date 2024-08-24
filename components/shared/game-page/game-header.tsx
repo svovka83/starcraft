@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const GameHeader: React.FC<Props> = ({ className }) => {
-  const [mineralOne, mineralTwo, mineOne, mineTwo, addOne, addTwo, turn] =
+  const [mineralOne, mineralTwo, mineOne, mineTwo, workerOne, workerTwo, turn] =
     useGameStore((state) => [
       state.one.minerals,
       state.two.minerals,
@@ -30,14 +30,20 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
         <span>Minerals: {mineralOne}</span>
         <ChangeValue
           sign="+"
-          value={addOne}
+          value={workerOne}
           key={mineOne}
           className="absolute -top-2 -right-7 text-blue-700"
         />
         <ChangeValue
           sign="-"
           value={1}
-          key={addOne}
+          key={workerOne}
+          className="absolute -top-2 -right-7 text-blue-700"
+        />
+        <ChangeValue
+          sign="-"
+          value={1}
+          key={workerOne}
           className="absolute -top-2 -right-7 text-blue-700"
         />
       </div>
@@ -52,14 +58,14 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
         <span>Minerals: {mineralTwo}</span>
         <ChangeValue
           sign="+"
-          value={addTwo}
+          value={workerTwo}
           key={mineTwo}
           className="absolute -top-2 -right-7 text-blue-700"
         />
         <ChangeValue
           sign="-"
           value={1}
-          key={addTwo}
+          key={workerTwo}
           className="absolute -top-2 -right-7 text-blue-700"
         />
       </div>
