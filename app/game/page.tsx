@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   GameHeader,
   HideTurn,
@@ -14,10 +15,13 @@ import {
   FightBoss,
   FightUnitDown,
   FightWorker,
+  GameOver,
 } from "@/components/shared";
 import { useGameStore } from "@/store/game";
 
 export default function Game() {
+  const [modalOver, setModalOver] = React.useState(false);
+
   const [
     manaOne,
     manaTwo,
@@ -50,9 +54,10 @@ export default function Game() {
     state.two.boss,
   ]);
 
-  if (bossOne === 0 || bossTwo === 0) {
-    alert("Game Over");
-    window.location.href = "/";
+  if (bossOne <= 0 || bossTwo <= 0) {
+    setTimeout(() => {
+      setModalOver(true);
+    }, 3000);
   }
 
   return (
@@ -89,6 +94,7 @@ export default function Game() {
         <FightUnitDown />
         <FightBoss />
         <FightWorker />
+        <GameOver modalOver={modalOver} setModalOver={setModalOver} />
       </div>
     </>
   );
