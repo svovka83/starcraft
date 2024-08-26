@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { ChangeValue, Container, ShopModal } from "..";
 import { useGameStore } from "@/store/game";
 
@@ -21,7 +20,7 @@ export const ShopMainOne: React.FC = () => {
     <Container className="p-1">
       <div className="flex justify-between">
         <div>
-          <Image
+          <img
             onClick={() => setShowModalShop(true)}
             src={base}
             alt="base"
@@ -38,7 +37,7 @@ export const ShopMainOne: React.FC = () => {
           <span className="w-[50px] h-[50px] text-center text-[36px] rounded-[50%] text-white bg-green-800 cursor-pointer">
             {bossLife}
           </span>
-          <Image
+          <img
             onClick={addWorker}
             src={playerUnitsOne[0]?.image}
             alt="worker"

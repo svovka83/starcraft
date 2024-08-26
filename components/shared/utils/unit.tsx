@@ -1,13 +1,10 @@
 import React from "react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { StaticImageData } from "next/image";
 import { CircleCheck } from "lucide-react";
 
 interface Props {
-  id: number;
   name: string;
-  image: StaticImageData;
+  image: string;
   health: number;
   mana: number;
   attack: number;
@@ -18,7 +15,6 @@ interface Props {
 }
 
 export const Unit: React.FC<Props> = ({
-  id,
   name,
   image,
   health,
@@ -41,7 +37,7 @@ export const Unit: React.FC<Props> = ({
         </span>
         <span className="text-fuchsia-400">{name}</span>
       </div>
-      <Image
+      <img
         src={image}
         className={cn("w-[60px] h-[60px]", { "scale-x-[-1]": reverse })}
         alt="unit"

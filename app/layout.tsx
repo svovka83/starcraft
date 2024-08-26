@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link type="image/png" rel="icon" href="/tank.png" />
+        <link type="image/png" rel="icon" href="/logo.png" />
       </head>
       <body className={nunito.className}>
         <main className="max-w-[1180px] h-screen mx-auto">

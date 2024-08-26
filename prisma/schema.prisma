@@ -19,27 +19,52 @@ model User {
   updateAt DateTime @updatedAt
 }
 
-model One {
+model Shop {
   id Int @id @default(autoincrement())
 
-  mana Int
-
-  minerals Int
-  mine     Int
-  boss     Int
+  units Unit[]
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
 }
 
-model Two {
+model Battle {
   id Int @id @default(autoincrement())
 
-  mana Int
+  units Unit[]
 
-  minerals Int
-  mine     Int
-  boss     Int
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model FighterUp {
+  id Int @id @default(autoincrement())
+
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model Unit {
+  id Int @id @default(autoincrement())
+
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
+
+  Shop     Shop?   @relation(fields: [shopId], references: [id])
+  shopId   Int?
+  Battle   Battle? @relation(fields: [battleId], references: [id])
+  battleId Int?
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt

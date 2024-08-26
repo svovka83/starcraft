@@ -8,25 +8,29 @@ import { Button } from "../../ui";
 import zerg from "/images/races/zerg.png";
 import terran from "/images/races/terran.png";
 import protoss from "/images/races/protoss.png";
-import { useGameStore } from "@/store/game";
+import { unitType, useGameStore } from "@/store/game";
 import { ZERG, INFO_Z } from "@/constants/zerg";
 import { TERRAN, INFO_T } from "@/constants/terran";
 import { PROTOSS, INFO_P } from "@/constants/protoss";
 
 export const ChooseRaces: React.FC = () => {
+  const [activeOne, setActiveOne] = React.useState<unitType[]>([]);
+  const [activeTwo, setActiveTwo] = React.useState<unitType[]>([]);
   const [active, setActive] = React.useState<string>("");
   const [currentPlayer, setCurrentPlayer] = React.useState(
     "playerOne" || "playerTwo"
   );
-  const [infoOne, infoTwo, chooseOne, chooseTwo] = useGameStore((state) => [
-    state.one.info,
-    state.two.info,
-    state.chooseOne,
-    state.chooseTwo,
-  ]);
+  const [infoOne, infoTwo, chooseOne, chooseTwo, setOneUnits] = useGameStore(
+    (state) => [
+      state.one.info,
+      state.two.info,
+      state.chooseOne,
+      state.chooseTwo,
+      state.setOneUnits,
+    ]
+  );
 
   return (
-    // make refactoring !!!
     <div>
       <div className="flex justify-between mb-8">
         <Button
@@ -43,8 +47,10 @@ export const ChooseRaces: React.FC = () => {
           onClick={() => {
             setActive(INFO_T.name);
             if (currentPlayer === "playerOne") {
-              chooseOne(TERRAN, INFO_T);
+              setActiveOne(TERRAN);
+              chooseOne(INFO_T);
             } else {
+              setActiveTwo(TERRAN);
               chooseTwo(TERRAN, INFO_T);
             }
           }}
@@ -64,8 +70,10 @@ export const ChooseRaces: React.FC = () => {
           onClick={() => {
             setActive(INFO_Z.name);
             if (currentPlayer === "playerOne") {
-              chooseOne(ZERG, INFO_Z);
+              setActiveOne(ZERG);
+              chooseOne(INFO_Z);
             } else {
+              setActiveTwo(ZERG);
               chooseTwo(ZERG, INFO_Z);
             }
           }}
@@ -85,8 +93,10 @@ export const ChooseRaces: React.FC = () => {
           onClick={() => {
             setActive(INFO_P.name);
             if (currentPlayer === "playerOne") {
-              chooseOne(PROTOSS, INFO_P);
+              setActiveOne(PROTOSS);
+              chooseOne(INFO_P);
             } else {
+              setActiveTwo(PROTOSS);
               chooseTwo(PROTOSS, INFO_P);
             }
           }}
@@ -120,6 +130,7 @@ export const ChooseRaces: React.FC = () => {
         <Button
           size="lg"
           disabled={infoOne.name && infoTwo.name ? false : true}
+          onClick={() => setOneUnits(activeOne)}
         >
           Start
         </Button>

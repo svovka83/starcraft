@@ -36,14 +36,13 @@ export const Battleground: React.FC<Props> = ({
           ({ id, name, image, health, mana, attack, price }, index) => (
             <div key={index}>
               <Unit
-                id={id}
                 name={name}
                 image={image}
                 health={health}
                 mana={mana}
                 attack={attack}
                 price={price}
-                setActiveUnit={() => setActiveUnit(id)}
+                setActiveUnit={() => setActiveUnit(id!)}
                 active={activeUnit === id}
                 reverse={reverse}
               />

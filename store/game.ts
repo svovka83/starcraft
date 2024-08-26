@@ -1,16 +1,16 @@
 import { create } from "zustand";
-import { StaticImageData } from "next/image";
 import { manaCounter } from "@/functions";
+import { createShop } from "@/service/shop";
 
 export type infoType = {
   name: string;
-  image: StaticImageData;
+  image: string;
 };
 
 export type unitType = {
-  id: number;
+  id?: number;
   name: string;
-  image: StaticImageData;
+  image: string;
   mana: number;
   health: number;
   attack: number;
@@ -35,7 +35,8 @@ interface GameState {
   two: PlayerProps;
   turn: boolean;
   endTurn: () => void;
-  chooseOne: (one: unitType[], infoOne: infoType) => void;
+  setOneUnits: (values: unitType[]) => Promise<void>;
+  chooseOne: (infoOne: infoType) => void;
   chooseTwo: (two: unitType[], infoTwo: infoType) => void;
   buyUnit: (unitId: number) => void;
   moveUnitUp: (unitId: number) => void;
@@ -53,7 +54,26 @@ export const useGameStore = create<GameState>((set) => ({
     info: {} as infoType,
     mana: 3,
     units: [],
-    battleground: [],
+    battleground: [
+      {
+        id: 7,
+        name: "KSM",
+        image: "/images/imgTerran/KSM.png",
+        health: 1,
+        mana: 1,
+        attack: 1,
+        price: 1,
+      },
+      {
+        id: 8,
+        name: "marine",
+        image: "/images/imgTerran/marine.png",
+        health: 2,
+        mana: 1,
+        attack: 1,
+        price: 1,
+      },
+    ],
     fighterUp: {} as unitType,
     fighterDown: {} as unitType,
     worker: [],
@@ -65,7 +85,26 @@ export const useGameStore = create<GameState>((set) => ({
     info: {} as infoType,
     mana: 3,
     units: [],
-    battleground: [],
+    battleground: [
+      {
+        id: 9,
+        name: "zergling",
+        image: "/images/imgZerg/zerling.png",
+        health: 1,
+        mana: 1,
+        attack: 1,
+        price: 1,
+      },
+      {
+        id: 10,
+        name: "gydral",
+        image: "/images/imgZerg/gidral.png",
+        health: 2,
+        mana: 1,
+        attack: 2,
+        price: 2,
+      },
+    ],
     fighterUp: {} as unitType,
     fighterDown: {} as unitType,
     worker: [],
@@ -87,14 +126,25 @@ export const useGameStore = create<GameState>((set) => ({
       turn: !state.turn,
     }));
   },
-  chooseOne: (raceOne: unitType[], infoOne: infoType) => {
+  setOneUnits: async (values: unitType[]) => {
+    try {
+      const data = await createShop(values);
+      set((state) => ({
+        ["one"]: {
+          ...state.one,
+          units: data.units,
+        },
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  chooseOne: (infoOne: infoType) => {
     set((state) => {
       return {
         ["one"]: {
           ...state.one,
           info: infoOne,
-          units: raceOne,
-          worker: [raceOne[0]],
         },
       };
     });

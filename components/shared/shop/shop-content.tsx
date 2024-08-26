@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 interface Props {
   id: number;
   name: string;
-  image: StaticImageData;
+  image: string;
   health: number;
   mana: number;
   attack: number;
@@ -47,7 +47,7 @@ export const ShopContent: React.FC<Props> = ({
       onClick={activated}
     >
       <p className="text-2xl ml-3">{name}</p>
-      <Image src={image} className="w-[80px] h-[80px]" alt="unit" />
+      <img src={image} className="w-[80px] h-[80px]" alt="unit" />
       <p>mana: {mana}</p>
       <p>health: {health}</p>
       <p>attack: {attack}</p>

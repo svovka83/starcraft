@@ -1,56 +1,44 @@
-import command from "/images/imgTerran/command.png";
-import KSM from "/images/imgTerran/KSM.png";
-import marine from "/images/imgTerran/marine.png";
-import fireman from "/images/imgTerran/fireman.png";
-import maroder from "/images/imgTerran/maroder.png";
-import tank from "/images/imgTerran/tank.png";
-
 export const INFO_T = {
   name: "Terran",
-  image: command,
+  image: "/images/imgTerran/command.png",
 };
 
 export const TERRAN = [
   {
-    id: 1,
     name: "KSM",
-    image: KSM,
+    image: "/images/imgTerran/KSM.png",
     health: 1,
     mana: 1,
     attack: 1,
     price: 1,
   },
   {
-    id: 2,
     name: "marine",
-    image: marine,
+    image: "/images/imgTerran/marine.png",
     health: 2,
     mana: 1,
     attack: 1,
     price: 1,
   },
   {
-    id: 3,
     name: "fireman",
-    image: fireman,
+    image: "/images/imgTerran/fireman.png",
     health: 3,
     mana: 2,
     attack: 3,
     price: 2,
   },
   {
-    id: 4,
     name: "maroder",
-    image: maroder,
+    image: "/images/imgTerran/maroder.png",
     health: 3,
     mana: 2,
     attack: 4,
     price: 3,
   },
   {
-    id: 5,
     name: "tank",
-    image: tank,
+    image: "/images/imgTerran/tank.png",
     health: 4,
     mana: 3,
     attack: 6,
