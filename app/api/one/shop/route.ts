@@ -2,20 +2,21 @@ import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
-  const shop = await prisma.shop.findFirst({
+  const shopOne = await prisma.shopOne.findFirst({
     include: {
       units: true,
     },
   });
 
-  return NextResponse.json(shop);
+  return NextResponse.json(shopOne);
 }
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
 
-  const createShopOne = await prisma.shop.create({
+  const createShopOne = await prisma.shopOne.create({
     data: {
+      gameId: 1,
       units: {
         createMany: {
           data: body,
@@ -24,7 +25,7 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  const getShopOne = await prisma.shop.findFirst({
+  const getShopOne = await prisma.shopOne.findFirst({
     where: {
       id: createShopOne.id,
     },

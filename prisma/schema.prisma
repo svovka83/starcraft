@@ -19,19 +19,46 @@ model User {
   updateAt DateTime @updatedAt
 }
 
-model Shop {
+model Game {
   id Int @id @default(autoincrement())
 
-  units Unit[]
+  token String
+
+  shopOne ShopOne?
+  shopTwo ShopTwo?
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
 }
 
-model Battle {
+model ShopOne {
   id Int @id @default(autoincrement())
 
-  units Unit[]
+  unitsOne UnitOne[]
+
+  Game   Game @relation(fields: [gameId], references: [id])
+  gameId Int  @unique
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model ShopTwo {
+  id Int @id @default(autoincrement())
+
+  unitsTwo UnitTwo[]
+
+  Game   Game @relation(fields: [gameId], references: [id])
+  gameId Int  @unique
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model BattleOne {
+  id Int @id @default(autoincrement())
+
+  unitsOne UnitOne[]
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
@@ -51,7 +78,7 @@ model FighterUp {
   updateAt DateTime @updatedAt
 }
 
-model Unit {
+model UnitOne {
   id Int @id @default(autoincrement())
 
   name   String
@@ -61,10 +88,27 @@ model Unit {
   attack Int
   price  Int
 
-  Shop     Shop?   @relation(fields: [shopId], references: [id])
-  shopId   Int?
-  Battle   Battle? @relation(fields: [battleId], references: [id])
-  battleId Int?
+  ShopOne   ShopOne?   @relation(fields: [shopOneId], references: [id])
+  shopOneId Int?
+  BattleOne BattleOne? @relation(fields: [battleId], references: [id])
+  battleId  Int?
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model UnitTwo {
+  id Int @id @default(autoincrement())
+
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
+
+  ShopTwo   ShopTwo?   @relation(fields: [shopTwoId], references: [id])
+  shopTwoId Int?
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt

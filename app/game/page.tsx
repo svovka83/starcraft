@@ -23,6 +23,7 @@ export default function Game() {
   const [modalOver, setModalOver] = React.useState(false);
 
   const [
+    getGame,
     manaOne,
     manaTwo,
     battlegroundOneUnits,
@@ -38,6 +39,7 @@ export default function Game() {
     bossOne,
     bossTwo,
   ] = useGameStore((state) => [
+    state.setGetGame,
     state.one.mana,
     state.two.mana,
     state.one.battleground,
@@ -59,6 +61,15 @@ export default function Game() {
       setModalOver(true);
     }, 3000);
   }
+
+  React.useEffect(() => {
+    async function takeData() {
+      const data = await getGame();
+      return data;
+    }
+
+    takeData();
+  }, []);
 
   return (
     <>

@@ -14,19 +14,19 @@ import { TERRAN, INFO_T } from "@/constants/terran";
 import { PROTOSS, INFO_P } from "@/constants/protoss";
 
 export const ChooseRaces: React.FC = () => {
-  const [activeOne, setActiveOne] = React.useState<unitType[]>([]);
-  const [activeTwo, setActiveTwo] = React.useState<unitType[]>([]);
+  const [playerOne, setPlayerOne] = React.useState<unitType[]>([]);
+  const [playerTwo, setPlayerTwo] = React.useState<unitType[]>([]);
   const [active, setActive] = React.useState<string>("");
   const [currentPlayer, setCurrentPlayer] = React.useState(
     "playerOne" || "playerTwo"
   );
-  const [infoOne, infoTwo, chooseOne, chooseTwo, setOneUnits] = useGameStore(
+  const [infoOne, infoTwo, chooseOne, chooseTwo, createGame] = useGameStore(
     (state) => [
       state.one.info,
       state.two.info,
       state.chooseOne,
       state.chooseTwo,
-      state.setOneUnits,
+      state.setCreateGame,
     ]
   );
 
@@ -47,10 +47,10 @@ export const ChooseRaces: React.FC = () => {
           onClick={() => {
             setActive(INFO_T.name);
             if (currentPlayer === "playerOne") {
-              setActiveOne(TERRAN);
+              setPlayerOne(TERRAN);
               chooseOne(INFO_T);
             } else {
-              setActiveTwo(TERRAN);
+              setPlayerTwo(TERRAN);
               chooseTwo(TERRAN, INFO_T);
             }
           }}
@@ -70,10 +70,10 @@ export const ChooseRaces: React.FC = () => {
           onClick={() => {
             setActive(INFO_Z.name);
             if (currentPlayer === "playerOne") {
-              setActiveOne(ZERG);
+              setPlayerOne(ZERG);
               chooseOne(INFO_Z);
             } else {
-              setActiveTwo(ZERG);
+              setPlayerTwo(ZERG);
               chooseTwo(ZERG, INFO_Z);
             }
           }}
@@ -93,10 +93,10 @@ export const ChooseRaces: React.FC = () => {
           onClick={() => {
             setActive(INFO_P.name);
             if (currentPlayer === "playerOne") {
-              setActiveOne(PROTOSS);
+              setPlayerOne(PROTOSS);
               chooseOne(INFO_P);
             } else {
-              setActiveTwo(PROTOSS);
+              setPlayerTwo(PROTOSS);
               chooseTwo(PROTOSS, INFO_P);
             }
           }}
@@ -130,7 +130,7 @@ export const ChooseRaces: React.FC = () => {
         <Button
           size="lg"
           disabled={infoOne.name && infoTwo.name ? false : true}
-          onClick={() => setOneUnits(activeOne)}
+          onClick={() => createGame(playerOne, playerTwo)}
         >
           Start
         </Button>

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { manaCounter } from "@/functions";
-import { createShop } from "@/service/shop";
+import { createGame, getGame } from "@/service/game";
 
 export type infoType = {
   name: string;
@@ -35,7 +35,8 @@ interface GameState {
   two: PlayerProps;
   turn: boolean;
   endTurn: () => void;
-  setOneUnits: (values: unitType[]) => Promise<void>;
+  setCreateGame: (one: unitType[], two: unitType[]) => Promise<void>;
+  setGetGame: () => Promise<void>;
   chooseOne: (infoOne: infoType) => void;
   chooseTwo: (two: unitType[], infoTwo: infoType) => void;
   buyUnit: (unitId: number) => void;
@@ -54,26 +55,7 @@ export const useGameStore = create<GameState>((set) => ({
     info: {} as infoType,
     mana: 3,
     units: [],
-    battleground: [
-      {
-        id: 7,
-        name: "KSM",
-        image: "/images/imgTerran/KSM.png",
-        health: 1,
-        mana: 1,
-        attack: 1,
-        price: 1,
-      },
-      {
-        id: 8,
-        name: "marine",
-        image: "/images/imgTerran/marine.png",
-        health: 2,
-        mana: 1,
-        attack: 1,
-        price: 1,
-      },
-    ],
+    battleground: [],
     fighterUp: {} as unitType,
     fighterDown: {} as unitType,
     worker: [],
@@ -85,26 +67,7 @@ export const useGameStore = create<GameState>((set) => ({
     info: {} as infoType,
     mana: 3,
     units: [],
-    battleground: [
-      {
-        id: 9,
-        name: "zergling",
-        image: "/images/imgZerg/zerling.png",
-        health: 1,
-        mana: 1,
-        attack: 1,
-        price: 1,
-      },
-      {
-        id: 10,
-        name: "gydral",
-        image: "/images/imgZerg/gidral.png",
-        health: 2,
-        mana: 1,
-        attack: 2,
-        price: 2,
-      },
-    ],
+    battleground: [],
     fighterUp: {} as unitType,
     fighterDown: {} as unitType,
     worker: [],
@@ -126,14 +89,38 @@ export const useGameStore = create<GameState>((set) => ({
       turn: !state.turn,
     }));
   },
-  setOneUnits: async (values: unitType[]) => {
+  setCreateGame: async (one: unitType[], two: unitType[]) => {
     try {
-      const data = await createShop(values);
+      const data = await createGame(one, two);
       set((state) => ({
         ["one"]: {
           ...state.one,
-          units: data.units,
-          worker: [data.units[0]]
+          units: data.shopOne.unitsOne,
+          worker: [data.shopOne.unitsOne[0]],
+        },
+        ["two"]: {
+          ...state.two,
+          units: data.shopTwo.unitsTwo,
+          worker: [data.shopTwo.unitsTwo[0]],
+        },
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  setGetGame: async () => {
+    try {
+      const data = await getGame();
+      set((state) => ({
+        ["one"]: {
+          ...state.one,
+          units: data.shopOne.unitsOne,
+          worker: [data.shopOne.unitsOne[0]],
+        },
+        ["two"]: {
+          ...state.two,
+          units: data.shopTwo.unitsTwo,
+          worker: [data.shopTwo.unitsTwo[0]],
         },
       }));
     } catch (error) {
