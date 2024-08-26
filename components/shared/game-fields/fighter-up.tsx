@@ -9,13 +9,12 @@ interface Props {
 }
 
 export const FighterUp: React.FC<Props> = ({ fighter, reverse }) => {
-  const { id, name, image, health, mana, attack, price } = fighter;
+  const { name, image, health, mana, attack, price } = fighter;
 
   return (
     <Container className={cn("flex items-center justify-center")}>
       {name && (
         <Unit
-          id={id}
           name={name}
           image={image}
           health={health}
