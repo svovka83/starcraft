@@ -1,42 +1,32 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { CircleCheck } from "lucide-react";
-import Image, { StaticImageData } from "next/image";
-import toast from "react-hot-toast";
 
 interface Props {
-  id: number;
   name: string;
   image: string;
   health: number;
   mana: number;
   attack: number;
   price: number;
-  setActiveUnit: (id: number) => void;
+  activated: VoidFunction;
   active?: boolean;
   disabled?: boolean;
 }
 
 export const ShopContent: React.FC<Props> = ({
-  id,
   name,
   image,
   health,
   mana,
   attack,
   price,
-  setActiveUnit,
+  activated,
   active,
   disabled,
 }) => {
-  const activated = () => {
-    setActiveUnit(id);
-    toast.success(`Unit ${name} selected`);
-  };
-
   return (
     <div
-      key={id}
       className={cn(
         "relative grid grid-cols-6 gap-10 pl-6 border-2 border-black items-center cursor-pointer bg-black rounded-2xl hover:translate-x-2 duration-200",
         {

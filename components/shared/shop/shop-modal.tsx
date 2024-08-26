@@ -41,14 +41,13 @@ export const ShopModal: React.FC<Props> = ({
           .map((unit) => (
             <ShopContent
               key={unit.id}
-              id={unit.id}
               name={unit.name}
               image={unit.image}
               health={unit.health}
               mana={unit.mana}
               attack={unit.attack}
               price={unit.price}
-              setActiveUnit={setActiveUnit}
+              activated={() => setActiveUnit(unit.id as number)}
               active={activeUnit === unit.id}
               disabled={minerals < unit.price || mana < unit.mana}
             />
