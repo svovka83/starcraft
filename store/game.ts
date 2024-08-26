@@ -133,6 +133,7 @@ export const useGameStore = create<GameState>((set) => ({
         ["one"]: {
           ...state.one,
           units: data.units,
+          worker: [data.units[0]]
         },
       }));
     } catch (error) {
