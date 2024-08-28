@@ -27,11 +27,11 @@ model Game {
   infoOne InfoOne?
   infoTwo InfoTwo?
 
-  shopOne ShopOne?
-  shopTwo ShopTwo?
+  shopOne ShopOne[]
+  shopTwo ShopTwo[]
 
-  createAt  DateTime @default(now())
-  updateAt  DateTime @updatedAt
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
 }
 
 model InfoOne {
@@ -63,10 +63,15 @@ model InfoTwo {
 model ShopOne {
   id Int @id @default(autoincrement())
 
-  unitsOne UnitOne[]
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
 
   game   Game @relation(fields: [gameId], references: [id])
-  gameId Int  @unique
+  gameId Int
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
@@ -75,19 +80,15 @@ model ShopOne {
 model ShopTwo {
   id Int @id @default(autoincrement())
 
-  unitsTwo UnitTwo[]
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
 
   game   Game @relation(fields: [gameId], references: [id])
-  gameId Int  @unique
-
-  createAt DateTime @default(now())
-  updateAt DateTime @updatedAt
-}
-
-model BattleOne {
-  id Int @id @default(autoincrement())
-
-  unitsOne UnitOne[]
+  gameId Int
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
@@ -102,42 +103,6 @@ model FighterUp {
   health Int
   attack Int
   price  Int
-
-  createAt DateTime @default(now())
-  updateAt DateTime @updatedAt
-}
-
-model UnitOne {
-  id Int @id @default(autoincrement())
-
-  name   String
-  image  String
-  mana   Int
-  health Int
-  attack Int
-  price  Int
-
-  shopOne   ShopOne   @relation(fields: [shopOneId], references: [id])
-  shopOneId Int
-  battleOne BattleOne? @relation(fields: [battleId], references: [id])
-  battleId  Int?
-
-  createAt DateTime @default(now())
-  updateAt DateTime @updatedAt
-}
-
-model UnitTwo {
-  id Int @id @default(autoincrement())
-
-  name   String
-  image  String
-  mana   Int
-  health Int
-  attack Int
-  price  Int
-
-  shopTwo   ShopTwo @relation(fields: [shopTwoId], references: [id])
-  shopTwoId Int
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt

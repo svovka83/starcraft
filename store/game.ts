@@ -107,14 +107,14 @@ export const useGameStore = create<GameState>((set) => ({
         ["one"]: {
           ...state.one,
           info: data.infoOne,
-          units: data.shopOne.unitsOne,
-          worker: [data.shopOne.unitsOne[0]],
+          units: data.shopOne,
+          worker: [data.shopOne[0]],
         },
         ["two"]: {
           ...state.two,
           info: data.infoTwo,
-          units: data.shopTwo.unitsTwo,
-          worker: [data.shopTwo.unitsTwo[0]],
+          units: data.shopTwo,
+          worker: [data.shopTwo[0]],
         },
       }));
     } catch (error) {
@@ -128,14 +128,14 @@ export const useGameStore = create<GameState>((set) => ({
         ["one"]: {
           ...state.one,
           info: data.infoOne,
-          units: data.shopOne.unitsOne,
-          worker: [data.shopOne.unitsOne[0]],
+          units: data.shopOne,
+          worker: [data.shopOne[0]],
         },
         ["two"]: {
           ...state.two,
           info: data.infoTwo,
-          units: data.shopTwo.unitsTwo,
-          worker: [data.shopTwo.unitsTwo[0]],
+          units: data.shopTwo,
+          worker: [data.shopTwo[0]],
         },
       }));
     } catch (error) {

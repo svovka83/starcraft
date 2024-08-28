@@ -1,3 +1,4 @@
+import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -5,6 +6,16 @@ export async function GET(req: NextRequest) {
     const token = req.cookies.get("starcraftToken")?.value;
 
     if (!token) {
+      return NextResponse.json({ success: false });
+    }
+
+    const game = await prisma.game.findFirst({
+      where: {
+        token: token,
+      },
+    });
+
+    if (!game) {
       return NextResponse.json({ success: false });
     }
 

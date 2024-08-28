@@ -18,6 +18,7 @@ export const StartButtons: React.FC<Props> = ({
 }) => {
   const [isStartButton, setIsStartButton] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
+
   const isContinue = useToken();
 
   const checkNewGame = () => {
