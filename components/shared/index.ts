@@ -20,3 +20,5 @@ export { FightWorker } from "./arrow-fight/fight-worker";
 export { ChooseUnitSide } from "./utils/choose-unit-side";
 export { ChangeValue } from "./effects/change-value";
 export { GameOver } from "./utils/game-over";
+export { StartButtons } from "./start-page/start-buttons";
+export { ModalCheckNewGame } from "./start-page/modal-check-new-game";

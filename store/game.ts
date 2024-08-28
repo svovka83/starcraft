@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { manaCounter } from "@/functions";
 import { createGame, getGame } from "@/service/game";
+import { InfoOne, InfoTwo } from "@prisma/client";
 
 export type infoType = {
   name: string;
@@ -35,10 +36,15 @@ interface GameState {
   two: PlayerProps;
   turn: boolean;
   endTurn: () => void;
-  setCreateGame: (one: unitType[], two: unitType[]) => Promise<void>;
+  setCreateGame: (
+    infoOne: infoType,
+    infoTwo: infoType,
+    one: unitType[],
+    two: unitType[]
+  ) => Promise<void>;
   setGetGame: () => Promise<void>;
   chooseOne: (infoOne: infoType) => void;
-  chooseTwo: (two: unitType[], infoTwo: infoType) => void;
+  chooseTwo: (infoTwo: infoType) => void;
   buyUnit: (unitId: number) => void;
   moveUnitUp: (unitId: number) => void;
   moveUnitDown: (unitId: number) => void;
@@ -89,17 +95,24 @@ export const useGameStore = create<GameState>((set) => ({
       turn: !state.turn,
     }));
   },
-  setCreateGame: async (one: unitType[], two: unitType[]) => {
+  setCreateGame: async (
+    infoOne: infoType,
+    infoTwo: infoType,
+    one: unitType[],
+    two: unitType[]
+  ) => {
     try {
-      const data = await createGame(one, two);
+      const data = await createGame(infoOne, infoTwo, one, two);
       set((state) => ({
         ["one"]: {
           ...state.one,
+          info: data.infoOne,
           units: data.shopOne.unitsOne,
           worker: [data.shopOne.unitsOne[0]],
         },
         ["two"]: {
           ...state.two,
+          info: data.infoTwo,
           units: data.shopTwo.unitsTwo,
           worker: [data.shopTwo.unitsTwo[0]],
         },
@@ -114,11 +127,13 @@ export const useGameStore = create<GameState>((set) => ({
       set((state) => ({
         ["one"]: {
           ...state.one,
+          info: data.infoOne,
           units: data.shopOne.unitsOne,
           worker: [data.shopOne.unitsOne[0]],
         },
         ["two"]: {
           ...state.two,
+          info: data.infoTwo,
           units: data.shopTwo.unitsTwo,
           worker: [data.shopTwo.unitsTwo[0]],
         },
@@ -137,14 +152,12 @@ export const useGameStore = create<GameState>((set) => ({
       };
     });
   },
-  chooseTwo: (raceTwo: unitType[], infoTwo: infoType) => {
+  chooseTwo: (infoTwo: infoType) => {
     set((state) => {
       return {
         ["two"]: {
           ...state.two,
           info: infoTwo,
-          units: raceTwo,
-          worker: [raceTwo[0]],
         },
       };
     });

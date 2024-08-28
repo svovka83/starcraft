@@ -11,6 +11,8 @@ export async function GET(req: NextRequest) {
         token: token,
       },
       include: {
+        infoOne: true,
+        infoTwo: true,
         shopOne: {
           include: {
             unitsOne: true,
@@ -48,6 +50,18 @@ export async function POST(req: NextRequest) {
     const createGame = await prisma.game.create({
       data: {
         token: token,
+        infoOne: {
+          create: {
+            name: body.infoOne.name,
+            image: body.infoOne.image,
+          },
+        },
+        infoTwo: {
+          create: {
+            name: body.infoTwo.name,
+            image: body.infoTwo.image,
+          },
+        },
         shopOne: {
           create: {
             unitsOne: {
@@ -74,6 +88,8 @@ export async function POST(req: NextRequest) {
         id: createGame.id,
       },
       include: {
+        infoOne: true,
+        infoTwo: true,
         shopOne: {
           include: {
             unitsOne: true,

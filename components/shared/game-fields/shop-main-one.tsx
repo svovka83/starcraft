@@ -23,7 +23,6 @@ export const ShopMainOne: React.FC = () => {
           <img
             onClick={() => setShowModalShop(true)}
             src={base}
-            alt="base"
             className="h-[24vh] px-2 cursor-pointer"
           />
         </div>
@@ -40,10 +39,7 @@ export const ShopMainOne: React.FC = () => {
           <img
             onClick={addWorker}
             src={playerUnitsOne[0]?.image}
-            alt="worker"
-            width={50}
-            height={50}
-            className="cursor-pointer"
+            className="w-[50px] h-[50px] cursor-pointer"
           />
         </div>
       </div>
