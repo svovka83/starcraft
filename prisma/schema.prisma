@@ -27,8 +27,32 @@ model Game {
   infoOne InfoOne?
   infoTwo InfoTwo?
 
+  manaOne Int
+  manaTwo Int
+
   shopOne ShopOne[]
   shopTwo ShopTwo[]
+
+  battleOne BattleOne[]
+  battleTwo BattleTwo[]
+
+  fighterUpOne FighterUpOne?
+  fighterUpTwo FighterUpTwo?
+
+  fighterDownOne FighterDownOne?
+  fighterDownTwo FighterDownTwo?
+
+  workerOne WorkerOne[]
+  workerTwo WorkerTwo[]
+
+  mineralsOne Int
+  mineralsTwo Int
+
+  mineOne Int
+  mineTwo Int
+
+  bossOne Int
+  bossTwo Int
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
@@ -94,7 +118,7 @@ model ShopTwo {
   updateAt DateTime @updatedAt
 }
 
-model FighterUp {
+model BattleOne {
   id Int @id @default(autoincrement())
 
   name   String
@@ -103,6 +127,128 @@ model FighterUp {
   health Int
   attack Int
   price  Int
+
+  game   Game @relation(fields: [gameId], references: [id])
+  gameId Int
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model BattleTwo {
+  id Int @id @default(autoincrement())
+
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
+
+  game   Game @relation(fields: [gameId], references: [id])
+  gameId Int
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model FighterUpOne {
+  id Int @id @default(autoincrement())
+
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
+
+  game   Game @relation(fields: [gameId], references: [id])
+  gameId Int  @unique
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model FighterUpTwo {
+  id Int @id @default(autoincrement())
+
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
+
+  game   Game @relation(fields: [gameId], references: [id])
+  gameId Int  @unique
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model FighterDownOne {
+  id Int @id @default(autoincrement())
+
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
+
+  game   Game @relation(fields: [gameId], references: [id])
+  gameId Int  @unique
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model FighterDownTwo {
+  id Int @id @default(autoincrement())
+
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
+
+  game   Game @relation(fields: [gameId], references: [id])
+  gameId Int  @unique
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model WorkerOne {
+  id Int @id @default(autoincrement())
+
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
+
+  game   Game @relation(fields: [gameId], references: [id])
+  gameId Int
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model WorkerTwo {
+  id Int @id @default(autoincrement())
+
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
+
+  game   Game @relation(fields: [gameId], references: [id])
+  gameId Int
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
