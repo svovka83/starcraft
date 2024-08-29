@@ -1,8 +1,3 @@
-export const INFO_T = {
-  name: "Terran",
-  image: "/images/imgTerran/command.png",
-};
-
 export const TERRAN = [
   {
     name: "KSM",

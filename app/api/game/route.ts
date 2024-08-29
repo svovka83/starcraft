@@ -2,18 +2,41 @@ import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { deleteGame } from "@/functions";
+import { CreateGameClient } from "@/service/dto/game.dto";
 
 export async function GET(req: NextRequest) {
   try {
     const token = req.cookies.get("starcraftToken")?.value;
 
-    const games = await prisma.game.findFirst({
+    if (!token) {
+      return NextResponse.json(
+        { message: "User does not have rights." },
+        { status: 403 }
+      );
+    }
+
+    const getGame = await prisma.game.findFirst({
       where: {
         token: token,
       },
-      include: {
-        infoOne: true,
-        infoTwo: true,
+    });
+
+    if (!getGame) {
+      return NextResponse.json(
+        { message: "Can not find game." },
+        { status: 404 }
+      );
+    }
+
+    const games = await prisma.game.findFirst({
+      where: {
+        id: getGame.id,
+      },
+      select: {
+        nameOne: true,
+        nameTwo: true,
+        imageOne: true,
+        imageTwo: true,
         shopOne: true,
         shopTwo: true,
       },
@@ -48,31 +71,23 @@ export async function POST(req: NextRequest) {
       deleteGame(getGame);
     }
 
-    const body = await req.json();
+    const body = (await req.json()) as CreateGameClient;
 
     const createGame = await prisma.game.create({
       data: {
         token: token,
-        infoOne: {
-          create: {
-            name: body.infoOne.name,
-            image: body.infoOne.image,
-          },
-        },
-        infoTwo: {
-          create: {
-            name: body.infoTwo.name,
-            image: body.infoTwo.image,
-          },
-        },
+        nameOne: body.infoOne.name,
+        nameTwo: body.infoTwo.name,
+        imageOne: body.infoOne.image,
+        imageTwo: body.infoTwo.image,
         shopOne: {
           createMany: {
-            data: body.one,
+            data: body.shopOne,
           },
         },
         shopTwo: {
           createMany: {
-            data: body.two,
+            data: body.shopTwo,
           },
         },
       },
@@ -82,9 +97,11 @@ export async function POST(req: NextRequest) {
       where: {
         id: createGame.id,
       },
-      include: {
-        infoOne: true,
-        infoTwo: true,
+      select: {
+        nameOne: true,
+        nameTwo: true,
+        imageOne: true,
+        imageTwo: true,
         shopOne: true,
         shopTwo: true,
       },

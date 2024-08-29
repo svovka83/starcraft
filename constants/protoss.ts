@@ -1,8 +1,3 @@
-export const INFO_P = {
-  name: "Protoss",
-  image: "/images/imgProtoss/nexus.png",
-};
-
 export const PROTOSS = [
   {
     name: "probe",

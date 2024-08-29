@@ -1,7 +1,8 @@
 import { axiosInstance } from "./instance";
-import { infoType, unitType } from "@/store/game";
+import { PlayerProps, infoType, unitType } from "@/store/game";
+import { CreateGameServer } from "./dto/game.dto";
 
-export const getGame = async (): Promise<any> => {
+export const getGame = async (): Promise<CreateGameServer> => {
   const { data } = await axiosInstance.get("/game");
   return data;
 };
@@ -9,19 +10,30 @@ export const getGame = async (): Promise<any> => {
 export const createGame = async (
   infoOne: infoType,
   infoTwo: infoType,
-  one: unitType[],
-  two: unitType[]
-): Promise<any> => {
-  const { data } = await axiosInstance.post("/game", {
+  shopOne: unitType[],
+  shopTwo: unitType[]
+): Promise<CreateGameServer> => {
+  const { data } = await axiosInstance.post<CreateGameServer>("/game", {
     infoOne,
     infoTwo,
-    one,
-    two,
+    shopOne,
+    shopTwo,
   });
   return data;
 };
 
 export const isToken = async (): Promise<any> => {
-  const { data } = await axiosInstance.get("/game/token");
+  const { data } = await axiosInstance.get("/game/protection");
+  return data;
+};
+
+export const saveGame = async (
+  one: PlayerProps,
+  two: PlayerProps
+): Promise<any> => {
+  const { data } = await axiosInstance.post("/game/save", {
+    one,
+    two,
+  });
   return data;
 };

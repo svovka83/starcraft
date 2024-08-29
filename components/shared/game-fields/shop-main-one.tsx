@@ -5,9 +5,9 @@ import { useGameStore } from "@/store/game";
 export const ShopMainOne: React.FC = () => {
   const [showModalShop, setShowModalShop] = React.useState(false);
 
-  const [base, mana, playerUnitsOne, minerals, attack, bossLife, addWorker] =
+  const [baseImage, mana, playerUnitsOne, minerals, attack, bossLife, addWorker] =
     useGameStore((state) => [
-      state.one.info.image,
+      state.one.image,
       state.one.mana,
       state.one.units,
       state.one.minerals,
@@ -22,7 +22,7 @@ export const ShopMainOne: React.FC = () => {
         <div>
           <img
             onClick={() => setShowModalShop(true)}
-            src={base}
+            src={baseImage}
             className="h-[24vh] px-2 cursor-pointer"
           />
         </div>

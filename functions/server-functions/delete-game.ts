@@ -6,12 +6,6 @@ export async function deleteGame(getGame: any) {
       id: getGame.id,
     },
     data: {
-      infoOne: {
-        delete: true,
-      },
-      infoTwo: {
-        delete: true,
-      },
       shopOne: {
         deleteMany: {},
       },

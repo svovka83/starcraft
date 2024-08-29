@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { manaCounter } from "@/functions";
-import { createGame, getGame } from "@/service/game";
-import { InfoOne, InfoTwo } from "@prisma/client";
+import { createGame, getGame, saveGame } from "@/service/game";
 
 export type infoType = {
   name: string;
@@ -18,8 +17,9 @@ export type unitType = {
   price: number;
 };
 
-type PlayerProps = {
-  info: infoType;
+export type PlayerProps = {
+  name: string;
+  image: string;
   mana: number;
   units: unitType[];
   battleground: unitType[];
@@ -39,12 +39,13 @@ interface GameState {
   setCreateGame: (
     infoOne: infoType,
     infoTwo: infoType,
-    one: unitType[],
-    two: unitType[]
+    shopOne: unitType[],
+    shopTwo: unitType[]
   ) => Promise<void>;
   setGetGame: () => Promise<void>;
-  chooseOne: (infoOne: infoType) => void;
-  chooseTwo: (infoTwo: infoType) => void;
+  getSaveGame: () => Promise<void>;
+  chooseOne: (nameOne: string) => void;
+  chooseTwo: (nameTwo: string) => void;
   buyUnit: (unitId: number) => void;
   moveUnitUp: (unitId: number) => void;
   moveUnitDown: (unitId: number) => void;
@@ -56,9 +57,10 @@ interface GameState {
   fightWorker: () => void;
 }
 
-export const useGameStore = create<GameState>((set) => ({
+export const useGameStore = create<GameState>((set, get) => ({
   one: {
-    info: {} as infoType,
+    name: "",
+    image: "",
     mana: 3,
     units: [],
     battleground: [],
@@ -70,7 +72,8 @@ export const useGameStore = create<GameState>((set) => ({
     boss: 25,
   },
   two: {
-    info: {} as infoType,
+    name: "",
+    image: "",
     mana: 3,
     units: [],
     battleground: [],
@@ -98,21 +101,23 @@ export const useGameStore = create<GameState>((set) => ({
   setCreateGame: async (
     infoOne: infoType,
     infoTwo: infoType,
-    one: unitType[],
-    two: unitType[]
+    shopOne: unitType[],
+    shopTwo: unitType[]
   ) => {
     try {
-      const data = await createGame(infoOne, infoTwo, one, two);
+      const data = await createGame(infoOne, infoTwo, shopOne, shopTwo);
       set((state) => ({
         ["one"]: {
           ...state.one,
-          info: data.infoOne,
+          name: data.nameOne,
+          image: data.imageOne,
           units: data.shopOne,
           worker: [data.shopOne[0]],
         },
         ["two"]: {
           ...state.two,
-          info: data.infoTwo,
+          name: data.nameTwo,
+          image: data.imageTwo,
           units: data.shopTwo,
           worker: [data.shopTwo[0]],
         },
@@ -127,13 +132,15 @@ export const useGameStore = create<GameState>((set) => ({
       set((state) => ({
         ["one"]: {
           ...state.one,
-          info: data.infoOne,
+          name: data.nameOne,
+          image: data.imageOne,
           units: data.shopOne,
           worker: [data.shopOne[0]],
         },
         ["two"]: {
           ...state.two,
-          info: data.infoTwo,
+          name: data.nameTwo,
+          image: data.imageTwo,
           units: data.shopTwo,
           worker: [data.shopTwo[0]],
         },
@@ -142,22 +149,31 @@ export const useGameStore = create<GameState>((set) => ({
       console.log(error);
     }
   },
-  chooseOne: (infoOne: infoType) => {
+  getSaveGame: async () => {
+    try {
+      const one = get().one;
+      const two = get().two;
+      await saveGame(one, two);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  chooseOne: (nameOne: string) => {
     set((state) => {
       return {
         ["one"]: {
           ...state.one,
-          info: infoOne,
+          name: nameOne,
         },
       };
     });
   },
-  chooseTwo: (infoTwo: infoType) => {
+  chooseTwo: (nameTwo: string) => {
     set((state) => {
       return {
         ["two"]: {
           ...state.two,
-          info: infoTwo,
+          name: nameTwo,
         },
       };
     });

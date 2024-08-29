@@ -1,8 +1,3 @@
-export const INFO_Z = {
-  name: "Zerg",
-  image: "/images/imgZerg/lair.png",
-};
-
 export const ZERG = [
   {
     name: "drone",

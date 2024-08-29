@@ -19,7 +19,7 @@ export const Minerals: React.FC<Props> = ({ worker, mine, reverse }) => {
       <div className={cn("flex flex-row-4 gap-2", { "justify-end": !reverse })}>
         {worker.map((worker, index) => (
           <Unit
-            key={index}
+            key={index}            
             name={worker.name}
             image={worker.image}
             health={worker.health}

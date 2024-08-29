@@ -5,8 +5,8 @@ import { useGameStore } from "@/store/game";
 
 export const HomeHeader: React.FC = () => {
   const [nameOne, nameTwo] = useGameStore((state) => [
-    state.one.info.name,
-    state.two.info.name,
+    state.one.name,
+    state.two.name,
   ]);
 
   return (
