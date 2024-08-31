@@ -1,35 +1,42 @@
-import React, { ComponentPropsWithoutRef, forwardRef, useId } from "react";
+import React, { useId } from "react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui";
+import { useFormContext } from "react-hook-form";
 
-interface Props extends ComponentPropsWithoutRef<"input"> {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+  name: string;
   label: string;
   type: string;
   errorMessage?: string;
 }
 
-export const FormInput = forwardRef<HTMLInputElement, Props>(
-  ({ label, type, errorMessage, ...rest }, ref) => {
-    const id = useId();
+export const FormInput: React.FC<Props> = ({
+  name,
+  label,
+  type,
+  errorMessage,
+  ...props
+}) => {
+  const id = useId();
+  const { register } = useFormContext();
 
-    return (
-      <>
-        <label htmlFor={id} className="text-xl">
-          {label}
-        </label>
-        <Input
-          {...rest}
-          ref={ref}
-          type={type}
-          id={id}
-          className={cn(errorMessage && "border-red-500")}
-        />
-        {errorMessage ? (
-          <p className="text-red-500">{errorMessage}</p>
-        ) : (
-          <p className="h-[24px]"></p>
-        )}
-      </>
-    );
-  }
-);
+  return (
+    <>
+      <label htmlFor={id} className="text-xl">
+        {label}
+      </label>
+      <Input
+        {...props}
+        {...register(name)}
+        type={type}
+        id={id}
+        className={cn(errorMessage && "border-red-500")}
+      />
+      {errorMessage ? (
+        <p className="text-red-500">{errorMessage}</p>
+      ) : (
+        <p className="h-[24px]"></p>
+      )}
+    </>
+  );
+};

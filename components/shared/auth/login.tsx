@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormLogin, formLoginSchema } from "./form-schema";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -12,11 +12,7 @@ interface Props {
 }
 
 export const Login: React.FC<Props> = ({ openLogin, setOpenLogin }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm<FormLogin>({
+  const form = useForm<FormLogin>({
     defaultValues: {
       username: "",
       password: "",
@@ -32,23 +28,29 @@ export const Login: React.FC<Props> = ({ openLogin, setOpenLogin }) => {
     <Dialog open={openLogin} onOpenChange={() => setOpenLogin(false)}>
       <DialogContent className="w-[360px] bg-white text-center  text-blue-700 font-bold">
         <DialogTitle></DialogTitle>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormInput
-            {...register("username")}
-            label="username"
-            type="text"
-            errorMessage={errors.username?.message}
-          />
-          <FormInput
-            {...register("password")}
-            label="password"
-            type="password"
-            errorMessage={errors.password?.message}
-          />
-          <Button type="submit" disabled={!isValid} className="w-full mt-4">
-            LOGIN
-          </Button>
-        </form>
+        <FormProvider {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <FormInput
+              name="username"
+              label="username"
+              type="text"
+              errorMessage={form.formState.errors.username?.message}
+            />
+            <FormInput
+              name="password"
+              label="password"
+              type="password"
+              errorMessage={form.formState.errors.password?.message}
+            />
+            <Button
+              type="submit"
+              disabled={!form.formState.isValid}
+              className="w-full mt-4"
+            >
+              LOGIN
+            </Button>
+          </form>
+        </FormProvider>
         <span>Have no account? Go to register.</span>
         <Button variant="outline" className="w-full font-bold">
           REGISTER
