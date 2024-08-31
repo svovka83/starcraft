@@ -1,5 +1,7 @@
 import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
+import { SaveGameClient } from "@/service/dto/game.dto";
+import { createFighter } from "@/functions";
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,7 +27,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const body = await req.json();
+    const body = (await req.json()) as SaveGameClient;
 
     await prisma.game.update({
       where: {
@@ -38,70 +40,33 @@ export async function POST(req: NextRequest) {
         imageTwo: body.two.image,
         manaOne: body.one.mana,
         manaTwo: body.two.mana,
-        // shopOne: {
-        //   updateMany: {
-        //     where: {
-        //       gameId: getGame.id,
-        //     },
-        //     data: 2,
-        //   },
-        // },
-        // shopTwo: {
-        //   updateMany: {
-        //     where: {
-        //       gameId: getGame.id,
-        //     },
-        //     data: body.two.units,
-        //   },
-        // },
-        // battleOne: {
-        //   update: {
-        //     ...body.battleOne,
-        //   },
-        // },
-        // battleTwo: {
-        //   update: {
-        //     ...body.battleTwo,
-        //   },
-        // },
-        // fighterUpOne: {
-        //   update: {
-        //     ...body.fighterUpOne,
-        //   },
-        // },
-        // fighterUpTwo: {
-        //   update: {
-        //     ...body.fighterUpTwo,
-        //   },
-        // },
-        // fighterDownOne: {
-        //   update: {
-        //     ...body.fighterDownOne,
-        //   },
-        // },
-        // fighterDownTwo: {
-        //   update: {
-        //     ...body.fighterDownTwo,
-        //   },
-        // },
-        // workerOne: {
-        //   update: {
-        //     ...body.workerOne,
-        //   },
-        // },
-        // workerTwo: {
-        //   update: {
-        //     ...body.workerTwo,
-        //   },
-        // },
-        // mineralsOne: body.mineralsOne,
-        // mineralsTwo: body.mineralsTwo,
-        // mineOne: body.mineOne,
-        // mineTwo: body.mineTwo,
-        // bossOne: body.bossOne,
-        // bossTwo: body.bossTwo,
+        battleOne: {
+          deleteMany: {},
+        },
+        battleTwo: {
+          deleteMany: {},
+        },
+        mineralsOne: body.one.minerals,
+        mineralsTwo: body.two.minerals,
+        mineOne: body.one.mine,
+        mineTwo: body.two.mine,
+        bossOne: body.one.boss,
+        bossTwo: body.two.boss,
+        turn: body.turn,
       },
     });
+
+    await prisma.battleOne.createMany({
+      data: body.one.battleground,
+    });
+    await prisma.battleTwo.createMany({
+      data: body.two.battleground,
+    });
+
+    createFighter(body.one.fighterUp, prisma.fighterUpOne, getGame.id);
+    createFighter(body.two.fighterUp, prisma.fighterUpTwo, getGame.id);
+    createFighter(body.one.fighterDown, prisma.fighterDownOne, getGame.id);
+    createFighter(body.two.fighterDown, prisma.fighterDownTwo, getGame.id);
 
     return NextResponse.json({ message: "Game saved." }, { status: 200 });
   } catch (error) {

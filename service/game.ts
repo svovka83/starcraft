@@ -1,8 +1,8 @@
 import { axiosInstance } from "./instance";
 import { PlayerProps, infoType, unitType } from "@/store/game";
-import { CreateGameServer } from "./dto/game.dto";
+import { CreateGameServer, GetGameServer } from "./dto/game.dto";
 
-export const getGame = async (): Promise<CreateGameServer> => {
+export const getGame = async (): Promise<GetGameServer> => {
   const { data } = await axiosInstance.get("/game");
   return data;
 };
@@ -27,13 +27,11 @@ export const isToken = async (): Promise<any> => {
   return data;
 };
 
-export const saveGame = async (
-  one: PlayerProps,
-  two: PlayerProps
-): Promise<any> => {
+export const saveGame = async (one: PlayerProps, two: PlayerProps, turn: boolean) => {
   const { data } = await axiosInstance.post("/game/save", {
     one,
     two,
+    turn,
   });
   return data;
 };

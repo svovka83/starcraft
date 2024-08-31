@@ -134,16 +134,31 @@ export const useGameStore = create<GameState>((set, get) => ({
           ...state.one,
           name: data.nameOne,
           image: data.imageOne,
+          mana: data.manaOne,
           units: data.shopOne,
+          battleground: data.battleOne,
+          fighterUp: data.fighterUpOne ? data.fighterUpOne : {} as unitType,
+          fighterDown: data.fighterDownOne ? data.fighterDownOne : {} as unitType,
           worker: [data.shopOne[0]],
+          minerals: data.mineralsOne,
+          mine: data.mineOne,
+          boss: data.bossOne,
         },
         ["two"]: {
           ...state.two,
           name: data.nameTwo,
           image: data.imageTwo,
+          mana: data.manaTwo,
           units: data.shopTwo,
+          battleground: data.battleTwo,
+          fighterUp: data.fighterUpTwo ? data.fighterUpTwo : {} as unitType,
+          fighterDown: data.fighterDownTwo ? data.fighterDownTwo : {} as unitType,
           worker: [data.shopTwo[0]],
+          minerals: data.mineralsTwo,
+          mine: data.mineTwo,
+          boss: data.bossTwo,
         },
+        turn: data.turn,
       }));
     } catch (error) {
       console.log(error);
@@ -153,7 +168,8 @@ export const useGameStore = create<GameState>((set, get) => ({
     try {
       const one = get().one;
       const two = get().two;
-      await saveGame(one, two);
+      const turn = get().turn;
+      await saveGame(one, two, turn);
     } catch (error) {
       console.log(error);
     }

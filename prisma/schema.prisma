@@ -36,14 +36,14 @@ model Game {
   shopOne ShopOne[]
   shopTwo ShopTwo[]
 
-  // battleOne BattleOne[]
-  // battleTwo BattleTwo[]
+  battleOne BattleOne[]
+  battleTwo BattleTwo[]
 
-  // fighterUpOne FighterUpOne?
-  // fighterUpTwo FighterUpTwo?
+  fighterUpOne FighterUpOne?
+  fighterUpTwo FighterUpTwo?
 
-  // fighterDownOne FighterDownOne?
-  // fighterDownTwo FighterDownTwo?
+  fighterDownOne FighterDownOne?
+  fighterDownTwo FighterDownTwo?
 
   // workerOne WorkerOne[]
   // workerTwo WorkerTwo[]
@@ -56,6 +56,8 @@ model Game {
 
   bossOne Int @default(25)
   bossTwo Int @default(25)
+
+  turn Boolean @default(true)
 
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
@@ -89,89 +91,89 @@ model ShopTwo {
   gameId Int
 }
 
-// model BattleOne {
-//   id Int @id @default(autoincrement())
+model BattleOne {
+  id Int @id @default(autoincrement())
 
-//   name   String
-//   image  String
-//   mana   Int
-//   health Int
-//   attack Int
-//   price  Int
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
 
-//   game   Game @relation(fields: [gameId], references: [id])
-//   gameId Int
-// }
+  game   Game? @relation(fields: [gameId], references: [id])
+  gameId Int?
+}
 
-// model BattleTwo {
-//   id Int @id @default(autoincrement())
+model BattleTwo {
+  id Int @id @default(autoincrement())
 
-//   name   String
-//   image  String
-//   mana   Int
-//   health Int
-//   attack Int
-//   price  Int
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
 
-//   game   Game @relation(fields: [gameId], references: [id])
-//   gameId Int
-// }
+  game   Game? @relation(fields: [gameId], references: [id])
+  gameId Int?
+}
 
-// model FighterUpOne {
-//   id Int @id @default(autoincrement())
+model FighterUpOne {
+  id Int @id @default(autoincrement())
 
-//   name   String
-//   image  String
-//   mana   Int
-//   health Int
-//   attack Int
-//   price  Int
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
 
-//   game   Game @relation(fields: [gameId], references: [id])
-//   gameId Int  @unique
-// }
+  game   Game? @relation(fields: [gameId], references: [id])
+  gameId Int?  @unique
+}
 
-// model FighterUpTwo {
-//   id Int @id @default(autoincrement())
+model FighterUpTwo {
+  id Int @id @default(autoincrement())
 
-//   name   String
-//   image  String
-//   mana   Int
-//   health Int
-//   attack Int
-//   price  Int
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
 
-//   game   Game @relation(fields: [gameId], references: [id])
-//   gameId Int  @unique
-// }
+  game   Game? @relation(fields: [gameId], references: [id])
+  gameId Int?  @unique
+}
 
-// model FighterDownOne {
-//   id Int @id @default(autoincrement())
+model FighterDownOne {
+  id Int @id @default(autoincrement())
 
-//   name   String
-//   image  String
-//   mana   Int
-//   health Int
-//   attack Int
-//   price  Int
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
 
-//   game   Game @relation(fields: [gameId], references: [id])
-//   gameId Int  @unique
-// }
+  game   Game? @relation(fields: [gameId], references: [id])
+  gameId Int?  @unique
+}
 
-// model FighterDownTwo {
-//   id Int @id @default(autoincrement())
+model FighterDownTwo {
+  id Int @id @default(autoincrement())
 
-//   name   String
-//   image  String
-//   mana   Int
-//   health Int
-//   attack Int
-//   price  Int
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
 
-//   game   Game @relation(fields: [gameId], references: [id])
-//   gameId Int  @unique
-// }
+  game   Game? @relation(fields: [gameId], references: [id])
+  gameId Int?  @unique
+}
 
 // model WorkerOne {
 //   id Int @id @default(autoincrement())
