@@ -19,7 +19,7 @@ export const StartButtons: React.FC<Props> = ({
   const [isStartButton, setIsStartButton] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
   const [login, setLogin] = React.useState(true);
-  const [register, setRegister] = React.useState(true);
+  const [register, setRegister] = React.useState(false);
 
   const isContinue = useToken();
 
@@ -73,7 +73,7 @@ export const StartButtons: React.FC<Props> = ({
         setIsStartButton={setIsStartButton}
       />
       <Login openLogin={login} setOpenLogin={setLogin} />
-      {/* <Register openRegister={register} setOpenRegister={setRegister} /> */}
+      <Register openRegister={register} setOpenRegister={setRegister} />
     </div>
   );
 };
