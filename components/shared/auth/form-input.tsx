@@ -26,11 +26,11 @@ export const FormInput: React.FC<Props> = ({
         {label}
       </label>
       <Input
-        {...props}
-        {...register(name)}
-        type={type}
         id={id}
+        type={type}
+        {...register(name)}
         className={cn(errorMessage && "border-red-500")}
+        {...props}
       />
       {errorMessage ? (
         <p className="text-red-500">{errorMessage}</p>
