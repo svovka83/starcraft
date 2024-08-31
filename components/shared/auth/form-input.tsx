@@ -1,13 +1,12 @@
-import React, { forwardRef, useId } from "react";
+import React, { ComponentPropsWithoutRef, forwardRef, useId } from "react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui";
 
-interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+interface Props extends ComponentPropsWithoutRef<"input"> {
   label: string;
   type: string;
   errorMessage?: string;
 }
-
 
 export const FormInput = forwardRef<HTMLInputElement, Props>(
   ({ label, type, errorMessage, ...rest }, ref) => {
