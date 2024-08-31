@@ -8,6 +8,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
 }
 
+
 export const FormInput = forwardRef<HTMLInputElement, Props>(
   ({ label, type, errorMessage, ...rest }, ref) => {
     const id = useId();
