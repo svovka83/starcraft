@@ -22,3 +22,6 @@ export { ChangeValue } from "./effects/change-value";
 export { GameOver } from "./utils/game-over";
 export { StartButtons } from "./start-page/start-buttons";
 export { ModalCheckNewGame } from "./start-page/modal-check-new-game";
+export { Register } from "./auth/register";
+export { Login } from "./auth/login";
+export { FormInput } from "./auth/form-input";

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Button } from "@/components/ui";
 import { useToken } from "@/hooks/use-token";
-import { ModalCheckNewGame } from "..";
+import { Login, ModalCheckNewGame, Register } from "..";
 
 interface Props {
   nameOne: string;
@@ -18,6 +18,8 @@ export const StartButtons: React.FC<Props> = ({
 }) => {
   const [isStartButton, setIsStartButton] = React.useState(false);
   const [openModal, setOpenModal] = React.useState(false);
+  const [login, setLogin] = React.useState(false);
+  const [register, setRegister] = React.useState(true);
 
   const isContinue = useToken();
 
@@ -25,7 +27,6 @@ export const StartButtons: React.FC<Props> = ({
     if (!isContinue) {
       return setIsStartButton(true);
     }
-
     return setOpenModal(true);
   };
 
@@ -71,6 +72,8 @@ export const StartButtons: React.FC<Props> = ({
         setOpenModal={setOpenModal}
         setIsStartButton={setIsStartButton}
       />
+      <Login openLogin={login} setOpenLogin={setLogin} />
+      <Register openRegister={register} setOpenRegister={setRegister} />
     </div>
   );
 };

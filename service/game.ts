@@ -27,7 +27,11 @@ export const isToken = async (): Promise<any> => {
   return data;
 };
 
-export const saveGame = async (one: PlayerProps, two: PlayerProps, turn: boolean) => {
+export const saveGame = async (
+  one: PlayerProps,
+  two: PlayerProps,
+  turn: boolean
+) => {
   const { data } = await axiosInstance.post("/game/save", {
     one,
     two,
