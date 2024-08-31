@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useId } from "react";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui";
@@ -29,8 +31,8 @@ export const FormInput: React.FC<Props> = ({
         id={id}
         type={type}
         {...register(name)}
-        className={cn(errorMessage && "border-red-500")}
         {...props}
+        className={cn(errorMessage && "border-red-500")}
       />
       {errorMessage ? (
         <p className="text-red-500">{errorMessage}</p>
