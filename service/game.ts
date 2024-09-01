@@ -22,7 +22,7 @@ export const createGame = async (
   return data;
 };
 
-export const isToken = async (): Promise<any> => {
+export const isGame = async () => {
   const { data } = await axiosInstance.get("/game/protection");
   return data;
 };

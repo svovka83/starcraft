@@ -7,6 +7,7 @@ import { FormRegister, formRegisterSchema } from "./form-schema";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui";
 import { FormInput } from "..";
+import { register } from "@/service/user";
 
 interface Props {
   openRegister: boolean;
@@ -20,7 +21,6 @@ export const Register: React.FC<Props> = ({
   const form = useForm<FormRegister>({
     defaultValues: {
       username: "",
-      email: "",
       password: "",
       confirmPassword: "",
     },
@@ -28,7 +28,9 @@ export const Register: React.FC<Props> = ({
   });
 
   const onSubmit = (data: FormRegister) => {
-    console.log(data);
+    register(data.username, data.password).then(() => {
+      setOpenRegister(false);
+    });
   };
 
   return (
@@ -44,12 +46,6 @@ export const Register: React.FC<Props> = ({
               errorMessage={form.formState.errors.username?.message}
             />
             <FormInput
-              name="email"
-              label="email"
-              type="email"
-              errorMessage={form.formState.errors.email?.message}
-            />
-            <FormInput
               name="password"
               label="password"
               type="password"
@@ -61,11 +57,7 @@ export const Register: React.FC<Props> = ({
               type="password"
               errorMessage={form.formState.errors.confirmPassword?.message}
             />
-            <Button
-              type="submit"
-              disabled={!form.formState.isValid}
-              className="w-full mt-4"
-            >
+            <Button type="submit" className="w-full mt-4">
               REGISTER
             </Button>
           </form>

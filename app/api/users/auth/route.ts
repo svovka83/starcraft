@@ -9,19 +9,19 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ success: false });
     }
 
-    const game = await prisma.game.findFirst({
+    const user = await prisma.user.findFirst({
       where: {
         token: token,
       },
     });
 
-    if (game) {
+    if (user) {
       return NextResponse.json({ success: true });
     }
 
     return NextResponse.json({ success: false });
   } catch (error) {
-    console.log("[GET_TOKEN]", error);
+    console.log("[GET_USER]", error);
     return NextResponse.json(
       { message: "Can not find user rights." },
       { status: 403 }

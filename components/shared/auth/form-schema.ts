@@ -17,7 +17,6 @@ export const formRegisterSchema = z
       .string()
       .min(4, { message: "very short name" })
       .max(14, { message: "very long name" }),
-    email: z.string().email({ message: "Invalid email" }),
     password: z
       .string()
       .min(4, { message: "very short password" })

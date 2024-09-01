@@ -7,13 +7,19 @@ import { FormLogin, formLoginSchema } from "./form-schema";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui";
 import { FormInput } from "..";
+import { login } from "@/service/user";
 
 interface Props {
   openLogin: boolean;
   setOpenLogin: (openLogin: boolean) => void;
+  showRegister?: VoidFunction;
 }
 
-export const Login: React.FC<Props> = ({ openLogin, setOpenLogin }) => {
+export const Login: React.FC<Props> = ({
+  openLogin,
+  setOpenLogin,
+  showRegister,
+}) => {
   const form = useForm<FormLogin>({
     defaultValues: {
       username: "",
@@ -23,7 +29,9 @@ export const Login: React.FC<Props> = ({ openLogin, setOpenLogin }) => {
   });
 
   const onSubmit = (data: FormLogin) => {
-    console.log(data);
+    login(data.username, data.password).then(() => {
+      setOpenLogin(false);
+    });
   };
 
   return (
@@ -44,17 +52,17 @@ export const Login: React.FC<Props> = ({ openLogin, setOpenLogin }) => {
               type="password"
               errorMessage={form.formState.errors.password?.message}
             />
-            <Button
-              type="submit"
-              disabled={!form.formState.isValid}
-              className="w-full mt-4"
-            >
+            <Button type="submit" className="w-full mt-4">
               LOGIN
             </Button>
           </form>
         </FormProvider>
         <span>Have no account? Go to register.</span>
-        <Button variant="outline" className="w-full font-bold">
+        <Button
+          variant="outline"
+          className="w-full font-bold text-[16px]"
+          onClick={showRegister}
+        >
           REGISTER
         </Button>
       </DialogContent>
