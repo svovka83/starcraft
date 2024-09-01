@@ -59,6 +59,8 @@ export async function GET(req: NextRequest) {
         fighterUpTwo: true,
         fighterDownOne: true,
         fighterDownTwo: true,
+        workerOne: true,
+        workerTwo: true,
         mineralsOne: true,
         mineralsTwo: true,
         mineOne: true,

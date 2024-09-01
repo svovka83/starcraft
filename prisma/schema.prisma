@@ -49,8 +49,8 @@ model Game {
   fighterDownOne FighterDownOne?
   fighterDownTwo FighterDownTwo?
 
-  // workerOne WorkerOne[]
-  // workerTwo WorkerTwo[]
+  workerOne Int @default(1)
+  workerTwo Int @default(1)
 
   mineralsOne Int @default(5)
   mineralsTwo Int @default(5)
@@ -178,31 +178,3 @@ model FighterDownTwo {
   game   Game? @relation(fields: [gameId], references: [id])
   gameId Int?  @unique
 }
-
-// model WorkerOne {
-//   id Int @id @default(autoincrement())
-
-//   name   String
-//   image  String
-//   mana   Int
-//   health Int
-//   attack Int
-//   price  Int
-
-//   game   Game @relation(fields: [gameId], references: [id])
-//   gameId Int
-// }
-
-// model WorkerTwo {
-//   id Int @id @default(autoincrement())
-
-//   name   String
-//   image  String
-//   mana   Int
-//   health Int
-//   attack Int
-//   price  Int
-
-//   game   Game @relation(fields: [gameId], references: [id])
-//   gameId Int
-// }

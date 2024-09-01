@@ -63,12 +63,9 @@ export default function Game() {
   }
 
   React.useEffect(() => {
-    async function takeData() {
-      const data = await getGame();
-      return data;
-    }
-
-    takeData();
+    setTimeout(() => {
+      getGame();
+    }, 2000);
   }, []);
 
   return (

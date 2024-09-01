@@ -59,6 +59,8 @@ export async function POST(req: NextRequest) {
         battleTwo: {
           deleteMany: {},
         },
+        workerOne: body.one.worker.length,
+        workerTwo: body.two.worker.length,
         mineralsOne: body.one.minerals,
         mineralsTwo: body.two.minerals,
         mineOne: body.one.mine,

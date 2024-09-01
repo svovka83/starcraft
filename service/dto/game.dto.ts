@@ -36,6 +36,8 @@ export type GetGameServer = {
   fighterUpTwo: unitType;
   fighterDownOne: unitType;
   fighterDownTwo: unitType;
+  workerOne: number;
+  workerTwo: number;
   mineralsOne: number;
   mineralsTwo: number;
   mineOne: number;
