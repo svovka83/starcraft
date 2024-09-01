@@ -1,6 +1,5 @@
 import { prisma } from "@/prisma/prisma-client";
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import { deleteGame } from "@/functions";
 import { CreateGameClient } from "@/service/dto/game.dto";
 
@@ -15,9 +14,22 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    const getGame = await prisma.game.findFirst({
+    const getUser = await prisma.user.findFirst({
       where: {
         token: token,
+      },
+    });
+
+    if (!getUser) {
+      return NextResponse.json(
+        { message: "Can not find user." },
+        { status: 404 }
+      );
+    }
+
+    const getGame = await prisma.game.findFirst({
+      where: {
+        userId: getUser.id,
       },
     });
 
@@ -69,16 +81,31 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    let token = req.cookies.get("starcraftToken")?.value;
+    const token = req.cookies.get("starcraftToken")?.value;
 
     if (!token) {
-      token = crypto.randomUUID();
-      cookies().set("starcraftToken", token, { path: "/" });
+      return NextResponse.json(
+        { message: "User does not have rights." },
+        { status: 403 }
+      );
+    }
+
+    const getUser = await prisma.user.findFirst({
+      where: {
+        token: token,
+      },
+    });
+
+    if (!getUser) {
+      return NextResponse.json(
+        { message: "Can not find user." },
+        { status: 404 }
+      );
     }
 
     const getGame = await prisma.game.findFirst({
       where: {
-        token: token,
+        userId: getUser.id,
       },
     });
 
@@ -90,7 +117,7 @@ export async function POST(req: NextRequest) {
 
     const createGame = await prisma.game.create({
       data: {
-        token: token,
+        userId: getUser.id,
         nameOne: body.infoOne.name,
         nameTwo: body.infoTwo.name,
         imageOne: body.infoOne.image,
@@ -143,9 +170,22 @@ export async function DELETE(req: NextRequest) {
       );
     }
 
-    const getGame = await prisma.game.findFirst({
+    const getUser = await prisma.user.findFirst({
       where: {
         token: token,
+      },
+    });
+
+    if (!getUser) {
+      return NextResponse.json(
+        { message: "Can not find user." },
+        { status: 404 }
+      );
+    }
+
+    const getGame = await prisma.game.findFirst({
+      where: {
+        userId: getUser.id,
       },
     });
 

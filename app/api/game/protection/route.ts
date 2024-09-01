@@ -9,9 +9,19 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ success: false });
     }
 
-    const game = await prisma.game.findFirst({
+    const user = await prisma.user.findFirst({
       where: {
         token: token,
+      },
+    });
+
+    if (!user) {
+      return NextResponse.json({ success: false });
+    }
+
+    const game = await prisma.game.findFirst({
+      where: {
+        userId: user.id,
       },
     });
 

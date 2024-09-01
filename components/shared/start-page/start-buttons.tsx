@@ -24,7 +24,7 @@ export const StartButtons: React.FC<Props> = ({
   const [openRegister, setOpenRegister] = React.useState(false);
 
   const isAuth = useAuth(openLogin, openRegister);
-  const isGame = useGame();
+  const isGame = useGame(openLogin);
 
   const checkNewGame = () => {
     if (!isGame) {

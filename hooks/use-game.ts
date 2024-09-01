@@ -1,7 +1,7 @@
 import React from "react";
 import { isGame } from "@/service/game";
 
-export const useGame = () => {
+export const useGame = (login: boolean) => {
   const [isValue, setIsValue] = React.useState(false);
 
   React.useEffect(() => {
@@ -11,7 +11,7 @@ export const useGame = () => {
     }
 
     getGame();
-  }, []);
+  }, [login]);
 
   return isValue;
 };

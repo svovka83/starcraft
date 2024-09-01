@@ -14,9 +14,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const getGame = await prisma.game.findFirst({
+    const getUser = await prisma.user.findFirst({
       where: {
         token: token,
+      },
+    });
+
+    if (!getUser) {
+      return NextResponse.json(
+        { message: "Can not find user." },
+        { status: 404 }
+      );
+    }
+
+    const getGame = await prisma.game.findFirst({
+      where: {
+        userId: getUser.id,
       },
     });
 
