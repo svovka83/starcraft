@@ -63,9 +63,7 @@ export default function Game() {
   }
 
   React.useEffect(() => {
-    setTimeout(() => {
-      getGame();
-    }, 2000);
+    getGame();
   }, []);
 
   return (
