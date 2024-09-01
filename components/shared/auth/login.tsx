@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui";
 import { FormInput } from "..";
 import { login } from "@/service/user";
+import toast from "react-hot-toast";
 
 interface Props {
   openLogin: boolean;
@@ -29,9 +30,21 @@ export const Login: React.FC<Props> = ({
   });
 
   const onSubmit = (data: FormLogin) => {
-    login(data.username, data.password).then(() => {
-      setOpenLogin(false);
-    });
+    login(data.username, data.password)
+      .then((data) => {
+        setOpenLogin(false);
+        toast.success(`Welcome to Starcraft ${data.username} !!!`, {
+          duration: 5000,
+          icon: "👏",
+        });
+      })
+      .catch((error) => {
+        console.log("[LOGIN]", error.response.data.message);
+        toast.error(error.response.data.message, {
+          duration: 3000,
+          icon: "😢",
+        });
+      });
   };
 
   return (

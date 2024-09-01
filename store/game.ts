@@ -177,7 +177,8 @@ export const useGameStore = create<GameState>((set, get) => ({
       const one = get().one;
       const two = get().two;
       const turn = get().turn;
-      await saveGame(one, two, turn);
+      const data = await saveGame(one, two, turn);
+      return data;
     } catch (error) {
       console.log(error);
     }

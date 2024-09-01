@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui";
 import { FormInput } from "..";
 import { register } from "@/service/user";
+import toast from "react-hot-toast";
 
 interface Props {
   openRegister: boolean;
@@ -28,8 +29,12 @@ export const Register: React.FC<Props> = ({
   });
 
   const onSubmit = (data: FormRegister) => {
-    register(data.username, data.password).then(() => {
+    register(data.username, data.password).then((data) => {
       setOpenRegister(false);
+      toast.success(`Welcome to Starcraft ${data.username} !!!`, {
+        duration: 5000,
+        icon: "👏",
+      });
     });
   };
 

@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
     cookies().set("starcraftToken", token, { path: "/" });
 
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         username: body.username,
         password: hashedPassword,
@@ -27,7 +27,9 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    return NextResponse.json({ success: true }, { status: 200 });
+    const { password, ...rest } = user;
+
+    return NextResponse.json({ ...rest }, { status: 200 });
   } catch (error) {
     console.log("[POST_REGISTER]", error);
     NextResponse.json({ message: "Can not register." }, { status: 500 });

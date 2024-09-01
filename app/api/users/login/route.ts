@@ -47,7 +47,9 @@ export async function POST(req: NextRequest) {
 
     cookies().set("starcraftToken", token, { path: "/" });
 
-    return NextResponse.json({ success: true }, { status: 200 });
+    const { password, ...rest } = user;
+
+    return NextResponse.json({ ...rest }, { status: 200 });
   } catch (error) {
     console.log("[POST_LOGIN]", error);
     NextResponse.json({ message: "Can not login." }, { status: 500 });
