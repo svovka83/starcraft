@@ -10,8 +10,11 @@ import protoss from "/images/races/protoss.png";
 import { infoType, unitType, useGameStore } from "@/store/game";
 import { INFO, ZERG, TERRAN, PROTOSS } from "@/constants";
 import { StartButtons } from "..";
+import { useRouter } from "next/navigation";
 
 export const ChooseRaces: React.FC = () => {
+  const route = useRouter();
+
   const [infoOne, setInfoOne] = React.useState<infoType>({} as infoType);
   const [infoTwo, setInfoTwo] = React.useState<infoType>({} as infoType);
   const [playerOne, setPlayerOne] = React.useState<unitType[]>([]);
@@ -25,6 +28,12 @@ export const ChooseRaces: React.FC = () => {
     state.chooseTwo,
     state.setCreateGame,
   ]);
+
+  const createGame = () => {
+    setCreateGame(infoOne, infoTwo, playerOne, playerTwo).then(() => {
+      route.push("/game");
+    });
+  };
 
   return (
     <div>
@@ -126,7 +135,7 @@ export const ChooseRaces: React.FC = () => {
       <StartButtons
         nameOne={infoOne.name}
         nameTwo={infoTwo.name}
-        createGame={() => setCreateGame(infoOne, infoTwo, playerOne, playerTwo)}
+        createGame={createGame}
       />
     </div>
   );

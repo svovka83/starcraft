@@ -22,6 +22,11 @@ export const createGame = async (
   return data;
 };
 
+export const deleteGame = async () => {
+  const { data } = await axiosInstance.delete("/game");
+  return data;
+}
+
 export const isGame = async () => {
   const { data } = await axiosInstance.get("/game/protection");
   return data;

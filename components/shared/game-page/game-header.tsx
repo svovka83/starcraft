@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useGameStore } from "@/store/game";
-import { ChangeValue } from "..";
+import { ChangeValue, Menu } from "..";
 
 interface Props {
   className?: string;
@@ -17,7 +17,6 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
     mineTwo,
     lengthOne,
     lengthTwo,
-    turn,
   ] = useGameStore((state) => [
     state.one.mana,
     state.two.mana,
@@ -27,7 +26,6 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
     state.two.mine,
     state.one.worker.length,
     state.two.worker.length,
-    state.turn,
   ]);
 
   return (
@@ -45,19 +43,11 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
           key={mineOne}
           className="absolute -top-2 -right-7 text-blue-700"
         />
-        <ChangeValue
-          sign="-"
-          value={1}
-          key={lengthOne}
-          className="absolute -top-2 -right-7 text-blue-700"
-        />
       </div>
       <span>ManaOne: {manaOne}</span>
-      <span
-        className={cn("uppercase", turn ? "text-red-500" : "text-blue-500")}
-      >
-        {turn ? "Player One" : "Player Two"}
-      </span>
+
+      <Menu />
+
       <span>ManaTwo: {manaTwo}</span>
       <div className="relative mr-6">
         <span>Minerals: {mineralTwo}</span>
@@ -65,12 +55,6 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
           sign="+"
           value={lengthTwo}
           key={mineTwo}
-          className="absolute -top-2 -right-7 text-blue-700"
-        />
-        <ChangeValue
-          sign="-"
-          value={1}
-          key={lengthTwo}
           className="absolute -top-2 -right-7 text-blue-700"
         />
       </div>
