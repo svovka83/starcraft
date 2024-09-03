@@ -31,3 +31,4 @@ export { DeleteGame } from "./menu/delete-game";
 export { Alert } from "./utils/alert";
 export { NewGameButton } from "./start-page/new-game-button";
 export { SoundGame } from "./audio/sound-game";
+export { StartTurn } from "./effects/start-turn";
