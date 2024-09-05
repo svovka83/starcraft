@@ -22,6 +22,6 @@ export function moveUnitDown(state: GameState, unitId: number) {
       battleground: returnFighter,
       fighterDown: addUnit,
     },
-    message: `${addUnit!.name} to down`,
+    message: `${addUnit!.name} going down`,
   };
 }

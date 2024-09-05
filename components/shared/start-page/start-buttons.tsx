@@ -1,10 +1,14 @@
 import React from "react";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { Button } from "@/components/ui";
 import { useGame } from "@/hooks/use-game";
 import { useAuth } from "@/hooks/use-auth";
-import { ChooseModeButton, Login, NewGameButton, Register } from "..";
+import {
+  ChooseModeButton,
+  ContinueButton,
+  Login,
+  NewGameButton,
+  Register,
+} from "..";
 import { removeToken } from "@/app/actions";
 
 interface Props {
@@ -29,7 +33,7 @@ export const StartButtons: React.FC<Props> = ({
 
   return (
     <div className="flex justify-center gap-10 text-[22px]">
-      <ChooseModeButton />
+      <ChooseModeButton isAuth={isAuth} />
 
       <NewGameButton
         nameOne={nameOne}
@@ -39,16 +43,8 @@ export const StartButtons: React.FC<Props> = ({
         isGame={isGame}
       />
 
-      <Link
-        href="/game"
-        className={cn({
-          "pointer-events-none": !isGame,
-        })}
-      >
-        <Button size="lg" disabled={!isGame}>
-          Continue
-        </Button>
-      </Link>
+      <ContinueButton isGame={isGame} />
+
       <div>
         {!isAuth && (
           <Button

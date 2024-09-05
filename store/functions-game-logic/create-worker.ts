@@ -22,6 +22,6 @@ export function createWorker(state: GameState) {
         state.turn ? state.one.units[0] : state.two.units[0],
       ],
     },
-    message: "created worker",
+    message: `${player.units[0].name} is ready`,
   };
 }

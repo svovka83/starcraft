@@ -47,7 +47,7 @@ export const Staff: React.FC = () => {
       )}
 
       <motion.div
-        className="absolute bottom-0 mx-4 text-3xl text-blue-700 font-bold"
+        className="absolute bottom-2 mx-4 text-2xl text-blue-700 font-bold"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}
         key={message}

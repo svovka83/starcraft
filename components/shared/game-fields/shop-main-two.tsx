@@ -41,6 +41,9 @@ export const ShopMainTwo: React.FC = () => {
             src={playerUnitsTwo[0]?.image}
             className="w-[50px] h-[50px] cursor-pointer scale-x-[-1]"
           />
+          <span className="absolute bottom-11 w-[16px] h-[16px] text-center text-white text-[12px] font-bold bg-blue-500 pointer-events-none">
+            1
+          </span>
         </div>
         <div>
           <img

@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert } from "..";
+import { Alert } from "../..";
 import { Button } from "@/components/ui";
 
 interface Props {

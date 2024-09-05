@@ -22,6 +22,6 @@ export function moveUnitUp(state: GameState, unitId: number) {
       battleground: returnFighter,
       fighterUp: addUnit,
     },
-    message: `${addUnit!.name} to up`,
+    message: `${addUnit!.name} going up`,
   };
 }

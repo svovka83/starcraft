@@ -19,6 +19,6 @@ export function byUnit(state: GameState, unitId: number) {
       battleground: [...player.battleground, addUnit],
       minerals: newMinerals,
     },
-    message: `added ${addUnit!.name}`,
+    message: `${addUnit!.name} is ready`,
   };
 }

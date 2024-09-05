@@ -18,5 +18,5 @@ export function addMinerals(state: GameState) {
   player.mine -= player.worker.length;
   player.mana = mana;
 
-  return { ...state, message: "added minerals" };
+  return { ...state, message: `plus ${player.worker.length} minerals` };
 }

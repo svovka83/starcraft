@@ -5,16 +5,23 @@ import { useGameStore } from "@/store/game";
 export const ShopMainOne: React.FC = () => {
   const [showModalShop, setShowModalShop] = React.useState(false);
 
-  const [baseImage, mana, playerUnitsOne, minerals, attack, bossLife, addWorker] =
-    useGameStore((state) => [
-      state.one.image,
-      state.one.mana,
-      state.one.units,
-      state.one.minerals,
-      state.two.fighterUp.attack,
-      state.one.boss,
-      state.createWorker,
-    ]);
+  const [
+    baseImage,
+    mana,
+    playerUnitsOne,
+    minerals,
+    attack,
+    bossLife,
+    addWorker,
+  ] = useGameStore((state) => [
+    state.one.image,
+    state.one.mana,
+    state.one.units,
+    state.one.minerals,
+    state.two.fighterUp.attack,
+    state.one.boss,
+    state.createWorker,
+  ]);
 
   return (
     <Container className="p-1">
@@ -41,6 +48,9 @@ export const ShopMainOne: React.FC = () => {
             src={playerUnitsOne[0]?.image}
             className="w-[50px] h-[50px] cursor-pointer"
           />
+          <span className="absolute bottom-11 w-[16px] h-[16px] text-center text-white text-[12px] font-bold bg-blue-500 pointer-events-none">
+            1
+          </span>
         </div>
       </div>
 

@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Dialog, DialogContent, DialogTitle } from "../../ui";
 import { unitType, useGameStore } from "@/store/game";
 import { ShopContent } from "..";
-import toast from "react-hot-toast";
 
 interface Props {
   playerUnits: unitType[];
@@ -27,7 +26,6 @@ export const ShopModal: React.FC<Props> = ({
     addUnit(unitId);
     setActiveUnit(0);
     closeModal();
-    toast.success(`Unit added to your army`);
   };
 
   return (

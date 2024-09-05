@@ -19,7 +19,7 @@ export const Minerals: React.FC<Props> = ({ worker, mine, reverse }) => {
       <div className={cn("flex flex-row-4 gap-2", { "justify-end": !reverse })}>
         {worker.map((worker, index) => (
           <Unit
-            key={index}            
+            key={index}
             name={worker.name}
             image={worker.image}
             health={worker.health}
@@ -40,6 +40,9 @@ export const Minerals: React.FC<Props> = ({ worker, mine, reverse }) => {
             Left <b>{mine}</b> minerals:
           </span>
         </Button>
+        <span className="absolute bottom-10 translate-x-16 w-[16px] h-[16px] text-center text-white text-[12px] font-bold bg-blue-500 pointer-events-none">
+          1
+        </span>
         <Button
           variant="outline"
           size="sm"
