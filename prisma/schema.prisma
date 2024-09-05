@@ -52,14 +52,14 @@ model Game {
   workerOne Int @default(1)
   workerTwo Int @default(1)
 
-  mineralsOne Int @default(5)
-  mineralsTwo Int @default(5)
+  mineralsOne Int @default(10)
+  mineralsTwo Int @default(10)
 
-  mineOne Int @default(30)
-  mineTwo Int @default(30)
+  mineOne Int @default(100)
+  mineTwo Int @default(100)
 
-  bossOne Int @default(25)
-  bossTwo Int @default(25)
+  bossOne Int @default(21)
+  bossTwo Int @default(21)
 
   turn Boolean @default(true)
 

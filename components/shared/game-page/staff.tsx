@@ -4,11 +4,22 @@ import { Button } from "@/components/ui";
 import { useGameStore } from "@/store/game";
 
 export const Staff: React.FC = () => {
-  const [manaOne, manaTwo, endTurn] = useGameStore((state) => [
-    state.one.mana,
-    state.two.mana,
-    state.endTurn,
-  ]);
+  const [turn, message, manaOne, manaTwo, endTurn, logicAI] = useGameStore(
+    (state) => [
+      state.turn,
+      state.message,
+      state.one.mana,
+      state.two.mana,
+      state.endTurn,
+      state.logicAI,
+    ]
+  );
+
+  if (!turn) {
+    setTimeout(() => {
+      logicAI();
+    }, 3000);
+  }
 
   return (
     <Container className={"relative"}>
@@ -21,7 +32,10 @@ export const Staff: React.FC = () => {
           end turn
         </Button>
       )}
-      <SoundGame />
+      <div className="absolute bottom-0 mx-2 text-2xl text-blue-700 font-bold">
+        {turn ? `player: ${message}` : `comp: ${message}`}
+      </div>
+      {/* <SoundGame /> */}
     </Container>
   );
 };

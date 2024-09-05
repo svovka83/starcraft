@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { motion } from "framer-motion";
 
@@ -14,7 +16,7 @@ export const StartTurn: React.FC = () => {
     },
     animate: {
       x: 0,
-      opacity: 0,
+      opacity: 0.3,
       scale: 5,
       transition: { duration: 1 },
     },

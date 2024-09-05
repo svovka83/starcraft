@@ -18,9 +18,17 @@ import {
   GameOver,
 } from "@/components/shared";
 import { useGameStore } from "@/store/game";
+import { useRouter } from "next/navigation";
+import { isGame } from "@/service/game";
 
 export default function Game() {
-  const [modalOver, setModalOver] = React.useState(false);
+  const route = useRouter();
+
+  isGame().then(({ success }) => {
+    if (!success) {
+      return route.push("/");
+    }
+  });
 
   const [
     getGame,
@@ -55,6 +63,8 @@ export default function Game() {
     state.one.boss,
     state.two.boss,
   ]);
+
+  const [modalOver, setModalOver] = React.useState(false);
 
   if (bossOne <= 0 || bossTwo <= 0) {
     setTimeout(() => {
