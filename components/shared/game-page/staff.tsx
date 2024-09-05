@@ -2,20 +2,21 @@ import React from "react";
 import { Container, SoundGame, StartTurn } from "..";
 import { Button } from "@/components/ui";
 import { useGameStore } from "@/store/game";
+import { motion } from "framer-motion";
 
 export const Staff: React.FC = () => {
-  const [turn, message, manaOne, manaTwo, endTurn, logicAI] = useGameStore(
-    (state) => [
+  const [turn, message, manaOne, manaTwo, endTurn, logicAI, gameMode] =
+    useGameStore((state) => [
       state.turn,
       state.message,
       state.one.mana,
       state.two.mana,
       state.endTurn,
       state.logicAI,
-    ]
-  );
+      state.gameMode,
+    ]);
 
-  if (!turn) {
+  if (!turn && gameMode === "COMPUTER") {
     setTimeout(() => {
       logicAI();
     }, 3000);
@@ -32,9 +33,26 @@ export const Staff: React.FC = () => {
           end turn
         </Button>
       )}
-      <div className="absolute bottom-0 mx-2 text-2xl text-blue-700 font-bold">
-        {turn ? `player: ${message}` : `comp: ${message}`}
-      </div>
+      {gameMode === "PLAYER" && (
+        <div className="absolute bottom-10 mx-20 text-3xl text-blue-700 font-bold">
+          {turn ? "Player 1" : "Player 2"}
+        </div>
+      )}
+      {gameMode === "COMPUTER" && (
+        <div className="absolute bottom-10 mx-20 text-3xl text-blue-700 font-bold">
+          {turn ? "Player" : "Computer"}
+        </div>
+      )}
+
+      <motion.div
+        className="absolute bottom-0 mx-4 text-3xl text-blue-700 font-bold"
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}
+        key={message}
+      >
+        {message}
+      </motion.div>
+
       {/* <SoundGame /> */}
     </Container>
   );

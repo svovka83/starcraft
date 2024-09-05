@@ -1,6 +1,7 @@
 import { axiosInstance } from "./instance";
 import { PlayerProps, infoType, unitType } from "@/store/game";
 import { CreateGameServer, GetGameServer } from "./dto/game.dto";
+import { GameMode } from "@prisma/client";
 
 export const getGame = async (): Promise<GetGameServer> => {
   const { data } = await axiosInstance.get("/game");
@@ -11,13 +12,15 @@ export const createGame = async (
   infoOne: infoType,
   infoTwo: infoType,
   shopOne: unitType[],
-  shopTwo: unitType[]
+  shopTwo: unitType[],
+  gameMode: GameMode
 ): Promise<CreateGameServer> => {
   const { data } = await axiosInstance.post<CreateGameServer>("/game", {
     infoOne,
     infoTwo,
     shopOne,
     shopTwo,
+    gameMode,
   });
   return data;
 };

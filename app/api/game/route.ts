@@ -68,6 +68,7 @@ export async function GET(req: NextRequest) {
         bossOne: true,
         bossTwo: true,
         turn: true,
+        gameMode: true,
       },
     });
 
@@ -134,6 +135,7 @@ export async function POST(req: NextRequest) {
             data: body.shopTwo,
           },
         },
+        gameMode: body.gameMode,
       },
     });
 
@@ -148,6 +150,7 @@ export async function POST(req: NextRequest) {
         imageTwo: true,
         shopOne: true,
         shopTwo: true,
+        gameMode: true,
       },
     });
 
@@ -201,7 +204,7 @@ export async function DELETE(req: NextRequest) {
     deleteGame(getGame);
 
     return NextResponse.json(
-      { message: "Congratulation :-). Game deleted." },
+      { message: "Congratulation 😀. Game deleted ❤️." },
       { status: 200 }
     );
   } catch (error) {

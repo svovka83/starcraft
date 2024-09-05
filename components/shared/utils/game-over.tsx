@@ -1,32 +1,40 @@
 "use client";
 
 import React from "react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui";
 import { Button } from "@/components/ui";
 import { useRouter } from "next/navigation";
+import { deleteGame } from "@/service/game";
+import toast from "react-hot-toast";
 
 interface Props {
-  modalOver?: boolean;
-  setModalOver: (modalOver: boolean) => void;
+  gameOver?: boolean;
+  setGameOver: (modalOver: boolean) => void;
 }
 
-export const GameOver: React.FC<Props> = ({ modalOver, setModalOver }) => {
+export const GameOver: React.FC<Props> = ({ gameOver, setGameOver }) => {
   const router = useRouter();
 
-  const gameOver = () => {
-    setModalOver(false);
-    router.back();
+  const gameIsOver = () => {
+    deleteGame().then(() => {
+      toast.success("Thanks for playing ❤️", {
+        duration: 3000,
+      });
+    });
+    setTimeout(() => {
+      setGameOver(false);
+      router.push("/");
+    }, 5000);
   };
 
   return (
-    <Dialog open={modalOver}>
-      <DialogContent className="text-center">
-        <DialogTitle>Game over</DialogTitle>
-        Congratulation!!!
+    <Dialog open={gameOver}>
+      <DialogContent className="text-center bg-blue-500">
+        <DialogTitle className="text-white text-3xl">Game over</DialogTitle>
         <Button
-          onClick={gameOver}
+          onClick={gameIsOver}
           variant="secondary"
-          className="w-32 text-lg font-bold mx-auto"
+          className="w-40 text-xl font-bold mx-auto"
         >
           Leave game
         </Button>

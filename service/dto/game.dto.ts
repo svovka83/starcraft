@@ -1,10 +1,12 @@
 import { PlayerProps, infoType, unitType } from "@/store/game";
+import { GameMode } from "@prisma/client";
 
 export type CreateGameClient = {
   infoOne: infoType;
   infoTwo: infoType;
   shopOne: unitType[];
   shopTwo: unitType[];
+  gameMode: GameMode;
 };
 export type CreateGameServer = {
   nameOne: string;
@@ -13,6 +15,7 @@ export type CreateGameServer = {
   imageTwo: string;
   shopOne: unitType[];
   shopTwo: unitType[];
+  gameMode: GameMode;
 };
 
 export type SaveGameClient = {
@@ -45,4 +48,5 @@ export type GetGameServer = {
   bossOne: number;
   bossTwo: number;
   turn: boolean;
+  gameMode: GameMode;
 };

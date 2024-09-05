@@ -32,3 +32,4 @@ export { Alert } from "./utils/alert";
 export { NewGameButton } from "./start-page/new-game-button";
 export { SoundGame } from "./audio/sound-game";
 export { StartTurn } from "./effects/start-turn";
+export { ChooseModeButton } from "./start-page/choose-mode-button";

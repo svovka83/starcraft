@@ -11,6 +11,6 @@ export function endTurn(state: GameState) {
       mana: 3,
     },
     turn: !state.turn,
-    message: "don`t sleep",
+    message: "change turn",
   };
 }

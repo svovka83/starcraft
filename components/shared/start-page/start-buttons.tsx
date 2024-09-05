@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui";
 import { useGame } from "@/hooks/use-game";
 import { useAuth } from "@/hooks/use-auth";
-import { Login, NewGameButton, Register } from "..";
+import { ChooseModeButton, Login, NewGameButton, Register } from "..";
 import { removeToken } from "@/app/actions";
 
 interface Props {
@@ -29,6 +29,8 @@ export const StartButtons: React.FC<Props> = ({
 
   return (
     <div className="flex justify-center gap-10 text-[22px]">
+      <ChooseModeButton />
+
       <NewGameButton
         nameOne={nameOne}
         nameTwo={nameTwo}
@@ -36,6 +38,7 @@ export const StartButtons: React.FC<Props> = ({
         isAuth={isAuth}
         isGame={isGame}
       />
+
       <Link
         href="/game"
         className={cn({

@@ -63,6 +63,8 @@ model Game {
 
   turn Boolean @default(true)
 
+  gameMode GameMode @default(COMPUTER)
+
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
 }
@@ -177,4 +179,9 @@ model FighterDownTwo {
 
   game   Game? @relation(fields: [gameId], references: [id])
   gameId Int?  @unique
+}
+
+enum GameMode {
+  PLAYER
+  COMPUTER
 }

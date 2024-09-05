@@ -13,6 +13,7 @@ import {
   fightWorker,
 } from ".";
 import { logicAI } from "./functions-ai-logic/logic-ai";
+import { GameMode } from "@prisma/client";
 
 export type infoType = {
   name: string;
@@ -48,17 +49,20 @@ export interface GameState {
   two: PlayerProps;
   turn: boolean;
   message: string;
+  gameMode: GameMode;
   endTurn: () => void;
   setCreateGame: (
     infoOne: infoType,
     infoTwo: infoType,
     shopOne: unitType[],
-    shopTwo: unitType[]
+    shopTwo: unitType[],
+    gameMode: GameMode
   ) => Promise<void>;
   setGetGame: () => Promise<void>;
   getSaveGame: () => Promise<void>;
   chooseOne: (nameOne: string) => void;
   chooseTwo: (nameTwo: string) => void;
+  chooseGameMode: (gameMode: GameMode) => void;
   buyUnit: (unitId: number) => void;
   moveUnitUp: (unitId: number) => void;
   moveUnitDown: (unitId: number) => void;
@@ -99,16 +103,24 @@ export const useGameStore = create<GameState>((set, get) => ({
     boss: 21,
   },
   turn: true,
-  message: "don`t sleep",
+  message: "Ok! let's play!",
+  gameMode: "COMPUTER",
   endTurn: () => set((state) => endTurn(state)),
   setCreateGame: async (
     infoOne: infoType,
     infoTwo: infoType,
     shopOne: unitType[],
-    shopTwo: unitType[]
+    shopTwo: unitType[],
+    gameMode: GameMode
   ) => {
     try {
-      const data = await createGame(infoOne, infoTwo, shopOne, shopTwo);
+      const data = await createGame(
+        infoOne,
+        infoTwo,
+        shopOne,
+        shopTwo,
+        gameMode
+      );
       set((state) => ({
         ["one"]: {
           ...state.one,
@@ -124,6 +136,7 @@ export const useGameStore = create<GameState>((set, get) => ({
           units: data.shopTwo,
           worker: [data.shopTwo[0]],
         },
+        gameMode: data.gameMode,
       }));
     } catch (error) {
       console.log(error);
@@ -170,6 +183,7 @@ export const useGameStore = create<GameState>((set, get) => ({
           boss: data.bossTwo,
         },
         turn: data.turn,
+        gameMode: data.gameMode,
       }));
     } catch (error) {
       console.log(error);
@@ -203,6 +217,13 @@ export const useGameStore = create<GameState>((set, get) => ({
           ...state.two,
           name: nameTwo,
         },
+      };
+    });
+  },
+  chooseGameMode: (gameMode: GameMode) => {
+    set(() => {
+      return {
+        gameMode: gameMode,
       };
     });
   },

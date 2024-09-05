@@ -64,11 +64,11 @@ export default function Game() {
     state.two.boss,
   ]);
 
-  const [modalOver, setModalOver] = React.useState(false);
+  const [gameOver, setGameOver] = React.useState(false);
 
   if (bossOne <= 0 || bossTwo <= 0) {
     setTimeout(() => {
-      setModalOver(true);
+      setGameOver(true);
     }, 3000);
   }
 
@@ -110,7 +110,7 @@ export default function Game() {
         <FightUnitDown />
         <FightBoss />
         <FightWorker />
-        <GameOver modalOver={modalOver} setModalOver={setModalOver} />
+        <GameOver gameOver={gameOver} setGameOver={setGameOver} />
       </div>
     </>
   );

@@ -10,7 +10,7 @@ export function logicAI(state: GameState, get: () => GameState) {
         mana: 3,
       },
       turn: !state.turn,
-      message: "don`t sleep",
+      message: "change turn",
     };
   }
 
