@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Container, SoundGame, StartTurn } from "..";
 import { Button } from "@/components/ui";
