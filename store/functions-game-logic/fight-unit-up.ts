@@ -9,14 +9,11 @@ export function fightUnitUp(state: GameState) {
   if (mana < 0) return state;
 
   const opponentHealth = opponent.fighterUp.health - player.fighterUp.attack;
-  const playerHealth = player.fighterUp.health - opponent.fighterUp.attack;
 
   const opponentIs =
     opponentHealth <= 0
       ? {}
       : { ...opponent.fighterUp, health: opponentHealth };
-  const playerIs =
-    playerHealth <= 0 ? {} : { ...player.fighterUp, health: playerHealth };
 
   return {
     ...state,
@@ -27,8 +24,7 @@ export function fightUnitUp(state: GameState) {
     [state.turn ? "one" : "two"]: {
       ...player,
       mana,
-      fighterUp: playerIs,
     },
-    message: `${player.fighterUp.name} fight up`,
+    message: `${player.fighterUp.name} kick ${opponent.fighterUp.name}`,
   };
 }

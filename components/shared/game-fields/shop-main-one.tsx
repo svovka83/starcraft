@@ -9,6 +9,7 @@ export const ShopMainOne: React.FC = () => {
     baseImage,
     mana,
     playerUnitsOne,
+    battleUnitsOne,
     minerals,
     attack,
     bossLife,
@@ -17,6 +18,7 @@ export const ShopMainOne: React.FC = () => {
     state.one.image,
     state.one.mana,
     state.one.units,
+    state.one.battleground,
     state.one.minerals,
     state.two.fighterUp.attack,
     state.one.boss,
@@ -55,9 +57,10 @@ export const ShopMainOne: React.FC = () => {
       </div>
 
       <ShopModal
+        playerUnits={playerUnitsOne}
+        battleLength={battleUnitsOne.length}
         showModalShop={showModalShop}
         closeModal={() => setShowModalShop(false)}
-        playerUnits={playerUnitsOne}
         minerals={minerals}
         mana={mana}
       />

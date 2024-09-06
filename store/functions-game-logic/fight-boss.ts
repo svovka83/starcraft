@@ -11,10 +11,6 @@ export function fightBoss(state: GameState) {
   const bossHealth = opponent.boss - player.fighterUp.attack;
   const isBoss = bossHealth <= 0 ? 0 : bossHealth;
 
-  const playerHealth = player.fighterUp.health - player.fighterUp.attack;
-  const isPlayer =
-    playerHealth <= 0 ? {} : { ...player.fighterUp, health: playerHealth };
-
   return {
     ...state,
     [!state.turn ? "one" : "two"]: {
@@ -24,8 +20,7 @@ export function fightBoss(state: GameState) {
     [state.turn ? "one" : "two"]: {
       ...player,
       mana,
-      fighterUp: isPlayer,
     },
-    message: `${player.fighterUp.name} push boss`,
+    message: `${player.fighterUp.name} kick boss`,
   };
 }

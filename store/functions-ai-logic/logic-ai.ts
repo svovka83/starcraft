@@ -21,12 +21,10 @@ export function logicAI(state: GameState, get: () => GameState) {
   // code for moveUnitUp or moveUnitDown
   const isUnitBattleId = (battleLength: number) => {
     if (battleLength > 0) {
-      const battleId = get().two.battleground.map((unit: unitType) => unit.id!);
-      const battleIdRandom = lodash.random(
-        battleId[0],
-        battleId[battleId.length - 1]
-      );
-      return battleIdRandom;
+      const battle = get().two.battleground.map((unit: unitType) => unit);
+      const randomBattleIndex = Math.floor(Math.random() * battle.length);
+      const battleRandom = battle[randomBattleIndex].id!;
+      return battleRandom;
     }
     return 0;
   };

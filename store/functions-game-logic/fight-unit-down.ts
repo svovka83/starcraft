@@ -10,14 +10,11 @@ export function fightUnitDown(state: GameState) {
 
   const opponentHealth =
     opponent.fighterDown.health - player.fighterDown.attack;
-  const playerHealth = player.fighterDown.health - opponent.fighterDown.attack;
 
   const opponentIs =
     opponentHealth <= 0
       ? {}
       : { ...opponent.fighterDown, health: opponentHealth };
-  const playerIs =
-    playerHealth <= 0 ? {} : { ...player.fighterDown, health: playerHealth };
 
   return {
     ...state,
@@ -28,8 +25,7 @@ export function fightUnitDown(state: GameState) {
     [state.turn ? "one" : "two"]: {
       ...player,
       mana,
-      fighterDown: playerIs,
     },
-    message: `${player.fighterDown.name} fight down`,
+    message: `${player.fighterDown.name} kick ${opponent.fighterDown.name}`,
   };
 }

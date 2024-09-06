@@ -5,6 +5,7 @@ import { ShopContent } from "..";
 
 interface Props {
   playerUnits: unitType[];
+  battleLength: number;
   showModalShop: boolean;
   closeModal: () => void;
   minerals: number;
@@ -13,6 +14,7 @@ interface Props {
 
 export const ShopModal: React.FC<Props> = ({
   playerUnits,
+  battleLength,
   showModalShop,
   closeModal,
   minerals,
@@ -46,7 +48,9 @@ export const ShopModal: React.FC<Props> = ({
               price={unit.price}
               activated={() => setActiveUnit(unit.id as number)}
               active={activeUnit === unit.id}
-              disabled={minerals < unit.price || mana < unit.mana}
+              disabled={
+                minerals < unit.price || mana < unit.mana || battleLength === 8
+              }
             />
           ))
           .slice(1, 5)}

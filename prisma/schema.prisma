@@ -98,7 +98,7 @@ model ShopTwo {
 }
 
 model BattleOne {
-  id Int @id @default(autoincrement())
+  id Int @id
 
   name   String
   image  String
@@ -112,7 +112,7 @@ model BattleOne {
 }
 
 model BattleTwo {
-  id Int @id @default(autoincrement())
+  id Int @id
 
   name   String
   image  String
@@ -126,7 +126,7 @@ model BattleTwo {
 }
 
 model FighterUpOne {
-  id Int @id @default(autoincrement())
+  id Int @id
 
   name   String
   image  String
@@ -140,7 +140,7 @@ model FighterUpOne {
 }
 
 model FighterUpTwo {
-  id Int @id @default(autoincrement())
+  id Int @id
 
   name   String
   image  String
@@ -154,7 +154,7 @@ model FighterUpTwo {
 }
 
 model FighterDownOne {
-  id Int @id @default(autoincrement())
+  id Int @id
 
   name   String
   image  String
@@ -168,7 +168,7 @@ model FighterDownOne {
 }
 
 model FighterDownTwo {
-  id Int @id @default(autoincrement())
+  id Int @id
 
   name   String
   image  String
