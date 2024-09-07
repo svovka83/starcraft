@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ success: false });
   } catch (error) {
-    console.log("[GET_USER]", error);
+    console.log("[GET_AUTH]", error);
     return NextResponse.json(
       { message: "Can not find user rights." },
       { status: 403 }

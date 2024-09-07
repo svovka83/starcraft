@@ -36,3 +36,6 @@ export { ChooseModeButton } from "./start-page/start-buttons/choose-mode-button"
 export { ContinueButton } from "./start-page/start-buttons/continue-button";
 export { Explosion } from "./effects/explosion";
 export { DamageUnit } from "./effects/damage-unit";
+export { Race } from "./start-page/choose-races/race";
+export { UserButton } from "./start-page/choose-races/user-button";
+export { OpponentButton } from "./start-page/choose-races/opponent-button";

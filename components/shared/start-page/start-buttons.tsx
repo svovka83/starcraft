@@ -10,6 +10,7 @@ import {
   Register,
 } from "..";
 import { removeToken } from "@/app/actions";
+import { useUserStore } from "@/store/user";
 
 interface Props {
   nameOne: string;
@@ -22,6 +23,8 @@ export const StartButtons: React.FC<Props> = ({
   nameTwo,
   createGame,
 }) => {
+  const logoutUser = useUserStore((state) => state.logoutUser);
+
   const [openLogin, setOpenLogin] = React.useState(false);
   const [openRegister, setOpenRegister] = React.useState(false);
 
@@ -29,7 +32,11 @@ export const StartButtons: React.FC<Props> = ({
   const isGame = useGame(openLogin);
 
   const login = () => setOpenLogin(true);
-  const logout = () => removeToken().then(() => setOpenLogin(true));
+  const logout = () =>
+    removeToken().then(() => {
+      logoutUser();
+      setOpenLogin(true);
+    });
 
   return (
     <div className="flex justify-center gap-10 text-[22px]">

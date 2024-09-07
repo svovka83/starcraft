@@ -9,6 +9,7 @@ import { Button } from "@/components/ui";
 import { FormInput } from "..";
 import { login } from "@/service/user";
 import toast from "react-hot-toast";
+import { useUserStore } from "@/store/user";
 
 interface Props {
   openLogin: boolean;
@@ -29,9 +30,12 @@ export const Login: React.FC<Props> = ({
     resolver: zodResolver(formLoginSchema),
   });
 
+  const loginUser = useUserStore((state) => state.loginUser);
+
   const onSubmit = (data: FormLogin) => {
     login(data.username, data.password)
       .then((data) => {
+        loginUser(data.username);
         setOpenLogin(false);
         toast.success(`Welcome to Starcraft ${data.username} !!!`, {
           duration: 5000,

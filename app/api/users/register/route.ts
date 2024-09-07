@@ -32,6 +32,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ...rest }, { status: 200 });
   } catch (error) {
     console.log("[POST_REGISTER]", error);
-    NextResponse.json({ message: "Can not register." }, { status: 500 });
+    NextResponse.json(
+      { message: "Server error. Can not register." },
+      { status: 500 }
+    );
   }
 }

@@ -9,6 +9,7 @@ import { Button } from "@/components/ui";
 import { FormInput } from "..";
 import { register } from "@/service/user";
 import toast from "react-hot-toast";
+import { useUserStore } from "@/store/user";
 
 interface Props {
   openRegister: boolean;
@@ -28,8 +29,11 @@ export const Register: React.FC<Props> = ({
     resolver: zodResolver(formRegisterSchema),
   });
 
+  const loginUser = useUserStore((state) => state.loginUser);
+
   const onSubmit = (data: FormRegister) => {
     register(data.username, data.password).then((data) => {
+      loginUser(data.username);
       setOpenRegister(false);
       toast.success(`Welcome to Starcraft ${data.username} !!!`, {
         duration: 5000,

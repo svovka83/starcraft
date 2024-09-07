@@ -4,7 +4,7 @@ export const formLoginSchema = z.object({
   username: z
     .string()
     .min(4, { message: "very short name" })
-    .max(14, { message: "very long name" }),
+    .max(9, { message: "very long name" }),
   password: z
     .string()
     .min(4, { message: "very short password" })
@@ -16,7 +16,7 @@ export const formRegisterSchema = z
     username: z
       .string()
       .min(4, { message: "very short name" })
-      .max(14, { message: "very long name" }),
+      .max(9, { message: "very long name" }),
     password: z
       .string()
       .min(4, { message: "very short password" })
