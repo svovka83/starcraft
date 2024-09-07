@@ -98,7 +98,7 @@ model ShopTwo {
 }
 
 model BattleOne {
-  id Int @id
+  id Int @id @default(autoincrement())
 
   name   String
   image  String
@@ -112,7 +112,7 @@ model BattleOne {
 }
 
 model BattleTwo {
-  id Int @id
+  id Int @id @default(autoincrement())
 
   name   String
   image  String
