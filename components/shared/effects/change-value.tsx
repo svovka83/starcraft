@@ -5,30 +5,33 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 
 interface Props {
-  sign: "+" | "-";
+  sign: "+" | "-" | "";
   value: number;
-  key: number;
+  isAnimate: boolean;
   className?: string;
 }
 export const ChangeValue: React.FC<Props> = ({
   sign,
   value,
-  key,
+  isAnimate,
   className,
 }) => {
   return (
     <motion.span
       className={cn("text-xl font-bold", className)}
       initial={{ y: 35, opacity: 1 }}
-      animate={{
-        y: -10,
-        opacity: 0,
-        transition: { duration: 3, ease: "easeOut" },
-      }}
-      key={key}
+      animate={
+        isAnimate
+          ? {
+              y: -10,
+              opacity: 0,
+              transition: { duration: 3, ease: "easeOut" },
+            }
+          : {}
+      }
     >
-      {sign}
-      {value}
+      {isAnimate && sign}
+      {isAnimate && value}
     </motion.span>
   );
 };

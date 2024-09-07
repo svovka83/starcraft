@@ -34,3 +34,5 @@ export { SoundGame } from "./audio/sound-game";
 export { StartTurn } from "./effects/start-turn";
 export { ChooseModeButton } from "./start-page/start-buttons/choose-mode-button";
 export { ContinueButton } from "./start-page/start-buttons/continue-button";
+export { Explosion } from "./effects/explosion";
+export { DamageUnit } from "./effects/damage-unit";

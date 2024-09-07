@@ -1,9 +1,14 @@
 import React from "react";
 import { ChangeValue, Container, ShopModal } from "..";
 import { useGameStore } from "@/store/game";
+import { useTriggerAnimate } from "@/store/trigger-animations";
 
 export const ShopMainTwo: React.FC = () => {
   const [showModalShop, setShowModalShop] = React.useState(false);
+
+  const [isAnimateBossTwo, setAnimateBuyWorkerTwo] = useTriggerAnimate(
+    (state) => [state.isAnimateBossTwo, state.setAnimateBuyWorkerTwo]
+  );
 
   const [
     baseImage,
@@ -25,6 +30,11 @@ export const ShopMainTwo: React.FC = () => {
     state.createWorker,
   ]);
 
+  const buyWorker = () => {
+    addWorker();
+    setAnimateBuyWorkerTwo();
+  };
+
   return (
     <Container className="p-1">
       <div className="flex justify-between">
@@ -32,14 +42,14 @@ export const ShopMainTwo: React.FC = () => {
           <ChangeValue
             sign="-"
             value={attack}
-            key={bossLife}
+            isAnimate={isAnimateBossTwo}
             className="absolute -left-8 text-red-500"
           />
           <span className="w-[50px] h-[50px] text-center text-[36px] rounded-[50%] text-white bg-green-800 cursor-pointer">
             {bossLife}
           </span>
           <img
-            onClick={addWorker}
+            onClick={buyWorker}
             src={playerUnitsTwo[0]?.image}
             className="w-[50px] h-[50px] cursor-pointer scale-x-[-1]"
           />

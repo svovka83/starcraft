@@ -13,6 +13,7 @@ export const ExitGame: React.FC = () => {
     <Alert
       trigger={<Button className="w-full">EXIT GAME</Button>}
       title="Are you sure exit this game?"
+      text="Unsaved game will be lost. Save your game before exiting."
       toConfirm={exitGame}
     />
   );

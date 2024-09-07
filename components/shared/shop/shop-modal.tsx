@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Dialog, DialogContent, DialogTitle } from "../../ui";
 import { unitType, useGameStore } from "@/store/game";
 import { ShopContent } from "..";
+import { useTriggerAnimate } from "@/store/trigger-animations";
 
 interface Props {
   playerUnits: unitType[];
@@ -22,11 +23,16 @@ export const ShopModal: React.FC<Props> = ({
 }) => {
   const [activeUnit, setActiveUnit] = React.useState(0);
 
-  const addUnit = useGameStore((state) => state.buyUnit);
+  const [setAnimateBuyUnitOne, setAnimateBuyUnitTwo] = useTriggerAnimate(
+    (state) => [state.setAnimateBuyUnitOne, state.setAnimateBuyUnitTwo]
+  );
+
+  const [addUnit, turn] = useGameStore((state) => [state.buyUnit, state.turn]);
 
   const addUnitToArmy = (unitId: number) => {
     addUnit(unitId);
     setActiveUnit(0);
+    turn ? setAnimateBuyUnitOne(unitId) : setAnimateBuyUnitTwo(unitId);
     closeModal();
   };
 

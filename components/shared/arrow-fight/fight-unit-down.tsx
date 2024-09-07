@@ -3,25 +3,44 @@ import { cn } from "@/lib/utils";
 import { Button } from "../../ui";
 import { useGameStore } from "@/store/game";
 import { ArrowBigLeftDash, ArrowBigRightDash } from "lucide-react";
+import { useTriggerAnimate } from "@/store/trigger-animations";
 
 export const FightUnitDown = () => {
+  const setIsAnimateDamageFighterDown = useTriggerAnimate(
+    (state) => state.setIsAnimateDamageFighterDown
+  );
+
   const fight = useGameStore((state) => state.fightUnitDown);
   const turn = useGameStore((state) => state.turn);
-  const visibleOne = useGameStore((state) => state.one.fighterDown.health);
-  const visibleTwo = useGameStore((state) => state.two.fighterDown.health);
+  const healthOne = useGameStore((state) => state.one.fighterDown.health);
+  const healthTwo = useGameStore((state) => state.two.fighterDown.health);
+  const manaUnitOne = useGameStore((state) => state.one.fighterDown.mana);
+  const manaUnitTwo = useGameStore((state) => state.two.fighterDown.mana);
+  const manaOne = useGameStore((state) => state.one.mana);
+  const manaTwo = useGameStore((state) => state.two.mana);
+
+  const fightUnitDown = () => {
+    fight();
+    setIsAnimateDamageFighterDown();
+  };
 
   return (
     <div
       className={cn(
         "fixed top-[73vh] group",
         turn ? "right-[52%]" : "left-[52%]",
-        visibleOne > 0 && visibleTwo > 0 ? "visible" : "invisible"
+        healthOne > 0 &&
+          healthTwo > 0 &&
+          manaTwo >= manaUnitTwo &&
+          manaOne >= manaUnitOne
+          ? "visible"
+          : "invisible"
       )}
     >
       <Button
         variant="destructive"
         size="default"
-        onClick={fight}
+        onClick={fightUnitDown}
         className="text-slate-100 text-[18px] font-bold"
       >
         attack

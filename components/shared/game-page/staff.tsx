@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Container, SoundGame, StartTurn } from "..";
+import { Container, Explosion, SoundGame, StartTurn } from "..";
 import { Button } from "@/components/ui";
 import { useGameStore } from "@/store/game";
 import { motion } from "framer-motion";
@@ -35,6 +35,7 @@ export const Staff: React.FC = () => {
           end turn
         </Button>
       )}
+
       {gameMode === "PLAYER" && (
         <div className="absolute bottom-10 mx-20 text-3xl text-blue-700 font-bold">
           {turn ? "Player 1" : "Player 2"}

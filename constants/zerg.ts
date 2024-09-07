@@ -27,8 +27,8 @@ export const ZERG = [
     name: "gidral",
     image: "/images/imgZerg/gidral.png",
     mana: 1,
-    health: 2,
-    attack: 2,
+    health: 3,
+    attack: 1,
     price: 3,
   },
   {
@@ -37,6 +37,6 @@ export const ZERG = [
     mana: 2,
     health: 3,
     attack: 2,
-    price: 3,
+    price: 4,
   },
 ];

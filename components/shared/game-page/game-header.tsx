@@ -2,6 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useGameStore } from "@/store/game";
 import { ChangeValue, Menu } from "..";
+import { useTriggerAnimate } from "@/store/trigger-animations";
 
 interface Props {
   className?: string;
@@ -9,24 +10,47 @@ interface Props {
 
 export const GameHeader: React.FC<Props> = ({ className }) => {
   const [
+    isAnimateMineralOne,
+    isAnimateMineralTwo,
+    isAnimateBuyWorkerOne,
+    isAnimateBuyWorkerTwo,
+    isAnimateBuyUnitOne,
+    isAnimateBuyUnitTwo,
+    unitIdOne,
+    unitIdTwo,
+  ] = useTriggerAnimate((state) => [
+    state.isAnimateMineralOne,
+    state.isAnimateMineralTwo,
+    state.isAnimateBuyWorkerOne,
+    state.isAnimateBuyWorkerTwo,
+    state.isAnimateBuyUnitOne,
+    state.isAnimateBuyUnitTwo,
+    state.unitIdOne,
+    state.unitIdTwo,
+  ]);
+
+  const [
     manaOne,
     manaTwo,
     mineralOne,
     mineralTwo,
-    mineOne,
-    mineTwo,
     lengthOne,
     lengthTwo,
+    unitsOne,
+    unitsTwo,
   ] = useGameStore((state) => [
     state.one.mana,
     state.two.mana,
     state.one.minerals,
     state.two.minerals,
-    state.one.mine,
-    state.two.mine,
     state.one.worker.length,
     state.two.worker.length,
+    state.one.units,
+    state.two.units,
   ]);
+
+  const priceOne = unitsOne.find((unit) => unit.id === unitIdOne)?.price || 0;
+  const priceTwo = unitsTwo.find((unit) => unit.id === unitIdTwo)?.price || 0;
 
   return (
     <header
@@ -40,7 +64,19 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
         <ChangeValue
           sign="+"
           value={lengthOne}
-          key={mineOne}
+          isAnimate={isAnimateMineralOne}
+          className="absolute -top-2 -right-7 text-blue-700"
+        />
+        <ChangeValue
+          sign="-"
+          value={1}
+          isAnimate={isAnimateBuyWorkerOne}
+          className="absolute -top-2 -right-7 text-blue-700"
+        />
+        <ChangeValue
+          sign="-"
+          value={priceOne}
+          isAnimate={isAnimateBuyUnitOne}
           className="absolute -top-2 -right-7 text-blue-700"
         />
       </div>
@@ -54,7 +90,19 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
         <ChangeValue
           sign="+"
           value={lengthTwo}
-          key={mineTwo}
+          isAnimate={isAnimateMineralTwo}
+          className="absolute -top-2 -right-7 text-blue-700"
+        />
+        <ChangeValue
+          sign="-"
+          value={1}
+          isAnimate={isAnimateBuyWorkerTwo}
+          className="absolute -top-2 -right-7 text-blue-700"
+        />
+        <ChangeValue
+          sign="-"
+          value={priceTwo}
+          isAnimate={isAnimateBuyUnitTwo}
           className="absolute -top-2 -right-7 text-blue-700"
         />
       </div>

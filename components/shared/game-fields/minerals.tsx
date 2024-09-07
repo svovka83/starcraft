@@ -4,6 +4,7 @@ import { unitType } from "@/store/game";
 import { Container, Unit } from "..";
 import { useGameStore } from "@/store/game";
 import { Button } from "../../ui";
+import { useTriggerAnimate } from "@/store/trigger-animations";
 
 interface Props {
   worker: unitType[];
@@ -12,7 +13,16 @@ interface Props {
 }
 
 export const Minerals: React.FC<Props> = ({ worker, mine, reverse }) => {
+  const [setAnimateMineralOne, setAnimateMineralTwo] = useTriggerAnimate(
+    (state) => [state.setAnimateMineralOne, state.setAnimateMineralTwo]
+  );
+
   const addMinerals = useGameStore((state) => state.addMinerals);
+
+  const minerals = () => {
+    addMinerals();
+    reverse ? setAnimateMineralTwo() : setAnimateMineralOne();
+  };
 
   return (
     <Container className="flex flex-col justify-between">
@@ -47,7 +57,7 @@ export const Minerals: React.FC<Props> = ({ worker, mine, reverse }) => {
           variant="outline"
           size="sm"
           className="text-[20px] font-bold my-4"
-          onClick={addMinerals}
+          onClick={minerals}
           disabled={worker.length === 0}
         >
           <span>

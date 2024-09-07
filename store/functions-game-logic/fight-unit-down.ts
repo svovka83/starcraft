@@ -1,5 +1,5 @@
-import { manaCounter } from "@/functions";
 import { GameState } from "../game";
+import { manaCounter } from "@/functions";
 
 export function fightUnitDown(state: GameState) {
   const player = state.turn ? state.one : state.two;

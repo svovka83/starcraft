@@ -7,18 +7,30 @@ import { ArrowBigLeftDash, ArrowBigRightDash } from "lucide-react";
 export const FightWorker = () => {
   const fight = useGameStore((state) => state.fightWorker);
   const turn = useGameStore((state) => state.turn);
-  const visibleOne = useGameStore((state) => state.one.fighterDown.health);
-  const visibleTwo = useGameStore((state) => state.two.fighterDown.health);
+  const manaUnitOne = useGameStore((state) => state.one.fighterDown.mana);
+  const manaUnitTwo = useGameStore((state) => state.two.fighterDown.mana);
+  const healthOne = useGameStore((state) => state.one.fighterDown.health);
+  const healthTwo = useGameStore((state) => state.two.fighterDown.health);
   const workersOne = useGameStore((state) => state.one.worker.length);
   const workersTwo = useGameStore((state) => state.two.worker.length);
+  const manaOne = useGameStore((state) => state.one.mana);
+  const manaTwo = useGameStore((state) => state.two.mana);
 
   return (
     <div
       className={cn(
         "fixed top-[73vh] group",
         turn ? "right-[52%]" : "left-[52%]",
-        (visibleOne && !visibleTwo && turn && workersTwo !== 0) ||
-          (!visibleOne && visibleTwo && !turn && workersOne !== 0)
+        (healthOne &&
+          !healthTwo &&
+          turn &&
+          workersTwo !== 0 &&
+          manaOne >= manaUnitOne) ||
+          (!healthOne &&
+            healthTwo &&
+            !turn &&
+            workersOne !== 0 &&
+            manaTwo >= manaUnitTwo)
           ? "visible"
           : "invisible"
       )}
