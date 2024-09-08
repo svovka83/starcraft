@@ -1,5 +1,6 @@
 import { GameState } from "../game";
 import { manaCounter } from "@/functions";
+import { useTriggerAnimate } from "@/store/trigger-animations";
 
 export function fightUnitUp(state: GameState) {
   const player = state.turn ? state.one : state.two;
@@ -14,6 +15,10 @@ export function fightUnitUp(state: GameState) {
     opponentHealth <= 0
       ? {}
       : { ...opponent.fighterUp, health: opponentHealth };
+
+  const animateDamageFighterUp =
+    useTriggerAnimate.getState().setAnimateDamageFighterUp;
+  animateDamageFighterUp();
 
   return {
     ...state,

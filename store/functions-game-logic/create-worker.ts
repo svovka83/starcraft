@@ -1,5 +1,6 @@
 import { GameState } from "../game";
 import { manaCounter } from "@/functions";
+import { useTriggerAnimate } from "@/store/trigger-animations";
 
 export function createWorker(state: GameState) {
   const player = state.turn ? state.one : state.two;
@@ -12,6 +13,11 @@ export function createWorker(state: GameState) {
   if (player.minerals === 0) return state;
 
   player.minerals -= 1;
+
+  const animateBuyWorker = state.turn
+    ? useTriggerAnimate.getState().setAnimateBuyWorkerOne
+    : useTriggerAnimate.getState().setAnimateBuyWorkerTwo;
+    animateBuyWorker();
 
   return {
     [state.turn ? "one" : "two"]: {

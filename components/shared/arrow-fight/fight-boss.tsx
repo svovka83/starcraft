@@ -3,17 +3,9 @@ import { cn } from "@/lib/utils";
 import { Button } from "../../ui";
 import { useGameStore } from "@/store/game";
 import { ArrowBigLeftDash, ArrowBigRightDash } from "lucide-react";
-import { useTriggerAnimate } from "@/store/trigger-animations";
 
 export const FightBoss = () => {
   const [disabledFight, setDisabledFight] = React.useState(false);
-
-  const setAnimateBossOne = useTriggerAnimate(
-    (state) => state.setAnimateBossOne
-  );
-  const setAnimateBossTwo = useTriggerAnimate(
-    (state) => state.setAnimateBossTwo
-  );
 
   const fight = useGameStore((state) => state.fightBoss);
   const turn = useGameStore((state) => state.turn);
@@ -27,7 +19,6 @@ export const FightBoss = () => {
   const attackBoss = () => {
     setDisabledFight(true);
     fight();
-    turn ? setAnimateBossTwo() : setAnimateBossOne();
     setTimeout(() => {
       setDisabledFight(false);
     }, 3000);

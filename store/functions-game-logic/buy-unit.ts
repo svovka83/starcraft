@@ -1,6 +1,7 @@
 import { GameState } from "../game";
 import { manaCounter } from "@/functions";
 import lodash from "lodash";
+import { useTriggerAnimate } from "@/store/trigger-animations";
 
 export function byUnit(state: GameState, unitId: number) {
   const player = state.turn ? state.one : state.two;
@@ -17,6 +18,11 @@ export function byUnit(state: GameState, unitId: number) {
 
   const newId = lodash.random(0, 1000000);
   const newUnit = { ...addUnit, id: newId };
+
+  const animateBuyUnit = state.turn
+    ? useTriggerAnimate.getState().setAnimateBuyUnitOne
+    : useTriggerAnimate.getState().setAnimateBuyUnitTwo;
+  animateBuyUnit(unitId);
 
   return {
     [state.turn ? "one" : "two"]: {

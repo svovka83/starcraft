@@ -3,8 +3,8 @@ import { create } from "zustand";
 interface TriggerAnimateState {
   isAnimateDamageFighterUp: boolean;
   isAnimateDamageFighterDown: boolean;
-  isAnimateBossOne: boolean;
-  isAnimateBossTwo: boolean;
+  isAnimateDamageBossOne: boolean;
+  isAnimateDamageBossTwo: boolean;
   isAnimateMineralOne: boolean;
   isAnimateMineralTwo: boolean;
   isAnimateBuyWorkerOne: boolean;
@@ -13,10 +13,10 @@ interface TriggerAnimateState {
   isAnimateBuyUnitTwo: boolean;
   unitIdOne: number;
   unitIdTwo: number;
-  setIsAnimateDamageFighterUp: () => void;
-  setIsAnimateDamageFighterDown: () => void;
-  setAnimateBossOne: () => void;
-  setAnimateBossTwo: () => void;
+  setAnimateDamageFighterUp: () => void;
+  setAnimateDamageFighterDown: () => void;
+  setAnimateDamageBossOne: () => void;
+  setAnimateDamageBossTwo: () => void;
   setAnimateMineralOne: () => void;
   setAnimateMineralTwo: () => void;
   setAnimateBuyWorkerOne: () => void;
@@ -28,8 +28,8 @@ interface TriggerAnimateState {
 export const useTriggerAnimate = create<TriggerAnimateState>((set) => ({
   isAnimateDamageFighterUp: false,
   isAnimateDamageFighterDown: false,
-  isAnimateBossOne: false,
-  isAnimateBossTwo: false,
+  isAnimateDamageBossOne: false,
+  isAnimateDamageBossTwo: false,
   isAnimateMineralOne: false,
   isAnimateMineralTwo: false,
   isAnimateBuyWorkerOne: false,
@@ -38,21 +38,21 @@ export const useTriggerAnimate = create<TriggerAnimateState>((set) => ({
   isAnimateBuyUnitTwo: false,
   unitIdOne: 0,
   unitIdTwo: 0,
-  setIsAnimateDamageFighterUp: () => {
+  setAnimateDamageFighterUp: () => {
     set({ isAnimateDamageFighterUp: true });
     setTimeout(() => set({ isAnimateDamageFighterUp: false }), 3000);
   },
-  setIsAnimateDamageFighterDown: () => {
+  setAnimateDamageFighterDown: () => {
     set({ isAnimateDamageFighterDown: true });
     setTimeout(() => set({ isAnimateDamageFighterDown: false }), 3000);
   },
-  setAnimateBossOne: () => {
-    set({ isAnimateBossOne: true });
-    setTimeout(() => set({ isAnimateBossOne: false }), 3000);
+  setAnimateDamageBossOne: () => {
+    set({ isAnimateDamageBossOne: true });
+    setTimeout(() => set({ isAnimateDamageBossOne: false }), 3000);
   },
-  setAnimateBossTwo: () => {
-    set({ isAnimateBossTwo: true });
-    setTimeout(() => set({ isAnimateBossTwo: false }), 3000);
+  setAnimateDamageBossTwo: () => {
+    set({ isAnimateDamageBossTwo: true });
+    setTimeout(() => set({ isAnimateDamageBossTwo: false }), 3000);
   },
   setAnimateMineralOne: () => {
     set({ isAnimateMineralOne: true });

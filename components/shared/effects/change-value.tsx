@@ -3,6 +3,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { coin_drop } from "@/constants/sounds";
 
 interface Props {
   sign: "+" | "-" | "";
@@ -16,6 +17,10 @@ export const ChangeValue: React.FC<Props> = ({
   isAnimate,
   className,
 }) => {
+  if (isAnimate) {
+    coin_drop.play();
+  }
+
   return (
     <motion.span
       className={cn("text-xl font-bold", className)}

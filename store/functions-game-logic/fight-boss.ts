@@ -1,5 +1,6 @@
-import { manaCounter } from "@/functions";
 import { GameState } from "../game";
+import { manaCounter } from "@/functions";
+import { useTriggerAnimate } from "@/store/trigger-animations";
 
 export function fightBoss(state: GameState) {
   const player = state.turn ? state.one : state.two;
@@ -10,6 +11,11 @@ export function fightBoss(state: GameState) {
 
   const bossHealth = opponent.boss - player.fighterUp.attack;
   const isBoss = bossHealth <= 0 ? 0 : bossHealth;
+
+  const damageBoss = state.turn
+    ? useTriggerAnimate.getState().setAnimateDamageBossTwo
+    : useTriggerAnimate.getState().setAnimateDamageBossOne;
+  damageBoss();
 
   return {
     ...state,
