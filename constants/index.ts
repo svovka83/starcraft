@@ -8,4 +8,7 @@ export {
   coin_drop,
   explosion_unit,
   move,
+  welcome,
+  welcome_off,
+  wrong,
 } from "./sounds";

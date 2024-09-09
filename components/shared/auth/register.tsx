@@ -10,6 +10,7 @@ import { FormInput } from "..";
 import { register } from "@/service/user";
 import toast from "react-hot-toast";
 import { useUserStore } from "@/store/user";
+import { welcome, wrong } from "@/constants";
 
 interface Props {
   openRegister: boolean;
@@ -29,17 +30,36 @@ export const Register: React.FC<Props> = ({
     resolver: zodResolver(formRegisterSchema),
   });
 
+  const [loading, onLoading, offLoading] = useUserStore((state) => [
+    state.loading,
+    state.onLoading,
+    state.offLoading,
+  ]);
+
   const loginUser = useUserStore((state) => state.loginUser);
 
   const onSubmit = (data: FormRegister) => {
-    register(data.username, data.password).then((data) => {
-      loginUser(data.username);
-      setOpenRegister(false);
-      toast.success(`Welcome to Starcraft ${data.username} !!!`, {
-        duration: 5000,
-        icon: "👏",
+    onLoading();
+    register(data.username, data.password)
+      .then((data) => {
+        welcome.play();
+        loginUser(data.username);
+        setOpenRegister(false);
+        offLoading();
+        toast.success(`Welcome to Starcraft ${data.username} !!!`, {
+          duration: 5000,
+          icon: "👏",
+        });
+      })
+      .catch((error) => {
+        console.log("[REGISTER]", error.response.data.message);
+        wrong.play();
+        offLoading();
+        toast.error("Server error. Can not register.", {
+          duration: 3000,
+          icon: "😢",
+        });
       });
-    });
   };
 
   return (
@@ -66,7 +86,7 @@ export const Register: React.FC<Props> = ({
               type="password"
               errorMessage={form.formState.errors.confirmPassword?.message}
             />
-            <Button type="submit" className="w-full mt-4">
+            <Button type="submit" loading={loading} className="w-full mt-4">
               REGISTER
             </Button>
           </form>

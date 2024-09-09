@@ -10,6 +10,7 @@ import { FormInput } from "..";
 import { login } from "@/service/user";
 import toast from "react-hot-toast";
 import { useUserStore } from "@/store/user";
+import { welcome, wrong } from "@/constants";
 
 interface Props {
   openLogin: boolean;
@@ -30,13 +31,21 @@ export const Login: React.FC<Props> = ({
     resolver: zodResolver(formLoginSchema),
   });
 
+  const [loading, onLoading, offLoading] = useUserStore((state) => [
+    state.loading,
+    state.onLoading,
+    state.offLoading,
+  ]);
   const loginUser = useUserStore((state) => state.loginUser);
 
   const onSubmit = (data: FormLogin) => {
+    onLoading();
     login(data.username, data.password)
       .then((data) => {
+        welcome.play();
         loginUser(data.username);
         setOpenLogin(false);
+        offLoading();
         toast.success(`Welcome to Starcraft ${data.username} !!!`, {
           duration: 5000,
           icon: "👏",
@@ -44,6 +53,8 @@ export const Login: React.FC<Props> = ({
       })
       .catch((error) => {
         console.log("[LOGIN]", error.response.data.message);
+        wrong.play();
+        offLoading();
         toast.error(error.response.data.message, {
           duration: 3000,
           icon: "😢",
@@ -69,7 +80,7 @@ export const Login: React.FC<Props> = ({
               type="password"
               errorMessage={form.formState.errors.password?.message}
             />
-            <Button type="submit" className="w-full mt-4">
+            <Button type="submit" loading={loading} className="w-full mt-4">
               LOGIN
             </Button>
           </form>

@@ -3,14 +3,18 @@ import { user } from "@/service/user";
 
 interface UserState {
   username: string;
+  loading: boolean;
   error?: string;
   getUser: () => Promise<void>;
   loginUser: (username: string) => void;
   logoutUser: () => void;
+  onLoading: () => void;
+  offLoading: () => void;
 }
 
 export const useUserStore = create<UserState>((set) => ({
   username: "",
+  loading: false,
   error: "",
   getUser: async () => {
     try {
@@ -26,5 +30,11 @@ export const useUserStore = create<UserState>((set) => ({
   },
   logoutUser: () => {
     set({ username: "" });
+  },
+  onLoading: () => {
+    set({ loading: true });
+  },
+  offLoading: () => {
+    set({ loading: false });
   },
 }));

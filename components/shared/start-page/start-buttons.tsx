@@ -11,6 +11,7 @@ import {
 } from "..";
 import { removeToken } from "@/app/actions";
 import { useUserStore } from "@/store/user";
+import { button_click, welcome_off } from "@/constants";
 
 interface Props {
   nameOne: string;
@@ -31,9 +32,13 @@ export const StartButtons: React.FC<Props> = ({
   const isAuth = useAuth(openLogin, openRegister);
   const isGame = useGame(openLogin);
 
-  const login = () => setOpenLogin(true);
+  const login = () => {
+    setOpenLogin(true);
+    button_click.play();
+  };
   const logout = () =>
     removeToken().then(() => {
+      welcome_off.play();
       logoutUser();
       setOpenLogin(true);
     });
@@ -77,6 +82,7 @@ export const StartButtons: React.FC<Props> = ({
         openLogin={openLogin}
         setOpenLogin={setOpenLogin}
         showRegister={() => {
+          button_click.play();
           setOpenLogin(false);
           setOpenRegister(true);
         }}
