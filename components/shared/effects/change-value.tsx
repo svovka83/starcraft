@@ -3,22 +3,23 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { coin_drop } from "@/constants/sounds";
 
 interface Props {
   sign: "+" | "-" | "";
   value: number;
+  effect?: Howl;
   isAnimate: boolean;
   className?: string;
 }
 export const ChangeValue: React.FC<Props> = ({
   sign,
   value,
+  effect,
   isAnimate,
   className,
 }) => {
-  if (isAnimate) {
-    coin_drop.play();
+  if (isAnimate && effect) {
+    effect.play();
   }
 
   return (

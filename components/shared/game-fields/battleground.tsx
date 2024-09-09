@@ -2,6 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { unitType, useGameStore } from "@/store/game";
 import { ChooseUnitSide, Container, Unit } from "..";
+import { button_click } from "@/constants";
 
 interface Props {
   battlegroundUnits: unitType[];
@@ -15,6 +16,11 @@ export const Battleground: React.FC<Props> = ({
   reverse,
 }) => {
   const [activeUnit, setActiveUnit] = React.useState(0);
+
+  const unitConfig = (id: number) => {
+    setActiveUnit(id);
+    button_click.play();
+  };
 
   const [moveUnitUp, moveUnitDown] = useGameStore((state) => [
     state.moveUnitUp,
@@ -42,7 +48,7 @@ export const Battleground: React.FC<Props> = ({
                 mana={mana}
                 attack={attack}
                 price={price}
-                setActiveUnit={() => setActiveUnit(id!)}
+                setActiveUnit={() => unitConfig(id!)}
                 active={activeUnit === id}
                 reverse={reverse}
               />

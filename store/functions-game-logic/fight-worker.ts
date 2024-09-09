@@ -1,5 +1,6 @@
 import { manaCounter } from "@/functions";
 import { GameState } from "../game";
+import { useTriggerAnimate } from "../trigger-animations";
 
 export const fightWorker = (state: GameState) => {
   const player = state.turn ? state.one : state.two;
@@ -11,6 +12,17 @@ export const fightWorker = (state: GameState) => {
   if (opponent.worker.length === 0) return state;
 
   opponent.worker.pop?.();
+
+  if (!state.turn) {
+    const animateDamageWorkerOne =
+      useTriggerAnimate.getState().setAnimateDamageWorkerOne;
+    animateDamageWorkerOne();
+  }
+  if (state.turn) {
+    const animateDamageWorkerTwo =
+      useTriggerAnimate.getState().setAnimateDamageWorkerTwo;
+    animateDamageWorkerTwo();
+  }
 
   return {
     ...state,

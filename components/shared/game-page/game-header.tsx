@@ -1,14 +1,10 @@
 import React from "react";
-import { cn } from "@/lib/utils";
 import { useGameStore } from "@/store/game";
 import { ChangeValue, Menu } from "..";
 import { useTriggerAnimate } from "@/store/trigger-animations";
+import { coin_drop } from "@/constants";
 
-interface Props {
-  className?: string;
-}
-
-export const GameHeader: React.FC<Props> = ({ className }) => {
+export const GameHeader: React.FC = () => {
   const [
     isAnimateMineralOne,
     isAnimateMineralTwo,
@@ -53,31 +49,29 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
   const priceTwo = unitsTwo.find((unit) => unit.id === unitIdTwo)?.price || 0;
 
   return (
-    <header
-      className={cn(
-        "border h-[10vh] flex items-center justify-between text-[24px] font-extrabold px-2 shadow-lg shadow-black/10 z-50",
-        className
-      )}
-    >
+    <header className="border h-[10vh] flex items-center justify-between text-[24px] font-extrabold px-2 shadow-lg shadow-black/10 z-50">
       <div className="relative mr-6">
         <span>Minerals: {mineralOne}</span>
         <ChangeValue
           sign="+"
           value={lengthOne}
+          effect={coin_drop}
           isAnimate={isAnimateMineralOne}
           className="absolute -top-2 -right-7 text-blue-700"
         />
         <ChangeValue
           sign="-"
           value={1}
+          effect={coin_drop}
           isAnimate={isAnimateBuyWorkerOne}
-          className="absolute -top-2 -right-7 text-blue-700"
+          className="absolute -top-2 -right-7 text-red-500"
         />
         <ChangeValue
           sign="-"
           value={priceOne}
+          effect={coin_drop}
           isAnimate={isAnimateBuyUnitOne}
-          className="absolute -top-2 -right-7 text-blue-700"
+          className="absolute -top-2 -right-7 text-red-500"
         />
       </div>
       <span>ManaOne: {manaOne}</span>
@@ -90,20 +84,23 @@ export const GameHeader: React.FC<Props> = ({ className }) => {
         <ChangeValue
           sign="+"
           value={lengthTwo}
+          effect={coin_drop}
           isAnimate={isAnimateMineralTwo}
           className="absolute -top-2 -right-7 text-blue-700"
         />
         <ChangeValue
           sign="-"
           value={1}
+          effect={coin_drop}
           isAnimate={isAnimateBuyWorkerTwo}
-          className="absolute -top-2 -right-7 text-blue-700"
+          className="absolute -top-2 -right-7 text-red-500"
         />
         <ChangeValue
           sign="-"
           value={priceTwo}
+          effect={coin_drop}
           isAnimate={isAnimateBuyUnitTwo}
-          className="absolute -top-2 -right-7 text-blue-700"
+          className="absolute -top-2 -right-7 text-red-500"
         />
       </div>
     </header>

@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import Image, { StaticImageData } from "next/image";
 import { infoType, unitType } from "@/store/game";
-import { button_click_1 } from "@/constants";
+import { button_click } from "@/constants";
 
 interface Props {
   nameRace: string;
@@ -40,7 +40,7 @@ export const Race: React.FC<Props> = ({
       className="cursor-pointer"
       onClick={() => {
         setActive(nameRace);
-        button_click_1.play();
+        button_click.play();
         if (currentPlayer === "playerOne") {
           setInfoOne(infoRace);
           setPlayerOne(race);

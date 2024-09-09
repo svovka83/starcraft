@@ -1,5 +1,6 @@
 import React from "react";
 import { ChangeValue, Explosion } from "..";
+import { explosion_unit } from "@/constants";
 
 interface Props {
   turn: boolean;
@@ -26,7 +27,7 @@ export const DamageUnit: React.FC<Props> = ({
             isAnimate={isAnimateDamage}
             className="absolute right-20 top-0 text-red-500"
           />
-          <Explosion isExploding={isAnimateDamage} />
+          <Explosion isAnimate={isAnimateDamage} effect={explosion_unit} />
         </>
       )}
       {!turn && !reverse && (
@@ -37,7 +38,7 @@ export const DamageUnit: React.FC<Props> = ({
             isAnimate={isAnimateDamage}
             className="absolute left-20 top-0 text-red-500"
           />
-          <Explosion isExploding={isAnimateDamage} />
+          <Explosion isAnimate={isAnimateDamage} effect={explosion_unit} />
         </>
       )}
     </>

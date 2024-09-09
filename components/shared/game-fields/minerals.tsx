@@ -1,9 +1,11 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { unitType } from "@/store/game";
-import { Container, Unit } from "..";
+import { Container, Explosion, Unit } from "..";
 import { useGameStore } from "@/store/game";
 import { Button } from "../../ui";
+import { useTriggerAnimate } from "@/store/trigger-animations";
+import { explosion_unit } from "@/constants";
 
 interface Props {
   worker: unitType[];
@@ -14,13 +16,20 @@ interface Props {
 export const Minerals: React.FC<Props> = ({ worker, mine, reverse }) => {
   const addMinerals = useGameStore((state) => state.addMinerals);
 
-  const minerals = () => {
-    addMinerals();
-  };
+  const isAnimateDamageWorkerOne = useTriggerAnimate(
+    (state) => state.isAnimateDamageWorkerOne
+  );
+  const isAnimateDamageWorkerTwo = useTriggerAnimate(
+    (state) => state.isAnimateDamageWorkerTwo
+  );
 
   return (
     <Container className="flex flex-col justify-between">
-      <div className={cn("flex flex-row-4 gap-2", { "justify-end": !reverse })}>
+      <div
+        className={cn("relative flex flex-row-4 gap-2", {
+          "justify-end": !reverse,
+        })}
+      >
         {worker.map((worker, index) => (
           <Unit
             key={index}
@@ -33,6 +42,20 @@ export const Minerals: React.FC<Props> = ({ worker, mine, reverse }) => {
             reverse={reverse}
           />
         ))}
+        {!reverse && (
+          <Explosion
+            isAnimate={isAnimateDamageWorkerOne}
+            effect={explosion_unit}
+            className={cn("top-8 right-5", { "left-5": reverse })}
+          />
+        )}
+        {reverse && (
+          <Explosion
+            isAnimate={isAnimateDamageWorkerTwo}
+            effect={explosion_unit}
+            className={cn("top-8 right-5", { "left-5": reverse })}
+          />
+        )}
       </div>
       <div className="flex items-center justify-around">
         <Button
@@ -51,7 +74,7 @@ export const Minerals: React.FC<Props> = ({ worker, mine, reverse }) => {
           variant="outline"
           size="sm"
           className="text-[20px] font-bold my-4"
-          onClick={minerals}
+          onClick={addMinerals}
           disabled={worker.length === 0}
         >
           <span>

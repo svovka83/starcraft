@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Container, Explosion, SoundGame, StartTurn } from "..";
+import { Container, SoundGame, StartTurn } from "..";
 import { Button } from "@/components/ui";
 import { useGameStore } from "@/store/game";
 import { motion } from "framer-motion";
@@ -21,7 +21,7 @@ export const Staff: React.FC = () => {
   if (!turn && gameMode === "COMPUTER") {
     setTimeout(() => {
       logicAI();
-    }, 3000);
+    }, 5000);
   }
 
   return (

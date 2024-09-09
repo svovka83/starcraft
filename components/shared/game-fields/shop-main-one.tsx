@@ -1,7 +1,8 @@
 import React from "react";
-import { ChangeValue, Container, ShopModal } from "..";
+import { ChangeValue, Container, Explosion, ShopModal } from "..";
 import { useGameStore } from "@/store/game";
 import { useTriggerAnimate } from "@/store/trigger-animations";
+import { explosion_unit } from "@/constants";
 
 export const ShopMainOne: React.FC = () => {
   const [showModalShop, setShowModalShop] = React.useState(false);
@@ -31,12 +32,13 @@ export const ShopMainOne: React.FC = () => {
   return (
     <Container className="p-1">
       <div className="flex justify-between">
-        <div>
+        <div className="relative">
           <img
             onClick={() => setShowModalShop(true)}
             src={baseImage}
             className="h-[24vh] px-2 cursor-pointer"
           />
+          <Explosion isAnimate={isAnimateDamageBossOne} effect={explosion_unit} className="absolute top-16 left-24" />
         </div>
         <div className="relative float-right flex flex-col justify-between">
           <ChangeValue
