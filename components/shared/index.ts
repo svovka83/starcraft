@@ -41,3 +41,4 @@ export { UserButton } from "./start-page/choose-races/user-button";
 export { OpponentButton } from "./start-page/choose-races/opponent-button";
 export { MoveUnitUp } from "./effects/move-unit-up";
 export { MoveUnitDown } from "./effects/move-unit-down";
+export { GameBackground } from "./game-page/game-background";

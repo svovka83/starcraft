@@ -20,7 +20,7 @@ export const SoundGame: React.FC = () => {
 
   return (
     <Button
-      className="absolute bottom-0 right-0 text-white z-50"
+      className="absolute bottom-28 right-4 text-white z-50"
       onClick={playSound}
     >
       <audio ref={audioRef} loop>

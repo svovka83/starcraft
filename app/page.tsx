@@ -1,6 +1,6 @@
 import { HomeHeader, ChooseRaces } from "@/components/shared";
 import Image from "next/image";
-import craft from "/images/utils/mainImage.jpg";
+import craft from "/images/utils/main_background.jpg";
 
 export default function Home() {
   return (

@@ -16,6 +16,7 @@ import {
   FightUnitDown,
   FightWorker,
   GameOver,
+  GameBackground,
 } from "@/components/shared";
 import { useGameStore } from "@/store/game";
 import { useRouter } from "next/navigation";
@@ -80,30 +81,33 @@ export default function Game() {
     <>
       <div>
         <GameHeader />
-        <div className="flex h-[27vh] border">
-          <ShopMainOne />
-          <FighterUp fighter={fighterOneUp} reverse={false} />
-          <FighterUp fighter={fighterTwoUp} reverse={true} />
-          <ShopMainTwo />
-        </div>
-        <div className="flex h-[36vh] border">
-          <Battleground
-            battlegroundUnits={battlegroundOneUnits}
-            mana={manaOne}
-            reverse={false}
-          />
-          <Staff />
-          <Battleground
-            battlegroundUnits={battlegroundTwoUnits}
-            mana={manaTwo}
-            reverse={true}
-          />
-        </div>
-        <div className="flex h-[27vh] border">
-          <Minerals worker={workerOne} mine={mineralsOne} reverse={false} />
-          <FighterDown fighter={fighterOneDown} reverse={false} />
-          <FighterDown fighter={fighterTwoDown} reverse={true} />
-          <Minerals worker={workerTwo} mine={mineralsTwo} reverse={true} />
+        <div>
+          <div className="flex h-[27vh] border">
+            <ShopMainOne />
+            <FighterUp fighter={fighterOneUp} reverse={false} />
+            <FighterUp fighter={fighterTwoUp} reverse={true} />
+            <ShopMainTwo />
+          </div>
+          <div className="flex h-[36vh] border">
+            <Battleground
+              battlegroundUnits={battlegroundOneUnits}
+              mana={manaOne}
+              reverse={false}
+            />
+            <Staff />
+            <Battleground
+              battlegroundUnits={battlegroundTwoUnits}
+              mana={manaTwo}
+              reverse={true}
+            />
+          </div>
+          <div className="flex h-[27vh] border">
+            <Minerals worker={workerOne} mine={mineralsOne} reverse={false} />
+            <FighterDown fighter={fighterOneDown} reverse={false} />
+            <FighterDown fighter={fighterTwoDown} reverse={true} />
+            <Minerals worker={workerTwo} mine={mineralsTwo} reverse={true} />
+          </div>
+          <GameBackground />
         </div>
         <HideTurn />
         <FightUnitUp />

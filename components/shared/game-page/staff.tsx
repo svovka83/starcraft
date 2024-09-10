@@ -37,18 +37,18 @@ export const Staff: React.FC = () => {
       )}
 
       {gameMode === "PLAYER" && (
-        <div className="absolute bottom-10 mx-20 text-3xl text-blue-700 font-bold">
+        <div className="absolute bottom-10 mx-20 text-3xl text-white font-bold">
           {turn ? "Player 1" : "Player 2"}
         </div>
       )}
       {gameMode === "COMPUTER" && (
-        <div className="absolute bottom-10 mx-20 text-3xl text-blue-700 font-bold">
+        <div className="absolute bottom-10 mx-20 text-3xl text-white font-bold">
           {turn ? "Player" : "Computer"}
         </div>
       )}
 
       <motion.div
-        className="absolute bottom-2 mx-4 text-2xl text-blue-700 font-bold"
+        className="absolute bottom-2 mx-4 text-2xl text-white font-bold"
         initial={{ opacity: 0, x: 100 }}
         animate={{ opacity: 1, x: 0, transition: { duration: 1 } }}
         key={message}
@@ -56,7 +56,7 @@ export const Staff: React.FC = () => {
         {message}
       </motion.div>
 
-      {/* <SoundGame /> */}
+      <SoundGame />
     </Container>
   );
 };
