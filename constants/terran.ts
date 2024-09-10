@@ -26,9 +26,9 @@ export const TERRAN = [
   {
     name: "fireman",
     image: "/images/imgTerran/fireman.png",
-    mana: 2,
+    mana: 1,
     health: 4,
-    attack: 2,
+    attack: 1,
     price: 5,
   },
   {

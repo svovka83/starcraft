@@ -34,8 +34,8 @@ export const ZERG = [
   {
     name: "mutalisk",
     image: "/images/imgZerg/mutalisk.png",
-    mana: 2,
-    health: 4,
+    mana: 1,
+    health: 3,
     attack: 2,
     price: 5,
   },

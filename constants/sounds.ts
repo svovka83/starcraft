@@ -11,7 +11,6 @@ export const button_click = new Howl({
 
 export const coin_drop = new Howl({
   src: ["sounds/coin-drop.mp3"],
-  volume: 1,
 });
 
 export const explosion_unit = new Howl({

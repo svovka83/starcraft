@@ -17,15 +17,15 @@ export const PROTOSS = [
   },
   {
     name: "cyber",
-    image: "/images/imgProtoss/stalker.png",
-    mana: 2,
-    health: 3,
+    image: "/images/imgProtoss/cyber.png",
+    mana: 1,
+    health: 2,
     attack: 2,
     price: 4,
   },
   {
     name: "stalker",
-    image: "/images/imgProtoss/colossus.png",
+    image: "/images/imgProtoss/stalker.png",
     mana: 2,
     health: 5,
     attack: 2,
@@ -33,10 +33,10 @@ export const PROTOSS = [
   },
   {
     name: "robotic",
-    image: "/images/imgProtoss/carrier.png",
+    image: "/images/imgProtoss/robotic.png",
     mana: 2,
-    health: 6,
-    attack: 3,
+    health: 5,
+    attack: 4,
     price: 8,
   },
 ];
