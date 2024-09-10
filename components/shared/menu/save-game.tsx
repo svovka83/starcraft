@@ -8,6 +8,7 @@ interface Props {
 }
 
 export const SaveGame: React.FC<Props> = ({ setOpenMenu }) => {
+  const isLoading = useGameStore((state) => state.isLoading);
   const getSaveGame = useGameStore((state) => state.getSaveGame);
 
   const saveGame = () => {
@@ -27,5 +28,9 @@ export const SaveGame: React.FC<Props> = ({ setOpenMenu }) => {
         });
       });
   };
-  return <Button onClick={saveGame}>SAVE GAME</Button>;
+  return (
+    <Button loading={isLoading} onClick={saveGame}>
+      SAVE GAME
+    </Button>
+  );
 };

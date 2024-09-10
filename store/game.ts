@@ -50,6 +50,7 @@ export interface GameState {
   turn: boolean;
   message: string;
   gameMode: GameMode;
+  isLoading: boolean;
   endTurn: () => void;
   setCreateGame: (
     infoOne: infoType,
@@ -105,6 +106,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   turn: true,
   message: "Ok! let's play!",
   gameMode: "COMPUTER",
+  isLoading: false,
   endTurn: () => set((state) => endTurn(state)),
   setCreateGame: async (
     infoOne: infoType,
@@ -191,13 +193,17 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
   getSaveGame: async () => {
     try {
+      set({ isLoading: true });
       const one = get().one;
       const two = get().two;
       const turn = get().turn;
       const data = await saveGame(one, two, turn);
       return data;
     } catch (error) {
+      set({ isLoading: false });
       console.log(error);
+    } finally {
+      set({ isLoading: false });
     }
   },
   chooseOne: (nameOne: string) => {
