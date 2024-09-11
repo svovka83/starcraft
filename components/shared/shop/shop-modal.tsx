@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Dialog, DialogContent, DialogTitle } from "../../ui";
 import { unitType, useGameStore } from "@/store/game";
 import { ShopContent } from "..";
+import { button_click } from "@/constants";
 
 interface Props {
   playerUnits: unitType[];
@@ -29,6 +30,12 @@ export const ShopModal: React.FC<Props> = ({
     setActiveUnit(0);
     closeModal();
   };
+
+  if (showModalShop) button_click.play();
+
+  React.useEffect(() => {
+    if (!showModalShop) setActiveUnit(0);
+  }, [showModalShop]);
 
   return (
     <Dialog open={showModalShop} onOpenChange={closeModal}>

@@ -78,44 +78,43 @@ export default function Game() {
   }, []);
 
   return (
-    <>
+    <div>
+      <GameHeader />
       <div>
-        <GameHeader />
-        <div>
-          <div className="flex h-[27vh] border">
-            <ShopMainOne />
-            <FighterUp fighter={fighterOneUp} reverse={false} />
-            <FighterUp fighter={fighterTwoUp} reverse={true} />
-            <ShopMainTwo />
-          </div>
-          <div className="flex h-[36vh] border">
-            <Battleground
-              battlegroundUnits={battlegroundOneUnits}
-              mana={manaOne}
-              reverse={false}
-            />
-            <Staff />
-            <Battleground
-              battlegroundUnits={battlegroundTwoUnits}
-              mana={manaTwo}
-              reverse={true}
-            />
-          </div>
-          <div className="flex h-[27vh] border">
-            <Minerals worker={workerOne} mine={mineralsOne} reverse={false} />
-            <FighterDown fighter={fighterOneDown} reverse={false} />
-            <FighterDown fighter={fighterTwoDown} reverse={true} />
-            <Minerals worker={workerTwo} mine={mineralsTwo} reverse={true} />
-          </div>
-          <GameBackground />
+        <div className="flex h-[27vh] border">
+          <ShopMainOne />
+          <FighterUp fighter={fighterOneUp} reverse={false} />
+          <FighterUp fighter={fighterTwoUp} reverse={true} />
+          <ShopMainTwo />
         </div>
-        <HideTurn />
-        <FightUnitUp />
-        <FightUnitDown />
-        <FightBoss />
-        <FightWorker />
-        <GameOver gameOver={gameOver} setGameOver={setGameOver} />
+        <div className="flex h-[36vh] border">
+          <Battleground
+            battlegroundUnits={battlegroundOneUnits}
+            mana={manaOne}
+            reverse={false}
+          />
+          <Staff />
+          <Battleground
+            battlegroundUnits={battlegroundTwoUnits}
+            mana={manaTwo}
+            reverse={true}
+          />
+        </div>
+        <div className="flex h-[27vh] border">
+          <Minerals worker={workerOne} mine={mineralsOne} reverse={false} />
+          <FighterDown fighter={fighterOneDown} reverse={false} />
+          <FighterDown fighter={fighterTwoDown} reverse={true} />
+          <Minerals worker={workerTwo} mine={mineralsTwo} reverse={true} />
+        </div>
+        <GameBackground />
       </div>
-    </>
+      <HideTurn />
+      <FightUnitUp />
+      <FightUnitDown />
+      <FightBoss />
+      <FightWorker />
+      <GameOver gameOver={gameOver} setGameOver={setGameOver} />
+      <div className="fixed w-[100vw] h-[100vh] top-0 left-0 right-0 bottom-0 bg-slate-950 -z-50"></div>
+    </div>
   );
 }

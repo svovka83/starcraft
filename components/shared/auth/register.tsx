@@ -10,7 +10,7 @@ import { FormInput } from "..";
 import { register } from "@/service/user";
 import toast from "react-hot-toast";
 import { useUserStore } from "@/store/user";
-import { welcome, wrong } from "@/constants";
+import { button_click, welcome, wrong } from "@/constants";
 
 interface Props {
   openRegister: boolean;
@@ -86,7 +86,12 @@ export const Register: React.FC<Props> = ({
               type="password"
               errorMessage={form.formState.errors.confirmPassword?.message}
             />
-            <Button type="submit" loading={loading} className="w-full mt-4">
+            <Button
+              type="submit"
+              loading={loading}
+              onClick={() => button_click.play()}
+              className="w-full mt-4"
+            >
               REGISTER
             </Button>
           </form>

@@ -9,7 +9,11 @@ interface Props {
   className?: string;
 }
 
-export const Explosion: React.FC<Props> = ({ isAnimate, effect, className }) => {
+export const Explosion: React.FC<Props> = ({
+  isAnimate,
+  effect,
+  className,
+}) => {
   if (isAnimate && effect) {
     effect.play();
   }
@@ -21,7 +25,7 @@ export const Explosion: React.FC<Props> = ({ isAnimate, effect, className }) => 
         animate={isAnimate ? { scale: 5, opacity: 1 } : {}}
         transition={{ duration: 2, ease: "circInOut" }}
       >
-        💥
+        {isAnimate && "💥"}
       </motion.div>
     </div>
   );

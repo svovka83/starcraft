@@ -10,6 +10,7 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from "@/components/ui";
+import { button_click } from "@/constants";
 
 interface Props {
   trigger: React.ReactNode;
@@ -28,7 +29,10 @@ export const Alert: React.FC<Props> = ({ trigger, title, text, toConfirm }) => {
           <AlertDialogDescription>{text}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="w-[100px] text-white">
+          <AlertDialogCancel
+            onClick={() => button_click.play()}
+            className="w-[100px] text-white"
+          >
             CANCEL
           </AlertDialogCancel>
           <AlertDialogAction

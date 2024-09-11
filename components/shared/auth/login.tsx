@@ -10,7 +10,7 @@ import { FormInput } from "..";
 import { login } from "@/service/user";
 import toast from "react-hot-toast";
 import { useUserStore } from "@/store/user";
-import { welcome, wrong } from "@/constants";
+import { button_click, welcome, wrong } from "@/constants";
 
 interface Props {
   openLogin: boolean;
@@ -39,6 +39,7 @@ export const Login: React.FC<Props> = ({
   const loginUser = useUserStore((state) => state.loginUser);
 
   const onSubmit = (data: FormLogin) => {
+    button_click.play();
     onLoading();
     login(data.username, data.password)
       .then((data) => {

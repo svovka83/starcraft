@@ -27,7 +27,7 @@ export const Unit: React.FC<Props> = ({
   return (
     <div
       className={cn("relative w-[60px] cursor-pointer", {
-        "bg-gray-200": active,
+        "bg-gray-100/10": active,
       })}
       onClick={setActiveUnit}
     >
@@ -50,7 +50,7 @@ export const Unit: React.FC<Props> = ({
       {active && (
         <CircleCheck
           size={18}
-          className="absolute text-blue-700 top-4 right-[2px]"
+          className="absolute text-white top-4 right-[2px]"
         />
       )}
     </div>

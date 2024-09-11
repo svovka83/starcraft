@@ -25,10 +25,22 @@ export const welcome = new Howl({
   src: ["sounds/welcome.wav"],
 });
 
+export const shutdown = new Howl({
+  src: ["sounds/shutdown.mp3"],
+});
+
 export const welcome_off = new Howl({
   src: ["sounds/welcome-off.wav"],
 });
 
 export const wrong = new Howl({
   src: ["sounds/wrong.wav"],
+});
+
+export const finished = new Howl({
+  src: ["sounds/finished.wav"],
+});
+
+export const unit_hover = new Howl({
+  src: ["sounds/unit_hover.wav"],
 });

@@ -9,6 +9,9 @@ export {
   explosion_unit,
   move,
   welcome,
+  shutdown,
   welcome_off,
   wrong,
+  finished,
+  unit_hover,
 } from "./sounds";

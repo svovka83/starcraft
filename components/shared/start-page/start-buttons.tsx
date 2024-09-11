@@ -33,8 +33,8 @@ export const StartButtons: React.FC<Props> = ({
   const isGame = useGame(openLogin);
 
   const login = () => {
-    setOpenLogin(true);
     button_click.play();
+    setOpenLogin(true);
   };
   const logout = () =>
     removeToken().then(() => {

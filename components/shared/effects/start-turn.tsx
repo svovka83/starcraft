@@ -35,7 +35,7 @@ export const StartTurn: React.FC = () => {
         initial={"initial"}
         animate={"animate"}
         variants={variants}
-        className="absolute text-3xl font-bold text-blue-700 z-50"
+        className="absolute text-3xl font-bold text-white z-50"
         key={index}
       >
         {value}

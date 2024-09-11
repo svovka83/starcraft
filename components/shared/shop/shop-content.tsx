@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { CircleCheck } from "lucide-react";
+import { unit_hover } from "@/constants";
 
 interface Props {
   name: string;
@@ -34,6 +35,7 @@ export const ShopContent: React.FC<Props> = ({
           "opacity-50 pointer-events-none": disabled,
         }
       )}
+      onMouseEnter={() => unit_hover.play()}
       onClick={activated}
     >
       <p className="text-2xl ml-3">{name}</p>

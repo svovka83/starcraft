@@ -49,7 +49,7 @@ export const GameHeader: React.FC = () => {
   const priceTwo = unitsTwo.find((unit) => unit.id === unitIdTwo)?.price || 0;
 
   return (
-    <header className="border h-[10vh] flex items-center justify-between text-[24px] font-extrabold px-2 shadow-lg shadow-black/10 z-50">
+    <header className="bg-amber-500 border h-[10vh] flex items-center justify-between text-[24px] font-extrabold px-2 shadow-xl shadow-black/90 z-50">
       <div className="relative mr-6">
         <span>Minerals: {mineralOne}</span>
         <ChangeValue
