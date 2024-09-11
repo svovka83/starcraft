@@ -5,7 +5,14 @@ import zerg from "/images/races/zerg.png";
 import terran from "/images/races/terran.png";
 import protoss from "/images/races/protoss.png";
 import { infoType, unitType, useGameStore } from "@/store/game";
-import { INFO, ZERG, TERRAN, PROTOSS, button_click } from "@/constants";
+import {
+  INFO,
+  ZERG,
+  TERRAN,
+  PROTOSS,
+  button_click,
+  start_game,
+} from "@/constants";
 import { OpponentButton, Race, StartButtons, UserButton } from "..";
 import { useRouter } from "next/navigation";
 
@@ -33,6 +40,7 @@ export const ChooseRaces: React.FC = () => {
     button_click.play();
     setCreateGame(infoOne, infoTwo, playerOne, playerTwo, gameMode).then(() => {
       route.push("/game");
+      start_game.play();
     });
   };
 

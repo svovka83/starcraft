@@ -64,6 +64,7 @@ export interface GameState {
   chooseOne: (nameOne: string) => void;
   chooseTwo: (nameTwo: string) => void;
   chooseGameMode: (gameMode: GameMode) => void;
+  refreshBossesLife: () => void;
   buyUnit: (unitId: number) => void;
   moveUnitUp: (unitId: number) => void;
   moveUnitDown: (unitId: number) => void;
@@ -233,6 +234,16 @@ export const useGameStore = create<GameState>((set, get) => ({
       };
     });
   },
+  refreshBossesLife: () => set({
+    ["one"]: {
+      ...get().one,
+      boss: 21,
+    },
+    ["two"]: {
+      ...get().two,
+      boss: 21,
+    },
+  }),
   buyUnit: (unitId: number) => set((state) => byUnit(state, unitId)),
   moveUnitUp: (unitId: number) => set((state) => moveUnitUp(state, unitId)),
   moveUnitDown: (unitId: number) => set((state) => moveUnitDown(state, unitId)),

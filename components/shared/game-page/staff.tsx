@@ -1,22 +1,23 @@
 "use client";
 
 import React from "react";
-import { Container, SoundGame, StartTurn } from "..";
-import { Button } from "@/components/ui";
+import {
+  Container,
+  EndTurnButton,
+  NamePlayerOnBoard,
+  SoundGame,
+  StartGame,
+} from "..";
 import { useGameStore } from "@/store/game";
 import { motion } from "framer-motion";
 
 export const Staff: React.FC = () => {
-  const [turn, message, manaOne, manaTwo, endTurn, logicAI, gameMode] =
-    useGameStore((state) => [
-      state.turn,
-      state.message,
-      state.one.mana,
-      state.two.mana,
-      state.endTurn,
-      state.logicAI,
-      state.gameMode,
-    ]);
+  const [turn, message, logicAI, gameMode] = useGameStore((state) => [
+    state.turn,
+    state.message,
+    state.logicAI,
+    state.gameMode,
+  ]);
 
   if (!turn && gameMode === "COMPUTER") {
     setTimeout(() => {
@@ -26,27 +27,11 @@ export const Staff: React.FC = () => {
 
   return (
     <Container className={"relative"}>
-      <StartTurn />
-      {(manaOne === 0 || manaTwo === 0) && (
-        <Button
-          disabled={!turn && gameMode === "COMPUTER"}
-          className={"absolute right-0 left-0 mx-14 text-xl font-bold z-50"}
-          onClick={endTurn}
-        >
-          end turn
-        </Button>
-      )}
+      <StartGame />
 
-      {gameMode === "PLAYER" && (
-        <div className="absolute bottom-10 mx-20 text-3xl text-white font-bold">
-          {turn ? "Player 1" : "Player 2"}
-        </div>
-      )}
-      {gameMode === "COMPUTER" && (
-        <div className="absolute bottom-10 mx-20 text-3xl text-white font-bold">
-          {turn ? "Player" : "Computer"}
-        </div>
-      )}
+      <EndTurnButton turn={turn} gameMode={gameMode} />
+
+      <NamePlayerOnBoard turn={turn} gameMode={gameMode} />
 
       <motion.div
         className="absolute bottom-2 mx-4 text-2xl text-white font-bold"

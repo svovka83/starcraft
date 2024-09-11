@@ -13,3 +13,4 @@ export {
   AlertDialogAction,
   AlertDialogCancel,
 } from "./alert-dialog";
+export { Skeleton } from "./skeleton";

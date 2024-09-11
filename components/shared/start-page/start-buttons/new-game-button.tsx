@@ -1,6 +1,7 @@
 import React from "react";
 import { Alert } from "../..";
 import { Button } from "@/components/ui";
+import { button_click } from "@/constants";
 
 interface Props {
   nameOne: string;
@@ -22,7 +23,11 @@ export const NewGameButton: React.FC<Props> = ({
       {isGame && nameOne && nameTwo && isAuth ? (
         <Alert
           trigger={
-            <Button size="lg" variant="success">
+            <Button
+              onClick={() => button_click.play()}
+              size="lg"
+              variant="success"
+            >
               New game
             </Button>
           }

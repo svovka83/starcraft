@@ -1,9 +1,11 @@
 import { GameState, unitType } from "../game";
 import lodash from "lodash";
+import { finish_turn } from "@/constants";
 
 export function logicAI(state: GameState, get: () => GameState) {
   if (state.two.mana === 0) {
     // make fix
+    finish_turn.play();
     return {
       ["two"]: {
         ...state.two,

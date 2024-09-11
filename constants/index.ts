@@ -14,4 +14,9 @@ export {
   wrong,
   finished,
   unit_hover,
+  finish_action_fantasia,
+  finish_turn,
+  start_game,
+  game_over,
+  game_over_sound,
 } from "./sounds";

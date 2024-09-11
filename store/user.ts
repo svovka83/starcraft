@@ -18,11 +18,14 @@ export const useUserStore = create<UserState>((set) => ({
   error: "",
   getUser: async () => {
     try {
+      set({ loading: true });
       const data = await user();
       set({ username: data.username });
     } catch (error: any) {
       console.log("[GET_USER]", error);
-      set({ error: error.response.data.message });
+      set({ loading: false, error: error.response.data.message });
+    } finally {
+      set({ loading: false });
     }
   },
   loginUser: (username) => {

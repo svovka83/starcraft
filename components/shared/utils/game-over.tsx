@@ -6,6 +6,8 @@ import { Button } from "@/components/ui";
 import { useRouter } from "next/navigation";
 import { deleteGame } from "@/service/game";
 import toast from "react-hot-toast";
+import { game_over, game_over_sound } from "@/constants";
+import { useGameStore } from "@/store/game";
 
 interface Props {
   gameOver?: boolean;
@@ -14,6 +16,17 @@ interface Props {
 
 export const GameOver: React.FC<Props> = ({ gameOver, setGameOver }) => {
   const router = useRouter();
+  const refreshBossesLife = useGameStore().refreshBossesLife;
+
+  if (gameOver) {
+    game_over.play();
+    setTimeout(() => {
+      game_over_sound.play();
+    }, 3000);
+    setTimeout(() => {
+      game_over.play();
+    }, 8000);
+  }
 
   const gameIsOver = () => {
     deleteGame().then(() => {
@@ -22,9 +35,11 @@ export const GameOver: React.FC<Props> = ({ gameOver, setGameOver }) => {
       });
     });
     setTimeout(() => {
+      game_over_sound.stop();
       setGameOver(false);
+      refreshBossesLife();
       router.push("/");
-    }, 5000);
+    }, 4000);
   };
 
   return (
