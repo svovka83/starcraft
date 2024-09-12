@@ -65,3 +65,15 @@ export const game_over_sound = new Howl({
   src: ["sounds/game_over_sound.wav"],
   loop: true,
 });
+
+export const starcraft_fon_1 = new Howl({
+  src: ["sounds/starcraft_fon_1.mp3"],
+  loop: true,
+  volume: 0.2,
+});
+
+export const starcraft_fon_2 = new Howl({
+  src: ["sounds/starcraft_fon_2.mp3"],
+  loop: true,
+  volume: 0.2,
+});

@@ -19,4 +19,6 @@ export {
   start_game,
   game_over,
   game_over_sound,
+  starcraft_fon_1,
+  starcraft_fon_2,
 } from "./sounds";
