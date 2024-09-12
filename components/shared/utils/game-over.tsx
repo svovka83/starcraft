@@ -16,7 +16,7 @@ interface Props {
 
 export const GameOver: React.FC<Props> = ({ gameOver, setGameOver }) => {
   const router = useRouter();
-  const refreshBossesLife = useGameStore().refreshBossesLife;
+  const refreshState = useGameStore().refreshState;
 
   if (gameOver) {
     game_over.play();
@@ -37,7 +37,7 @@ export const GameOver: React.FC<Props> = ({ gameOver, setGameOver }) => {
     setTimeout(() => {
       game_over_sound.stop();
       setGameOver(false);
-      refreshBossesLife();
+      refreshState();
       router.push("/");
     }, 4000);
   };

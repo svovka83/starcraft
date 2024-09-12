@@ -8,3 +8,4 @@ export { fightUnitUp } from "./functions-game-logic/fight-unit-up";
 export { fightUnitDown } from "./functions-game-logic/fight-unit-down";
 export { fightBoss } from "./functions-game-logic/fight-boss";
 export { fightWorker } from "./functions-game-logic/fight-worker";
+export { refreshState } from "./functions-game-service/refresh-state";

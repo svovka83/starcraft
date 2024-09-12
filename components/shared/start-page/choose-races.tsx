@@ -27,17 +27,18 @@ export const ChooseRaces: React.FC = () => {
   const [currentPlayer, setCurrentPlayer] = React.useState(
     "playerOne" || "playerTwo"
   );
-  const [chooseOne, chooseTwo, setCreateGame, gameMode] = useGameStore(
-    (state) => [
+  const [chooseOne, chooseTwo, setCreateGame, refreshState, gameMode] =
+    useGameStore((state) => [
       state.chooseOne,
       state.chooseTwo,
       state.setCreateGame,
+      state.refreshState,
       state.gameMode,
-    ]
-  );
+    ]);
 
   const createGame = () => {
     button_click.play();
+    refreshState();
     setCreateGame(infoOne, infoTwo, playerOne, playerTwo, gameMode).then(() => {
       route.push("/game");
       start_game.play();

@@ -7,14 +7,17 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui";
 import { Alert } from "..";
 import { button_click, finished, wrong } from "@/constants";
+import { useGameStore } from "@/store/game";
 
 export const DeleteGame: React.FC = () => {
   const route = useRouter();
+  const refreshState = useGameStore().refreshState;
 
   const removeGame = () => {
     button_click.play();
     deleteGame()
       .then((data) => {
+        refreshState();
         finished.play();
         toast.success(data.message, { duration: 2000, icon: "👍" });
         setTimeout(() => {
