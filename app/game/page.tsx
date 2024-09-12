@@ -68,7 +68,7 @@ export default function Game() {
 
   const [gameOver, setGameOver] = React.useState(false);
 
-  if (bossOne <= 0 || bossTwo <= 20) {
+  if (bossOne <= 0 || bossTwo <= 0) {
     starcraft_fon_1.stop();
     starcraft_fon_2.stop();
     setTimeout(() => {
