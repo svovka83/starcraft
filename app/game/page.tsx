@@ -21,6 +21,7 @@ import {
 import { useGameStore } from "@/store/game";
 import { useRouter } from "next/navigation";
 import { isGame } from "@/service/game";
+import { starcraft_fon_1, starcraft_fon_2 } from "@/constants";
 
 export default function Game() {
   const route = useRouter();
@@ -67,7 +68,9 @@ export default function Game() {
 
   const [gameOver, setGameOver] = React.useState(false);
 
-  if (bossOne <= 0 || bossTwo <= 0) {
+  if (bossOne <= 0 || bossTwo <= 20) {
+    starcraft_fon_1.stop();
+    starcraft_fon_2.stop();
     setTimeout(() => {
       setGameOver(true);
     }, 3000);

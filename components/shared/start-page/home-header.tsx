@@ -2,12 +2,16 @@
 
 import React from "react";
 import { useGameStore } from "@/store/game";
+import { starcraft_fon_1, starcraft_fon_2 } from "@/constants";
 
 export const HomeHeader: React.FC = () => {
   const [nameOne, nameTwo] = useGameStore((state) => [
     state.one.name,
     state.two.name,
   ]);
+
+  starcraft_fon_1.stop();
+  starcraft_fon_2.stop();
 
   return (
     <div className="grid grid-cols-3 items-center justify-around">

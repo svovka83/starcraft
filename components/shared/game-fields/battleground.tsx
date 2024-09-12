@@ -61,6 +61,7 @@ export const Battleground: React.FC<Props> = ({
         activeUnit={activeUnit}
         moveUnitUp={() => moveUnitUp(activeUnit)}
         moveUnitDown={() => moveUnitDown(activeUnit)}
+        mana={mana}
       />
     </Container>
   );
