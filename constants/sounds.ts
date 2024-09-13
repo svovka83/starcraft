@@ -7,6 +7,7 @@ export const howler_push = new Howl({
 
 export const button_click = new Howl({
   src: ["sounds/button_click.mp3"],
+  volume: 0.7,
 });
 
 export const coin_drop = new Howl({
@@ -23,6 +24,7 @@ export const move = new Howl({
 
 export const welcome = new Howl({
   src: ["sounds/welcome.wav"],
+  volume: 1.8,
 });
 
 export const shutdown = new Howl({
@@ -31,6 +33,7 @@ export const shutdown = new Howl({
 
 export const welcome_off = new Howl({
   src: ["sounds/welcome_off.wav"],
+  volume: 4,
 });
 
 export const wrong = new Howl({

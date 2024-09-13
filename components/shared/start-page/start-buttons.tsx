@@ -8,6 +8,7 @@ import {
   Login,
   NewGameButton,
   Register,
+  StarCraftButton,
 } from "..";
 import { removeToken } from "@/app/actions";
 import { useUserStore } from "@/store/user";
@@ -18,7 +19,7 @@ interface Props {
   nameTwo: string;
   createGame: VoidFunction;
 }
-
+// refactoring - make component loginButton
 export const StartButtons: React.FC<Props> = ({
   nameOne,
   nameTwo,
@@ -45,6 +46,8 @@ export const StartButtons: React.FC<Props> = ({
 
   return (
     <div className="flex justify-center gap-10 text-[22px]">
+      <StarCraftButton isAuth={isAuth} />
+
       <ChooseModeButton isAuth={isAuth} />
 
       <NewGameButton
