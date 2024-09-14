@@ -46,7 +46,7 @@ export const StartButtons: React.FC<Props> = ({
 
   return (
     <div className="flex justify-center gap-10 text-[22px]">
-      <StarCraftButton isAuth={isAuth} />
+      {/* <StarCraftButton isAuth={isAuth} /> */}
 
       <ChooseModeButton isAuth={isAuth} />
 
