@@ -18,6 +18,7 @@ import { GameMode } from "@prisma/client";
 
 export type infoType = {
   name: string;
+  avatar: string;
   image: string;
 };
 
@@ -33,6 +34,7 @@ export type unitType = {
 
 export type PlayerProps = {
   name: string;
+  avatar: string;
   image: string;
   mana: number;
   units: unitType[];
@@ -62,8 +64,8 @@ export interface GameState {
   ) => Promise<void>;
   setGetGame: () => Promise<void>;
   getSaveGame: () => Promise<void>;
-  chooseOne: (nameOne: string) => void;
-  chooseTwo: (nameTwo: string) => void;
+  chooseOne: (nameOne: string, avatar: string) => void;
+  chooseTwo: (nameTwo: string, avatar: string) => void;
   chooseGameMode: (gameMode: GameMode) => void;
   refreshState: () => void;
   buyUnit: (unitId: number) => void;
@@ -81,6 +83,7 @@ export interface GameState {
 export const useGameStore = create<GameState>((set, get) => ({
   one: {
     name: "",
+    avatar: "",
     image: "",
     mana: 3,
     units: [],
@@ -94,6 +97,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
   two: {
     name: "",
+    avatar: "",
     image: "",
     mana: 3,
     units: [],
@@ -208,22 +212,24 @@ export const useGameStore = create<GameState>((set, get) => ({
       set({ isLoading: false });
     }
   },
-  chooseOne: (nameOne: string) => {
+  chooseOne: (nameOne: string, avatarOne: string) => {
     set((state) => {
       return {
         ["one"]: {
           ...state.one,
           name: nameOne,
+          avatar: avatarOne,
         },
       };
     });
   },
-  chooseTwo: (nameTwo: string) => {
+  chooseTwo: (nameTwo: string, avatarTwo: string) => {
     set((state) => {
       return {
         ["two"]: {
           ...state.two,
           name: nameTwo,
+          avatar: avatarTwo,
         },
       };
     });

@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert } from "../..";
+import { WindowBeforeStart } from "../..";
 import { Button } from "@/components/ui";
 import { button_click } from "@/constants";
 
@@ -18,35 +18,35 @@ export const NewGameButton: React.FC<Props> = ({
   isAuth,
   isGame,
 }) => {
+  const [openStart, setOpenStart] = React.useState(false);
+
+  const openStartModule = () => {
+    button_click.play();
+    setOpenStart(true);
+  };
+
+  const closeStartModule = () => {
+    button_click.play();
+    setOpenStart(false);
+  };
+
   return (
     <div>
-      {isGame && nameOne && nameTwo && isAuth ? (
-        <Alert
-          trigger={
-            <Button
-              onClick={() => button_click.play()}
-              size="lg"
-              variant="success"
-            >
-              New game
-            </Button>
-          }
-          title="Warning!"
-          text="You have a not finished game! 
-          You will lose all your progress if you start a new game.
-          Are you sure you want to start a new game?"
-          toConfirm={createGame}
-        />
-      ) : (
-        <Button
-          size="lg"
-          variant="success"
-          disabled={!(nameOne && nameTwo && isAuth) ? true : false}
-          onClick={createGame}
-        >
-          New game
-        </Button>
-      )}
+      <Button
+        size="lg"
+        variant="success"
+        disabled={!(nameOne && nameTwo && isAuth) ? true : false}
+        onClick={openStartModule}
+      >
+        New game
+      </Button>
+
+      <WindowBeforeStart
+        openStart={openStart}
+        closeStartModule={closeStartModule}
+        isGame={isGame}
+        createGame={createGame}
+      />
     </div>
   );
 };

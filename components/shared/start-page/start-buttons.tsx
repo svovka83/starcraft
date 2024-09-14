@@ -53,9 +53,9 @@ export const StartButtons: React.FC<Props> = ({
       <NewGameButton
         nameOne={nameOne}
         nameTwo={nameTwo}
-        createGame={createGame}
         isAuth={isAuth}
         isGame={isGame}
+        createGame={createGame}
       />
 
       <ContinueButton isGame={isGame} />

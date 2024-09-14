@@ -1,5 +1,5 @@
 "use client";
-
+// need refactoring "infoType"
 import React from "react";
 import zerg from "/images/races/zerg.png";
 import terran from "/images/races/terran.png";
@@ -56,6 +56,7 @@ export const ChooseRaces: React.FC = () => {
         <div className="flex flex-row gap-8">
           <Race
             nameRace={INFO[0].name}
+            avatarRace={INFO[0].avatar}
             chooseOne={chooseOne}
             chooseTwo={chooseTwo}
             active={active}
@@ -71,6 +72,7 @@ export const ChooseRaces: React.FC = () => {
           />
           <Race
             nameRace={INFO[1].name}
+            avatarRace={INFO[1].avatar}
             chooseOne={chooseOne}
             chooseTwo={chooseTwo}
             active={active}
@@ -86,6 +88,7 @@ export const ChooseRaces: React.FC = () => {
           />
           <Race
             nameRace={INFO[2].name}
+            avatarRace={INFO[2].avatar}
             chooseOne={chooseOne}
             chooseTwo={chooseTwo}
             active={active}

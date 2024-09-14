@@ -6,8 +6,9 @@ import { button_click } from "@/constants";
 
 interface Props {
   nameRace: string;
-  chooseOne: (nameRace: string) => void;
-  chooseTwo: (nameRace: string) => void;
+  avatarRace: string;
+  chooseOne: (nameRace: string, avatarRace: string) => void;
+  chooseTwo: (nameRace: string, avatarRace: string) => void;
   active: string;
   setActive: (nameRace: string) => void;
   infoRace: infoType;
@@ -22,6 +23,7 @@ interface Props {
 
 export const Race: React.FC<Props> = ({
   nameRace,
+  avatarRace,
   chooseOne,
   chooseTwo,
   active,
@@ -44,11 +46,11 @@ export const Race: React.FC<Props> = ({
         if (currentPlayer === "playerOne") {
           setInfoOne(infoRace);
           setPlayerOne(race);
-          chooseOne(nameRace);
+          chooseOne(nameRace, avatarRace);
         } else {
           setInfoTwo(infoRace);
           setPlayerTwo(race);
-          chooseTwo(nameRace);
+          chooseTwo(nameRace, avatarRace);
         }
       }}
     >
