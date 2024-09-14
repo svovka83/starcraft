@@ -24,7 +24,9 @@ export const Menu: React.FC = () => {
           Game menu
         </h2>
         <SaveGame setOpenMenu={setOpenMenu} />
-        <Button variant="success">HELP</Button>
+        <Button variant="success" disabled>
+          HELP
+        </Button>
         <DeleteGame />
         <ExitGame />
       </PopoverContent>

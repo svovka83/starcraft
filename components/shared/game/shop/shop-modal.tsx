@@ -3,6 +3,7 @@ import { Button, Dialog, DialogContent, DialogTitle } from "../../../ui";
 import { unitType, useGameStore } from "@/store/game";
 import { ShopContent } from "../..";
 import { button_click } from "@/constants";
+import { X } from "lucide-react";
 
 interface Props {
   playerUnits: unitType[];
@@ -40,8 +41,12 @@ export const ShopModal: React.FC<Props> = ({
   return (
     <Dialog open={showModalShop} onOpenChange={closeModal}>
       <DialogContent className="px-12 w-[800px] max-w-[900px] min-h-[400px] bg-blue-700/70 text-white overflow-hidden">
-        <DialogTitle className="text-3xl">
-          Choose unit for your army
+        <DialogTitle className="flex justify-between text-3xl">
+          <h2 className="pointer-events-none">Choose unit for your army</h2>
+          <X
+            className="cursor-pointer active:translate-y-[1px]"
+            onClick={closeModal}
+          />
         </DialogTitle>
         {playerUnits
           .map((unit) => (
@@ -65,7 +70,7 @@ export const ShopModal: React.FC<Props> = ({
           disabled={!activeUnit}
           onClick={() => addUnitToArmy(activeUnit)}
           variant="secondary"
-          className="text-lg font-bold"
+          className="text-lg font-bold hover:bg-white/85"
         >
           Buy Unit
         </Button>
