@@ -23,6 +23,7 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-primary hover:bg-secondary/50 text-md",
         ghost: "hover:bg-secondary hover:text-secondary text-md",
         link: "text-primary underline-offset-4 hover:underline text-md",
+        starcraft: "bg-violet-700 text-primary-foreground hover:bg-violet-700/85 text-lg",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -45,3 +45,7 @@ export { GameBackground } from "./game/game-page/utils/game-background";
 export { NamePlayerOnBoard } from "./game/game-page/staff/name-player-on-board";
 export { EndTurnButton } from "./game/game-page/staff/end-turn-button";
 export { StarCraftButton } from "./start-page/start-buttons/starcraft-button";
+export { StarCraftHeader } from "./starcraft/header/starcraft-header";
+export { LeftSide } from "./starcraft/header/left-side";
+export { RightSide } from "./starcraft/header/right-side";
+export { Title } from "./utils/title";

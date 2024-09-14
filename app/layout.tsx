@@ -25,7 +25,7 @@ export default function RootLayout({
         <link type="image/png" rel="icon" href="/logo.png" />
       </head>
       <body className={nunito.className}>
-        <main className="max-w-[1180px] h-screen mx-auto">
+        <main className="max-w-[1180px] min-h-screen mx-auto">
           {children}
           <Toaster />
         </main>
