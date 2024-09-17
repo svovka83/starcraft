@@ -1,6 +1,6 @@
 export { HomeHeader } from "./start-page/home-header";
 export { ChooseRaces } from "./start-page/choose-races";
-export { GameHeader } from "./game/game-page/game-header";
+export { GameHeader } from "./game/game-header/game-header";
 export { Container } from "./utils/container";
 export { ShopMainOne } from "./game/game-fields/shop-main-one";
 export { FighterUp } from "./game/game-fields/fighter-up";
@@ -49,6 +49,7 @@ export { ContentStartGame } from "./start-page/window-before-start/content-start
 export { StartGameButton } from "./start-page/window-before-start/start-game-button";
 export { CancelGameButton } from "./start-page/window-before-start/cancel-game-button";
 export { Version } from "./utils/version";
+export { ManaCounter } from "./game/game-header/mana-counter";
 export { StarCraftButton } from "./start-page/start-buttons/starcraft-button";
 export { StarCraftHeader } from "./starcraft/header/starcraft-header";
 export { LeftSide } from "./starcraft/header/left-side";

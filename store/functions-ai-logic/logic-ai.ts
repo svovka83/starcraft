@@ -50,13 +50,14 @@ export function logicAI(state: GameState, get: () => GameState) {
   }
   // **********************
   // **********************
-  // if need save workers
+  // if need save workers finish action
   // **********************
   if (
     state.two.worker.length < 3 &&
     state.one.fighterDown.name &&
     !state.two.fighterDown.name &&
-    battleUnitId !== 0
+    battleUnitId !== 0 &&
+    state.two.mana >= state.two.battleground[0].mana
   ) {
     const functionAI = () => get().moveUnitDown(battleUnitId);
     const AI = functionAI();
@@ -64,9 +65,23 @@ export function logicAI(state: GameState, get: () => GameState) {
   }
   // **********************
   // **********************
+  // if need save workers start action
+  // **********************
+  if (
+    state.two.worker.length < 3 &&
+    state.one.fighterDown.name &&
+    !state.two.fighterDown.name &&
+    battleUnitId === 0
+  ) {
+    const functionAI = () => get().buyUnit(unitIdRandom);
+    const AI = functionAI();
+    return { AI };
+  }
+  // **********************
+  // **********************
   // if minerals finishing
   // **********************
-  if (state.two.minerals < 3) {
+  if (state.two.minerals <= 3) {
     const randomFunction = [get().createWorker, get().addMinerals];
     const randomIndex = Math.floor(Math.random() * randomFunction.length);
     const functionAI = randomFunction[randomIndex];

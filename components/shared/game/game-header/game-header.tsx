@@ -1,6 +1,6 @@
 import React from "react";
 import { useGameStore } from "@/store/game";
-import { ChangeValue, Menu } from "../..";
+import { ChangeValue, ManaCounter, Menu } from "../..";
 import { useTriggerAnimate } from "@/store/trigger-animations";
 import { coin_drop } from "@/constants";
 
@@ -49,7 +49,7 @@ export const GameHeader: React.FC = () => {
   const priceTwo = unitsTwo.find((unit) => unit.id === unitIdTwo)?.price || 0;
 
   return (
-    <header className="bg-amber-500 border h-[10vh] flex items-center justify-between text-[24px] font-extrabold px-2 shadow-xl shadow-black/90 z-50">
+    <header className="grid grid-cols-5 items-center text-center bg-amber-500 border h-[10vh] text-[24px] font-extrabold px-2 shadow-xl shadow-black/90 z-50">
       <div className="relative mr-6">
         <span>Minerals: {mineralOne}</span>
         <ChangeValue
@@ -57,28 +57,30 @@ export const GameHeader: React.FC = () => {
           value={lengthOne}
           effect={coin_drop}
           isAnimate={isAnimateMineralOne}
-          className="absolute -top-2 -right-7 text-blue-700"
+          className="absolute -top-2 -right-1 text-blue-700"
         />
         <ChangeValue
           sign="-"
           value={1}
           effect={coin_drop}
           isAnimate={isAnimateBuyWorkerOne}
-          className="absolute -top-2 -right-7 text-red-500"
+          className="absolute -top-2 -right-1 text-red-500"
         />
         <ChangeValue
           sign="-"
           value={priceOne}
           effect={coin_drop}
           isAnimate={isAnimateBuyUnitOne}
-          className="absolute -top-2 -right-7 text-red-500"
+          className="absolute -top-2 -right-1 text-red-500"
         />
       </div>
-      <span>ManaOne: {manaOne}</span>
+
+      <ManaCounter currentMana={manaOne} />
 
       <Menu />
 
-      <span>ManaTwo: {manaTwo}</span>
+      <ManaCounter currentMana={manaTwo} />
+
       <div className="relative mr-6">
         <span>Minerals: {mineralTwo}</span>
         <ChangeValue
@@ -86,21 +88,21 @@ export const GameHeader: React.FC = () => {
           value={lengthTwo}
           effect={coin_drop}
           isAnimate={isAnimateMineralTwo}
-          className="absolute -top-2 -right-7 text-blue-700"
+          className="absolute -top-2 -right-1 text-blue-700"
         />
         <ChangeValue
           sign="-"
           value={1}
           effect={coin_drop}
           isAnimate={isAnimateBuyWorkerTwo}
-          className="absolute -top-2 -right-7 text-red-500"
+          className="absolute -top-2 -right-1 text-red-500"
         />
         <ChangeValue
           sign="-"
           value={priceTwo}
           effect={coin_drop}
           isAnimate={isAnimateBuyUnitTwo}
-          className="absolute -top-2 -right-7 text-red-500"
+          className="absolute -top-2 -right-1 text-red-500"
         />
       </div>
     </header>
