@@ -1,4 +1,4 @@
-import { HomeHeader, ChooseRaces } from "@/components/shared";
+import { HomeHeader, ChooseRaces, Version } from "@/components/shared";
 import Image from "next/image";
 import craft from "/images/utils/main_background.jpg";
 
@@ -15,7 +15,7 @@ export default function Home() {
         alt="main"
       />
 
-      <span className="text-white float-end">version: 1.0.0</span>
+      <Version className="float-end" />
     </div>
   );
 }

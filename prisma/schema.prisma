@@ -181,6 +181,34 @@ model FighterDownTwo {
   gameId Int?  @unique
 }
 
+model Category {
+  id Int @id @default(autoincrement())
+
+  name String
+
+  units Unit[]
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
+model Unit {
+  id Int @id @default(autoincrement())
+
+  name   String
+  image  String
+  mana   Int
+  health Int
+  attack Int
+  price  Int
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+}
+
 enum GameMode {
   PLAYER
   COMPUTER

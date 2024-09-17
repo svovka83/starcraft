@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import starcraft from "/images/starcraft/starcraft.png";
-import { LeftSide, RightSide } from "../..";
+import { LeftSide, RightSide, Version } from "../..";
 
 export const StarCraftHeader: React.FC = () => {
   return (
@@ -14,9 +14,7 @@ export const StarCraftHeader: React.FC = () => {
 
       <div className="relative">
         <Image src={starcraft} className=" w-full" alt="starcraft" />
-        <span className="absolute text-white bottom-4 right-8">
-          version: 1.0.0
-        </span>
+        <Version className="absolute bottom-4 right-8" />
       </div>
     </header>
   );

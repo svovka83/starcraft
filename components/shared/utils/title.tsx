@@ -21,7 +21,7 @@ export const Title: React.FC<Props> = ({ text, size = "sm" }) => {
     xs: "text-[16px]",
     sm: "text-[22px]",
     md: "text-[26px]",
-    lg: "text-[32px]",
+    lg: "text-[32px] font-bold text-violet-700",
     xl: "text-[40px]",
   } as const;
 

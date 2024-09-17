@@ -22,3 +22,4 @@ export {
   starcraft_fon_1,
   starcraft_fon_2,
 } from "./sounds";
+export { MANA, HEALTH, ATTACK } from "./checkbox";
