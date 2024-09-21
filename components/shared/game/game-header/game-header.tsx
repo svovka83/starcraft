@@ -1,10 +1,12 @@
 import React from "react";
 import { useGameStore } from "@/store/game";
-import { ChangeValue, ManaCounter, Menu } from "../..";
+import { ManaCounter, Menu, MineralsCounter } from "../..";
 import { useTriggerAnimate } from "@/store/trigger-animations";
-import { coin_drop } from "@/constants";
+import { useUserStore } from "@/store/user";
 
 export const GameHeader: React.FC = () => {
+  const playerName = useUserStore().username;
+
   const [
     isAnimateMineralOne,
     isAnimateMineralTwo,
@@ -26,6 +28,7 @@ export const GameHeader: React.FC = () => {
   ]);
 
   const [
+    gameMode,
     manaOne,
     manaTwo,
     mineralOne,
@@ -35,6 +38,7 @@ export const GameHeader: React.FC = () => {
     unitsOne,
     unitsTwo,
   ] = useGameStore((state) => [
+    state.gameMode,
     state.one.mana,
     state.two.mana,
     state.one.minerals,
@@ -45,66 +49,36 @@ export const GameHeader: React.FC = () => {
     state.two.units,
   ]);
 
+  const opponent = gameMode === "COMPUTER" ? "Computer" : "Player 2";
+
   const priceOne = unitsOne.find((unit) => unit.id === unitIdOne)?.price || 0;
   const priceTwo = unitsTwo.find((unit) => unit.id === unitIdTwo)?.price || 0;
 
   return (
     <header className="grid grid-cols-5 items-center text-center bg-amber-500 border h-[10vh] text-[24px] font-extrabold px-2 shadow-xl shadow-black/90 z-50">
-      <div className="relative mr-6">
-        <span>Minerals: {mineralOne}</span>
-        <ChangeValue
-          sign="+"
-          value={lengthOne}
-          effect={coin_drop}
-          isAnimate={isAnimateMineralOne}
-          className="absolute -top-2 -right-1 text-blue-700"
-        />
-        <ChangeValue
-          sign="-"
-          value={1}
-          effect={coin_drop}
-          isAnimate={isAnimateBuyWorkerOne}
-          className="absolute -top-2 -right-1 text-red-500"
-        />
-        <ChangeValue
-          sign="-"
-          value={priceOne}
-          effect={coin_drop}
-          isAnimate={isAnimateBuyUnitOne}
-          className="absolute -top-2 -right-1 text-red-500"
-        />
-      </div>
+      <MineralsCounter
+        currentMinerals={mineralOne}
+        workersQuantity={lengthOne}
+        unitPrice={priceOne}
+        isAnimateMineral={isAnimateMineralOne}
+        isAnimateBuyWorker={isAnimateBuyWorkerOne}
+        isAnimateBuyUnit={isAnimateBuyUnitOne}
+      />
 
-      <ManaCounter currentMana={manaOne} />
+      <ManaCounter name={playerName} currentMana={manaOne} />
 
       <Menu />
 
-      <ManaCounter currentMana={manaTwo} />
+      <ManaCounter name={opponent} currentMana={manaTwo} />
 
-      <div className="relative mr-6">
-        <span>Minerals: {mineralTwo}</span>
-        <ChangeValue
-          sign="+"
-          value={lengthTwo}
-          effect={coin_drop}
-          isAnimate={isAnimateMineralTwo}
-          className="absolute -top-2 -right-1 text-blue-700"
-        />
-        <ChangeValue
-          sign="-"
-          value={1}
-          effect={coin_drop}
-          isAnimate={isAnimateBuyWorkerTwo}
-          className="absolute -top-2 -right-1 text-red-500"
-        />
-        <ChangeValue
-          sign="-"
-          value={priceTwo}
-          effect={coin_drop}
-          isAnimate={isAnimateBuyUnitTwo}
-          className="absolute -top-2 -right-1 text-red-500"
-        />
-      </div>
+      <MineralsCounter
+        currentMinerals={mineralTwo}
+        workersQuantity={lengthTwo}
+        unitPrice={priceTwo}
+        isAnimateMineral={isAnimateMineralTwo}
+        isAnimateBuyWorker={isAnimateBuyWorkerTwo}
+        isAnimateBuyUnit={isAnimateBuyUnitTwo}
+      />
     </header>
   );
 };

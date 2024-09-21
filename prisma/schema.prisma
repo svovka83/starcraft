@@ -37,6 +37,9 @@ model Game {
   manaOne Int @default(3)
   manaTwo Int @default(3)
 
+  currentManaOne Int @default(3)
+  currentManaTwo Int @default(3)
+
   shopOne ShopOne[]
   shopTwo ShopTwo[]
 
@@ -55,11 +58,11 @@ model Game {
   mineralsOne Int @default(10)
   mineralsTwo Int @default(10)
 
-  mineOne Int @default(100)
-  mineTwo Int @default(100)
+  mineOne Int @default(200)
+  mineTwo Int @default(200)
 
-  bossOne Int @default(21)
-  bossTwo Int @default(21)
+  bossOne Int @default(30)
+  bossTwo Int @default(30)
 
   turn Boolean @default(true)
 

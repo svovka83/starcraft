@@ -31,6 +31,8 @@ export type GetGameServer = {
   imageTwo: string;
   manaOne: number;
   manaTwo: number;
+  currentManaOne: number;
+  currentManaTwo: number;
   shopOne: unitType[];
   shopTwo: unitType[];
   battleOne: unitType[];

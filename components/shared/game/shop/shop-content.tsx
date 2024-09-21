@@ -27,9 +27,9 @@ export const ShopContent: React.FC<Props> = ({
   disabled,
 }) => {
   return (
-    <div
+    <span
       className={cn(
-        "relative grid grid-cols-6 gap-10 pl-6 border-2 border-black items-center cursor-pointer bg-black rounded-2xl hover:translate-x-2 duration-200",
+        "relative flex flex-row items-end gap-2 p-2 text-[18px] font-medium rounded-md border-2 border-black bg-neutral-900 hover:-translate-y-1 duration-200 cursor-pointer",
         {
           "border-2 border-white": active,
           "opacity-50 pointer-events-none": disabled,
@@ -38,13 +38,21 @@ export const ShopContent: React.FC<Props> = ({
       onMouseEnter={() => unit_hover.play()}
       onClick={activated}
     >
-      <p className="text-2xl ml-3">{name}</p>
-      <img src={image} className="w-[80px] h-[80px]" alt="unit" />
-      <p>mana: {mana}</p>
-      <p>health: {health}</p>
-      <p>attack: {attack}</p>
-      <b>price: {price}</b>
-      {active && <CircleCheck className="absolute top-2 left-2" />}
-    </div>
+      <div className="flex flex-col items-center">
+        <img
+          src={image}
+          alt="unit"
+          className={cn("w-[100px] h-[100px] bg-white mx-auto rounded-md")}
+        />
+        <h3 className="text-xl text-fuchsia-500">{name}</h3>
+      </div>
+      <div className="flex flex-col">
+        <span className="text-blue-700">mana: {mana}</span>
+        <span className="text-green-700">health: {health}</span>
+        <span className="text-red-600">attack: {attack}</span>
+        <span className="text-white">price: {price}</span>
+      </div>
+      {active && <CircleCheck className="absolute top-1.5 right-2" />}
+    </span>
   );
 };

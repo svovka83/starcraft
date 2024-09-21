@@ -3,12 +3,14 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useStarcraftStore } from "@/store/starcraft";
+import { INFO } from "@/constants";
 
 export const Categories: React.FC = () => {
-  const [activeId, categories, setCategories, loading] = useStarcraftStore(
+  const [activeId, categories, unitsGroup, setCategories, loading] = useStarcraftStore(
     (state) => [
       state.activeId,
       state.categories,
+      state.unitsGroup,
       state.setCategories,
       state.loading,
     ]
@@ -27,8 +29,8 @@ export const Categories: React.FC = () => {
       )}
 
       {!loading &&
-        categories.length > 0 &&
-        categories.map((race, index) => (
+        unitsGroup.length > 0 &&
+        INFO.map((race, index) => (
           <a
             className={cn(
               "flex items-center text-[20px] font-bold h-11 rounded-2xl px-7",

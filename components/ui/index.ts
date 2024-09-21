@@ -16,3 +16,9 @@ export {
 export { Skeleton } from "./skeleton";
 export { Checkbox } from "./checkbox";
 export { Slider } from "./slider";
+export {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "./tooltip";

@@ -12,6 +12,9 @@ import {
   fightBoss,
   fightWorker,
   refreshState,
+  upgradeBaseLevelTwo,
+  upgradeBaseLevelThree,
+  upgradeBaseLevelFour,
 } from ".";
 import { logicAI } from "./functions-ai-logic/logic-ai";
 import { GameMode } from "@prisma/client";
@@ -37,6 +40,7 @@ export type PlayerProps = {
   avatar: string;
   image: string;
   mana: number;
+  currentMana: number;
   units: unitType[];
   battleground: unitType[];
   fighterUp: unitType;
@@ -77,6 +81,9 @@ export interface GameState {
   fightUnitDown: () => void;
   fightBoss: () => void;
   fightWorker: () => void;
+  upgradeBaseLevelTwo: () => void;
+  upgradeBaseLevelThree: () => void;
+  upgradeBaseLevelFour: () => void;
   logicAI: () => void;
 }
 
@@ -86,28 +93,30 @@ export const useGameStore = create<GameState>((set, get) => ({
     avatar: "",
     image: "",
     mana: 3,
+    currentMana: 3,
     units: [],
     battleground: [],
     fighterUp: {} as unitType,
     fighterDown: {} as unitType,
     worker: [],
     minerals: 10,
-    mine: 100,
-    boss: 21,
+    mine: 200,
+    boss: 30,
   },
   two: {
     name: "",
     avatar: "",
     image: "",
     mana: 3,
+    currentMana: 3,
     units: [],
     battleground: [],
     fighterUp: {} as unitType,
     fighterDown: {} as unitType,
     worker: [],
     minerals: 10,
-    mine: 100,
-    boss: 21,
+    mine: 200,
+    boss: 30,
   },
   turn: true,
   message: "Ok! let's play!",
@@ -159,6 +168,7 @@ export const useGameStore = create<GameState>((set, get) => ({
           name: data.nameOne,
           image: data.imageOne,
           mana: data.manaOne,
+          currentMana: data.currentManaOne,
           units: data.shopOne,
           battleground: data.battleOne,
           fighterUp: data.fighterUpOne ? data.fighterUpOne : ({} as unitType),
@@ -177,6 +187,7 @@ export const useGameStore = create<GameState>((set, get) => ({
           name: data.nameTwo,
           image: data.imageTwo,
           mana: data.manaTwo,
+          currentMana: data.currentManaTwo,
           units: data.shopTwo,
           battleground: data.battleTwo,
           fighterUp: data.fighterUpTwo ? data.fighterUpTwo : ({} as unitType),
@@ -251,6 +262,9 @@ export const useGameStore = create<GameState>((set, get) => ({
   fightUnitDown: () => set((state) => fightUnitDown(state)),
   fightBoss: () => set((state) => fightBoss(state)),
   fightWorker: () => set((state) => fightWorker(state)),
+  upgradeBaseLevelTwo: () => set((state) => upgradeBaseLevelTwo(state)),
+  upgradeBaseLevelThree: () => set((state) => upgradeBaseLevelThree(state)),
+  upgradeBaseLevelFour: () => set((state) => upgradeBaseLevelFour(state)),
   logicAI: () => {
     set((state) => logicAI(state, get));
   },

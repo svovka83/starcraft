@@ -51,6 +51,8 @@ export async function GET(req: NextRequest) {
         imageTwo: true,
         manaOne: true,
         manaTwo: true,
+        currentManaOne: true,
+        currentManaTwo: true,
         shopOne: true,
         shopTwo: true,
         battleOne: true,

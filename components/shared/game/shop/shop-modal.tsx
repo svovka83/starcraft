@@ -2,25 +2,26 @@ import React from "react";
 import { Button, Dialog, DialogContent, DialogTitle } from "../../../ui";
 import { unitType, useGameStore } from "@/store/game";
 import { ShopContent } from "../..";
-import { button_click } from "@/constants";
 import { X } from "lucide-react";
 
 interface Props {
   playerUnits: unitType[];
   battleLength: number;
+  mana: number;
+  currentMana: number;
+  minerals: number;
   showModalShop: boolean;
   closeModal: () => void;
-  minerals: number;
-  mana: number;
 }
 
 export const ShopModal: React.FC<Props> = ({
   playerUnits,
   battleLength,
+  mana,
+  minerals,
+  currentMana,
   showModalShop,
   closeModal,
-  minerals,
-  mana,
 }) => {
   const [activeUnit, setActiveUnit] = React.useState(0);
 
@@ -32,15 +33,13 @@ export const ShopModal: React.FC<Props> = ({
     closeModal();
   };
 
-  if (showModalShop) button_click.play();
-
   React.useEffect(() => {
     if (!showModalShop) setActiveUnit(0);
   }, [showModalShop]);
 
   return (
     <Dialog open={showModalShop} onOpenChange={closeModal}>
-      <DialogContent className="px-12 w-[800px] max-w-[900px] min-h-[400px] bg-blue-700/70 text-white overflow-hidden">
+      <DialogContent className="max-w-[691px]  bg-blue-700 text-white">
         <DialogTitle className="flex justify-between text-3xl">
           <h2 className="pointer-events-none">Choose unit for your army</h2>
           <X
@@ -48,24 +47,35 @@ export const ShopModal: React.FC<Props> = ({
             onClick={closeModal}
           />
         </DialogTitle>
-        {playerUnits
-          .map((unit) => (
-            <ShopContent
-              key={unit.id}
-              name={unit.name}
-              image={unit.image}
-              health={unit.health}
-              mana={unit.mana}
-              attack={unit.attack}
-              price={unit.price}
-              activated={() => setActiveUnit(unit.id as number)}
-              active={activeUnit === unit.id}
-              disabled={
-                minerals < unit.price || mana < unit.mana || battleLength === 8
-              }
-            />
-          ))
-          .slice(1, 5)}
+        <div className="flex flex-wrap gap-4">
+          {playerUnits
+            .map((unit) => (
+              <ShopContent
+                key={unit.id}
+                name={unit.name}
+                image={unit.image}
+                health={unit.health}
+                mana={unit.mana}
+                attack={unit.attack}
+                price={unit.price}
+                activated={() => setActiveUnit(unit.id as number)}
+                active={activeUnit === unit.id}
+                disabled={
+                  minerals < unit.price ||
+                  mana < unit.mana ||
+                  battleLength === 8
+                }
+              />
+            ))
+            .slice(
+              1,
+              (currentMana === 3 && 4) ||
+                (currentMana === 4 && 7) ||
+                (currentMana === 5 && 9) ||
+                (currentMana === 6 && 10) ||
+                0
+            )}
+        </div>
         <Button
           disabled={!activeUnit}
           onClick={() => addUnitToArmy(activeUnit)}

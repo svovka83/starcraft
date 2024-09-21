@@ -9,3 +9,6 @@ export { fightUnitDown } from "./functions-game-logic/fight-unit-down";
 export { fightBoss } from "./functions-game-logic/fight-boss";
 export { fightWorker } from "./functions-game-logic/fight-worker";
 export { refreshState } from "./functions-game-service/refresh-state";
+export { upgradeBaseLevelTwo } from "./functions-game-logic/upgrade-base-level-two";
+export { upgradeBaseLevelThree } from "./functions-game-logic/upgrade-base-level-three";
+export { upgradeBaseLevelFour } from "./functions-game-logic/upgrade-base-level-four";

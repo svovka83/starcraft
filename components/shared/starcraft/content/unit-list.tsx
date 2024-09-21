@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const UnitList: React.FC<Props> = ({ raceName, raceList, revers }) => {
-  const setActiveId = useStarcraftStore().setActiveId;
+  const setActiveId = useStarcraftStore((state) => state.setActiveId);
 
   const intersectionRef = React.useRef<HTMLDivElement>(null);
   const intersection = useIntersection(intersectionRef, {

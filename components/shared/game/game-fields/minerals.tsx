@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { unitType } from "@/store/game";
-import { Container, Explosion, Unit } from "../..";
+import { Container, Explosion, ToolTip, Unit } from "../..";
 import { useGameStore } from "@/store/game";
 import { Button } from "../../../ui";
 import { useTriggerAnimate } from "@/store/trigger-animations";
@@ -58,15 +58,19 @@ export const Minerals: React.FC<Props> = ({ worker, mine, reverse }) => {
         )}
       </div>
       <div className="flex items-center justify-around">
-        <Button
-          variant="secondary"
-          size="sm"
-          className="text-[20px] font-bold my-2"
-        >
-          <span>
-            Left <b>{mine}</b> minerals:
-          </span>
-        </Button>
+        <div className="text-[20px] text-white font-medium my-2">
+          <ToolTip
+            trigger={
+              <span>
+                Left <b>{mine}</b> minerals:
+              </span>
+            }
+            text={
+              " You can mine minerals here. The number depends on the number of workers."
+            }
+            className="w-44"
+          />
+        </div>
         <span className="absolute bottom-10 translate-x-16 w-[16px] h-[16px] text-center text-white text-[12px] font-bold bg-blue-500 pointer-events-none">
           1
         </span>

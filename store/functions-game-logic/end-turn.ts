@@ -7,11 +7,11 @@ export function endTurn(state: GameState) {
   return {
     ["one"]: {
       ...state.one,
-      mana: 3,
+      mana: state.one.currentMana,
     },
     ["two"]: {
       ...state.two,
-      mana: 3,
+      mana: state.two.currentMana,
     },
     turn: !state.turn,
     message: "change turn",

@@ -23,7 +23,7 @@ export const Explosion: React.FC<Props> = ({
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
         animate={isAnimate ? { scale: 5, opacity: 1 } : {}}
-        transition={{ duration: 2, ease: "circInOut" }}
+        transition={{ duration: 2, ease: "backInOut" }}
       >
         {isAnimate && "💥"}
       </motion.div>

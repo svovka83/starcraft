@@ -17,6 +17,7 @@ import {
   FightWorker,
   GameOver,
   GameBackground,
+  FireworksConfetti,
 } from "@/components/shared";
 import { useGameStore } from "@/store/game";
 import { useRouter } from "next/navigation";
@@ -26,11 +27,12 @@ import { starcraft_fon_1, starcraft_fon_2 } from "@/constants";
 export default function Game() {
   const route = useRouter();
 
-  isGame().then(({ success }) => {
-    if (!success) {
-      return route.push("/");
-    }
-  });
+  // isGame().then(({ success }) => {
+  //   // every time checking - make one time
+  //   if (!success) {
+  //     return route.push("/");
+  //   }
+  // });
 
   const [
     getGame,
@@ -116,6 +118,7 @@ export default function Game() {
       <FightUnitDown />
       <FightBoss />
       <FightWorker />
+      <FireworksConfetti />
       <GameOver gameOver={gameOver} setGameOver={setGameOver} />
       <div className="fixed w-[100vw] h-[100vh] top-0 left-0 right-0 bottom-0 bg-slate-950 -z-50"></div>
     </div>

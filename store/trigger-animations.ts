@@ -23,6 +23,9 @@ interface TriggerAnimateState {
   isAnimateMoveUnitDownTwoComeback: boolean;
   isAnimateDamageWorkerOne: boolean;
   isAnimateDamageWorkerTwo: boolean;
+  isAnimateCelebratingUpgradeOne: boolean;
+  isAnimateCelebratingUpgradeTwo: boolean;
+  isAnimateCelebratingEndGame: boolean;
   setAnimateDamageFighterUp: () => void;
   setAnimateDamageFighterDown: () => void;
   setAnimateDamageBossOne: () => void;
@@ -43,6 +46,9 @@ interface TriggerAnimateState {
   setAnimateMoveUnitDownTwoComeback: () => void;
   setAnimateDamageWorkerOne: () => void;
   setAnimateDamageWorkerTwo: () => void;
+  setAnimateCelebratingUpgradeOne: () => void;
+  setAnimateCelebratingUpgradeTwo: () => void;
+  setAnimateCelebratingEndGame: (valueEndGame: boolean) => void;
 }
 
 export const useTriggerAnimate = create<TriggerAnimateState>((set) => ({
@@ -68,6 +74,9 @@ export const useTriggerAnimate = create<TriggerAnimateState>((set) => ({
   isAnimateMoveUnitDownTwoComeback: true,
   isAnimateDamageWorkerOne: false,
   isAnimateDamageWorkerTwo: false,
+  isAnimateCelebratingUpgradeOne: false,
+  isAnimateCelebratingUpgradeTwo: false,
+  isAnimateCelebratingEndGame: false,
   setAnimateDamageFighterUp: () => {
     set({ isAnimateDamageFighterUp: true });
     setTimeout(() => set({ isAnimateDamageFighterUp: false }), 3000);
@@ -159,5 +168,16 @@ export const useTriggerAnimate = create<TriggerAnimateState>((set) => ({
   setAnimateDamageWorkerTwo: () => {
     set({ isAnimateDamageWorkerTwo: true });
     setTimeout(() => set({ isAnimateDamageWorkerTwo: false }), 3000);
+  },
+  setAnimateCelebratingUpgradeOne: () => {
+    set({ isAnimateCelebratingUpgradeOne: true });
+    setTimeout(() => set({ isAnimateCelebratingUpgradeOne: false }), 8000);
+  },
+  setAnimateCelebratingUpgradeTwo: () => {
+    set({ isAnimateCelebratingUpgradeTwo: true });
+    setTimeout(() => set({ isAnimateCelebratingUpgradeTwo: false }), 8000);
+  },
+  setAnimateCelebratingEndGame: (valueEndGame) => {
+    set({ isAnimateCelebratingEndGame: valueEndGame });
   },
 }));

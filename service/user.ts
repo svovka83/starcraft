@@ -25,3 +25,8 @@ export const user = async () => {
   const { data } = await axiosInstance.get("/users/user");
   return data;
 };
+
+export const users = async () => {
+  const { data } = await axiosInstance.get("/users");
+  return data;
+};

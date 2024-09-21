@@ -53,6 +53,8 @@ export async function POST(req: NextRequest) {
         imageTwo: body.two.image,
         manaOne: body.one.mana,
         manaTwo: body.two.mana,
+        currentManaOne: body.one.currentMana,
+        currentManaTwo: body.two.currentMana,
         battleOne: {
           deleteMany: {},
         },
@@ -83,7 +85,7 @@ export async function POST(req: NextRequest) {
     createFighter(body.one.fighterDown, prisma.fighterDownOne, getGame.id);
     createFighter(body.two.fighterDown, prisma.fighterDownTwo, getGame.id);
 
-    return NextResponse.json({ message: "Game saved." }, { status: 200 });
+    return NextResponse.json({ message: "💾Game saved.✅" }, { status: 200 });
   } catch (error) {
     console.log("[POST_SAVE_GAME]", error);
     return NextResponse.json(

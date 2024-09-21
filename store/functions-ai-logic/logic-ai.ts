@@ -1,36 +1,38 @@
-import { GameState, unitType } from "../game";
-import lodash from "lodash";
+import { GameState } from "../game";
+import { isUnitBattleId, randomUnitIdAI } from "../../functions";
 import { finish_turn } from "@/constants";
 
 export function logicAI(state: GameState, get: () => GameState) {
+  if (state.one.boss === 0) return state;
+
   if (state.two.mana === 0) {
     // make fix
     finish_turn.play();
     return {
       ["two"]: {
         ...state.two,
-        mana: 3,
+        mana: state.two.currentMana,
       },
       turn: !state.turn,
       message: "change turn",
     };
   }
 
-  // code for buyUnit
-  const unitId = get().two.units.map((unit: unitType) => unit.id!);
-  const unitIdRandom = lodash.random(unitId[1], unitId[unitId.length - 1]);
+  // function for buyUnit
+  const unitIdRandom = randomUnitIdAI(state.two.currentMana, get().two.units);
+
+  const unitMana = get().two.units.find(
+    // need push to randomUnitIdAI
+    (unit) => unit.id === unitIdRandom
+  )?.mana;
+
+  const unitPrice = get().two.units.find(
+    // need push to randomUnitIdAI
+    (unit) => unit.id === unitIdRandom
+  )?.price;
 
   // code for moveUnitUp or moveUnitDown
-  const isUnitBattleId = (battleLength: number) => {
-    if (battleLength > 0) {
-      const battle = get().two.battleground.map((unit: unitType) => unit);
-      const randomBattleIndex = Math.floor(Math.random() * battle.length);
-      const battleRandom = battle[randomBattleIndex].id!;
-      return battleRandom;
-    }
-    return 0;
-  };
-  const battleUnitId = isUnitBattleId(state.two.battleground.length);
+  const battleUnitId = isUnitBattleId(state.two.battleground.length, get);
 
   // **********************
   // DEFENDER AI worker
@@ -56,8 +58,7 @@ export function logicAI(state: GameState, get: () => GameState) {
     state.two.worker.length < 3 &&
     state.one.fighterDown.name &&
     !state.two.fighterDown.name &&
-    battleUnitId !== 0 &&
-    state.two.mana >= state.two.battleground[0].mana
+    battleUnitId !== null
   ) {
     const functionAI = () => get().moveUnitDown(battleUnitId);
     const AI = functionAI();
@@ -71,7 +72,9 @@ export function logicAI(state: GameState, get: () => GameState) {
     state.two.worker.length < 3 &&
     state.one.fighterDown.name &&
     !state.two.fighterDown.name &&
-    battleUnitId === 0
+    battleUnitId === null &&
+    state.two.mana >= unitMana! &&
+    state.two.minerals >= unitPrice!
   ) {
     const functionAI = () => get().buyUnit(unitIdRandom);
     const AI = functionAI();
@@ -127,7 +130,12 @@ export function logicAI(state: GameState, get: () => GameState) {
   // **********************
   // if need defend low boss "finish step"
   // **********************
-  if (state.two.boss < 10 && !state.two.fighterUp.name && battleUnitId !== 0) {
+  if (
+    state.two.boss <= 15 &&
+    state.one.fighterUp.name &&
+    !state.two.fighterUp.name &&
+    battleUnitId !== null
+  ) {
     const functionAI = () => get().moveUnitUp(battleUnitId);
     const AI = functionAI();
     return { AI };
@@ -136,13 +144,29 @@ export function logicAI(state: GameState, get: () => GameState) {
   // **********************
   // if need defend low boss "start step"
   // **********************
-  if (state.two.boss < 10 && !state.two.fighterUp.name && battleUnitId === 0) {
-    const randomFunction = [() => get().buyUnit(unitIdRandom)];
-    const randomIndex = Math.floor(Math.random() * randomFunction.length);
-    // here must be push one more function (comeback unitDown - need create)
-    // here must be push one more function (comeback unitDown - need create)
-    // here must be push one more function (comeback unitDown - need create)
-    const functionAI = randomFunction[randomIndex];
+  if (
+    state.two.boss <= 15 &&
+    state.one.fighterUp.name &&
+    !state.two.fighterUp.name &&
+    battleUnitId === null &&
+    state.two.mana >= unitMana! &&
+    state.two.minerals >= unitPrice!
+  ) {
+    const functionAI = () => get().buyUnit(unitIdRandom);
+    const AI = functionAI();
+    return { AI };
+  }
+  // **********************
+  // **********************
+  // if need defend low boss "must have step"
+  // **********************
+  if (
+    state.two.boss <= 5 &&
+    state.one.fighterUp.name &&
+    state.two.fighterUp.name &&
+    state.two.mana >= state.two.fighterUp.mana
+  ) {
+    const functionAI = () => get().fightUnitUp();
     const AI = functionAI();
     return { AI };
   }
@@ -157,15 +181,94 @@ export function logicAI(state: GameState, get: () => GameState) {
   // **********************
 
   // **********************
+  // if minerals to low for level two
+  // **********************
+  if (state.two.currentMana === 3 && state.two.minerals < 15) {
+    randomFunction.push(get().addMinerals);
+    randomFunction.push(get().addMinerals);
+    randomFunction.push(get().addMinerals);
+  }
+  // **********************
+  // **********************
+  // if minerals to low for level three
+  // **********************
+  if (state.two.currentMana === 4 && state.two.minerals < 20) {
+    randomFunction.push(get().addMinerals);
+    randomFunction.push(get().addMinerals);
+    randomFunction.push(get().addMinerals);
+  }
+  // **********************
+  // **********************
+  // if minerals to low for level four
+  // **********************
+  if (state.two.currentMana === 5 && state.two.minerals < 25) {
+    randomFunction.push(get().addMinerals);
+    randomFunction.push(get().addMinerals);
+    randomFunction.push(get().addMinerals);
+  }
+  // **********************
+  // **********************
   // if minerals too much
   // **********************
-  if (state.two.minerals > 15) {
+  if (state.two.minerals > 25) {
     randomFunction.pop();
   }
   // **********************
 
+  // **********************
+  // push function or upgrade base to level 2
+  // **********************
+  if (
+    state.two.currentMana === 3 &&
+    state.two.minerals >= 15 &&
+    state.two.mana === 3
+  ) {
+    randomFunction.push(get().upgradeBaseLevelTwo);
+  }
+  if (
+    state.two.currentMana === 3 &&
+    state.two.minerals >= 20 &&
+    state.two.mana === 3
+  ) {
+    const functionAI = () => get().upgradeBaseLevelTwo();
+    const AI = functionAI();
+    return { AI };
+  }
+  // **********************
+  // **********************
+  // push function or upgrade base to level 3
+  // **********************
+  if (
+    state.two.currentMana === 4 &&
+    state.two.minerals >= 20 &&
+    state.two.mana === 4
+  ) {
+    randomFunction.push(get().upgradeBaseLevelThree);
+  }
+  if (
+    state.two.currentMana === 4 &&
+    state.two.minerals >= 25 &&
+    state.two.mana === 4
+  ) {
+    const functionAI = () => get().upgradeBaseLevelThree();
+    const AI = functionAI();
+    return { AI };
+  }
+  // **********************
+  // **********************
+  // upgrade base to level 4
+  // **********************
+  if (
+    state.two.currentMana === 5 &&
+    state.two.minerals >= 25 &&
+    state.two.mana === 5
+  ) {
+    randomFunction.push(get().upgradeBaseLevelFour);
+  }
+  // **********************
+
   // check for moveUnitUp
-  if (battleUnitId !== 0) {
+  if (battleUnitId !== null) {
     randomFunction.push(() => get().moveUnitUp(battleUnitId));
     randomFunction.push(() => get().moveUnitDown(battleUnitId));
   }
@@ -180,10 +283,10 @@ export function logicAI(state: GameState, get: () => GameState) {
   if (state.one.fighterDown.name && state.two.fighterDown.name) {
     randomFunction.push(() => get().fightUnitDown());
   }
+  // check isFightWorker
   if (!state.one.fighterDown.name && state.two.fighterDown.name) {
     randomFunction.push(() => get().fightWorker());
   }
-
   // **********************
   const randomIndex = Math.floor(Math.random() * randomFunction.length);
   const functionAI = randomFunction[randomIndex];
