@@ -27,12 +27,12 @@ import { starcraft_fon_1, starcraft_fon_2 } from "@/constants";
 export default function Game() {
   const route = useRouter();
 
-  // isGame().then(({ success }) => {
-  //   // every time checking - make one time
-  //   if (!success) {
-  //     return route.push("/");
-  //   }
-  // });
+  isGame().then(({ success }) => {
+    // every time checking - make one time
+    if (!success) {
+      return route.push("/");
+    }
+  });
 
   const [
     getGame,
