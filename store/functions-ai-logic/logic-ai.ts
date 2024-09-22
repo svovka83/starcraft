@@ -90,7 +90,7 @@ export function logicAI(state: GameState, get: () => GameState) {
   // **********************
   // if minerals finishing
   // **********************
-  if (state.two.minerals <= 3) {
+  if (state.two.minerals < 3) {
     const randomFunction = [get().createWorker, get().addMinerals];
     const randomIndex = Math.floor(Math.random() * randomFunction.length);
     const functionAI = randomFunction[randomIndex];
@@ -217,7 +217,7 @@ export function logicAI(state: GameState, get: () => GameState) {
   // **********************
   // if minerals too much
   // **********************
-  if (state.two.minerals > 25) {
+  if (state.two.minerals > 30) {
     randomFunction.pop();
   }
   // **********************

@@ -37,18 +37,18 @@ export const FireworksConfetti = () => {
       {(isAnimateCelebratingUpgradeTwo || isAnimateCelebratingEndGame) && (
         <Confetti
           confettiSource={{
-            x: 1315,
+            x: 50,
             y: 480,
             w: 0,
             h: 0,
           }}
           numberOfPieces={500}
           gravity={0.05}
-          initialVelocityX={{ min: -10, max: 1 }}
+          initialVelocityX={{ min: -1, max: 10 }}
           initialVelocityY={{ min: -30, max: 0 }}
           colors={["#ff0000", "#00ff00", "#0000ff", "#ffcc00", "#ff00ff"]}
           recycle={isAnimateCelebratingEndGame}
-          className="w-[1180px] h-[90vh]"
+          className="w-[1180px] h-[90vh] scale-x-[-1]"
         />
       )}
     </div>
