@@ -34,6 +34,11 @@ export function logicAI(state: GameState, get: () => GameState) {
   // code for moveUnitUp or moveUnitDown
   const battleUnitId = isUnitBattleId(state.two.battleground.length, get);
 
+  const battleMana = get().two.battleground.find(
+    // need push to battleUnitId
+    (unit) => unit.id === battleUnitId
+  )?.mana;
+
   // **********************
   // DEFENDER AI worker
   // **********************
@@ -58,7 +63,8 @@ export function logicAI(state: GameState, get: () => GameState) {
     state.two.worker.length < 3 &&
     state.one.fighterDown.name &&
     !state.two.fighterDown.name &&
-    battleUnitId !== null
+    battleUnitId !== null &&
+    state.two.mana >= battleMana!
   ) {
     const functionAI = () => get().moveUnitDown(battleUnitId);
     const AI = functionAI();
@@ -134,7 +140,8 @@ export function logicAI(state: GameState, get: () => GameState) {
     state.two.boss <= 15 &&
     state.one.fighterUp.name &&
     !state.two.fighterUp.name &&
-    battleUnitId !== null
+    battleUnitId !== null &&
+    state.two.mana >= battleMana!
   ) {
     const functionAI = () => get().moveUnitUp(battleUnitId);
     const AI = functionAI();
