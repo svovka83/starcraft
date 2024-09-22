@@ -137,6 +137,8 @@ export async function POST(req: NextRequest) {
             data: body.shopTwo,
           },
         },
+        manaTwo: body.level,
+        currentManaTwo: body.level,
         gameMode: body.gameMode,
       },
     });
@@ -152,6 +154,8 @@ export async function POST(req: NextRequest) {
         imageTwo: true,
         shopOne: true,
         shopTwo: true,
+        manaTwo: true,
+        currentManaTwo: true,
         gameMode: true,
       },
     });

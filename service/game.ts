@@ -13,7 +13,8 @@ export const createGame = async (
   infoTwo: infoType,
   shopOne: unitType[],
   shopTwo: unitType[],
-  gameMode: GameMode
+  gameMode: GameMode,
+  level: number
 ): Promise<CreateGameServer> => {
   const { data } = await axiosInstance.post<CreateGameServer>("/game", {
     infoOne,
@@ -21,6 +22,7 @@ export const createGame = async (
     shopOne,
     shopTwo,
     gameMode,
+    level,
   });
   return data;
 };

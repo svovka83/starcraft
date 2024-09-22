@@ -64,13 +64,14 @@ export interface GameState {
     infoTwo: infoType,
     shopOne: unitType[],
     shopTwo: unitType[],
-    gameMode: GameMode
+    gameMode: GameMode,
+    currentManaTwo: number
   ) => Promise<void>;
   setGetGame: () => Promise<void>;
   getSaveGame: () => Promise<void>;
   chooseOne: (nameOne: string, avatar: string) => void;
   chooseTwo: (nameTwo: string, avatar: string) => void;
-  chooseGameMode: (gameMode: GameMode) => void;
+  chooseGameMode: (gameMode: GameMode) => void
   refreshState: () => void;
   buyUnit: (unitId: number) => void;
   moveUnitUp: (unitId: number) => void;
@@ -128,7 +129,8 @@ export const useGameStore = create<GameState>((set, get) => ({
     infoTwo: infoType,
     shopOne: unitType[],
     shopTwo: unitType[],
-    gameMode: GameMode
+    gameMode: GameMode,
+    level: number
   ) => {
     try {
       const data = await createGame(
@@ -136,7 +138,8 @@ export const useGameStore = create<GameState>((set, get) => ({
         infoTwo,
         shopOne,
         shopTwo,
-        gameMode
+        gameMode,
+        level
       );
       set((state) => ({
         ["one"]: {
@@ -152,6 +155,8 @@ export const useGameStore = create<GameState>((set, get) => ({
           image: data.imageTwo,
           units: data.shopTwo,
           worker: [data.shopTwo[0]],
+          mana: data.manaTwo,
+          currentMana: data.currentManaTwo,
         },
         gameMode: data.gameMode,
       }));
@@ -247,9 +252,7 @@ export const useGameStore = create<GameState>((set, get) => ({
   },
   chooseGameMode: (gameMode: GameMode) => {
     set(() => {
-      return {
-        gameMode: gameMode,
-      };
+      return { gameMode };
     });
   },
   refreshState: () => set(() => refreshState(get)),

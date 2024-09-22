@@ -19,7 +19,7 @@ export const Version: React.FC<Props> = ({ className }) => {
 
   return (
     <span className={cn("text-white", className)}>
-      version: 2.0.{usersQuantity}
+      version: 2.1.{usersQuantity}
     </span>
   );
 };

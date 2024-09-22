@@ -7,6 +7,7 @@ export type CreateGameClient = {
   shopOne: unitType[];
   shopTwo: unitType[];
   gameMode: GameMode;
+  level: number;
 };
 export type CreateGameServer = {
   nameOne: string;
@@ -16,6 +17,8 @@ export type CreateGameServer = {
   shopOne: unitType[];
   shopTwo: unitType[];
   gameMode: GameMode;
+  manaTwo: number;
+  currentManaTwo: number;
 };
 
 export type SaveGameClient = {

@@ -20,8 +20,8 @@ export const UserButton: React.FC<Props> = ({
   ]);
 
   const clickUserButton = () => {
-    setCurrentPlayer("playerOne");
     howler_push.play();
+    setCurrentPlayer("playerOne");
   };
 
   React.useEffect(() => {

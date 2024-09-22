@@ -1,7 +1,8 @@
 import React from "react";
 import { GameState, useGameStore } from "@/store/game";
 import { Button } from "@/components/ui";
-import { howler_push } from "@/constants";
+import { LEVELS, howler_push } from "@/constants";
+import { useLevelStore } from "@/store/level";
 
 interface Props {
   isAuth: boolean;
@@ -12,14 +13,16 @@ export const ChooseModeButton: React.FC<Props> = ({ isAuth }) => {
     state.gameMode,
     state.chooseGameMode,
   ]);
+  const setChooseLevel = useLevelStore().setChooseLevel;
 
   const chooseComputer = () => {
-    chooseGameMode("COMPUTER");
     howler_push.play();
+    chooseGameMode("COMPUTER");
   };
   const choosePlayer = () => {
-    chooseGameMode("PLAYER");
     howler_push.play();
+    setChooseLevel(LEVELS[0]);
+    chooseGameMode("PLAYER");
   };
 
   return (

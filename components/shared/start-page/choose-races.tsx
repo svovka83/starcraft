@@ -15,9 +15,12 @@ import {
 } from "@/constants";
 import { OpponentButton, Race, StartButtons, UserButton } from "..";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/store/user";
+import { useLevelStore } from "@/store/level";
 
 export const ChooseRaces: React.FC = () => {
   const route = useRouter();
+  const username = useUserStore().username;
 
   const [infoOne, setInfoOne] = React.useState<infoType>({} as infoType);
   const [infoTwo, setInfoTwo] = React.useState<infoType>({} as infoType);
@@ -35,11 +38,19 @@ export const ChooseRaces: React.FC = () => {
       state.refreshState,
       state.gameMode,
     ]);
+  const { currentMana } = useLevelStore().level;
 
   const createGame = () => {
     button_click.play();
     refreshState();
-    setCreateGame(infoOne, infoTwo, playerOne, playerTwo, gameMode).then(() => {
+    setCreateGame(
+      infoOne,
+      infoTwo,
+      playerOne,
+      playerTwo,
+      gameMode,
+      currentMana
+    ).then(() => {
       route.push("/game");
       start_game.play();
     });
@@ -104,11 +115,15 @@ export const ChooseRaces: React.FC = () => {
           />
         </div>
 
-        <OpponentButton
-          currentPlayer={currentPlayer}
-          setCurrentPlayer={setCurrentPlayer}
-          gameMode={gameMode}
-        />
+        {username ? (
+          <OpponentButton
+            currentPlayer={currentPlayer}
+            setCurrentPlayer={setCurrentPlayer}
+            gameMode={gameMode}
+          />
+        ) : (
+          <div className="w-48"></div>
+        )}
       </div>
 
       <StartButtons

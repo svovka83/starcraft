@@ -2,6 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/store/user";
 import { useGameStore } from "@/store/game";
+import { useLevelStore } from "@/store/level";
 
 export const ContentStartGame: React.FC = () => {
   const player = useUserStore().username;
@@ -10,6 +11,7 @@ export const ContentStartGame: React.FC = () => {
   const nameTwo = useGameStore().two.name;
   const avatarOne = useGameStore().one.avatar;
   const avatarTwo = useGameStore().two.avatar;
+  const level = useLevelStore().level.name;
 
   return (
     <div className="flex items-center justify-around text-center text-white font-bold text-[24px] pointer-events-none">
@@ -21,6 +23,7 @@ export const ContentStartGame: React.FC = () => {
         })}
       >
         <span>{player}</span>
+        <span>Level 1</span>
         <span>{nameOne}</span>
         <img src={avatarOne} className="w-28 h-28 rounded-sm" alt="player" />
       </div>
@@ -33,6 +36,7 @@ export const ContentStartGame: React.FC = () => {
         })}
       >
         <span>{opponent === "COMPUTER" ? "Computer" : "Player"}</span>
+        <span>{level}</span>
         <span>{nameTwo}</span>
         <img
           src={avatarTwo}
