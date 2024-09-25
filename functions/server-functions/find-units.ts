@@ -12,7 +12,7 @@ export interface GetSearchParams {
 
 const DEFAULT_MIN_PRICE = 0;
 const DEFAULT_MAX_PRICE = 15;
-
+// make end-point
 export const findUnits = async (params: GetSearchParams) => {
   const manaFilter = params.mana?.replace(/mana_/g, "").split(",").map(Number);
   const healthFilter = params.health

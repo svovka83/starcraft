@@ -9,7 +9,7 @@ interface Props {
 
 export const UnitGroup: React.FC<Props> = ({ unitsGroup, revers }) => {
   return (
-    <div className="grid grid-rows-3 rows-span-3 mb-12">
+    <div className="grid units justify-between mb-12">
       {unitsGroup.map(
         (group) =>
           group.units.length > 0 && (

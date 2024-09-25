@@ -17,7 +17,7 @@ export const HomeHeader: React.FC = () => {
   starcraft_fon_2.stop(); // ???
 
   return (
-    <div className="grid grid-cols-3 items-center justify-around">
+    <div className="grid grid-cols-3 items-center justify-around pointer-events-none">
       <span
         className={cn("text-start ml-8 text-[28px] text-white font-bold", {
           "text-blue-600": nameOne === "Terran",
