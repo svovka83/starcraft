@@ -7,14 +7,20 @@ import { MANA, HEALTH, ATTACK } from "@/constants";
 import { useFilters } from "@/hooks/use-filters";
 import { useQueryFilters } from "@/hooks/use-query-filters";
 
-export const Filters: React.FC = () => {
+interface Props {
+  quantity: number;
+}
+
+export const Filters: React.FC<Props> = ({ quantity }) => {
   const filters = useFilters();
 
   useQueryFilters(filters);
 
   return (
     <div className="sticky top-[56px] w-[34%] h-[605px] border-x-2">
-      <h1 className="text-3xl font-bold mt-8 text-violet-700">parameters</h1>
+      <h1 className="text-3xl font-bold mt-8 text-violet-700">
+        units quantity {quantity}
+      </h1>
 
       <GroupFiltersCheckbox
         title="mana"

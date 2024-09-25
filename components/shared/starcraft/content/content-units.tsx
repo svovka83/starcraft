@@ -7,10 +7,15 @@ interface Props {
 }
 
 export const ContentUnits: React.FC<Props> = ({ unitsGroup }) => {
+  const quantity =
+    unitsGroup[0].units.length +
+    unitsGroup[1].units.length +
+    unitsGroup[2].units.length;
+
   return (
     <div className="flex justify-around text-center">
       <UnitGroup unitsGroup={unitsGroup} revers={false} />
-      <Filters />
+      <Filters quantity={quantity} />
       <UnitGroup unitsGroup={unitsGroup} revers={true} />
     </div>
   );
