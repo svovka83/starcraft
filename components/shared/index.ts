@@ -72,3 +72,4 @@ export { WindowUpgradeBase } from "./game/upgrade-base/window-upgrade-base";
 export { UpgradeAvailableInfo } from "./game/info/upgrade-available-info";
 export { UpgradeBase } from "./game/upgrade-base/upgrade-base";
 export { FireworksConfetti } from "./game/effect/fireworks-confetti";
+export { SearchUnits } from "./starcraft/header/search-units";

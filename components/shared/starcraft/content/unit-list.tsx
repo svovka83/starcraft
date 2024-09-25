@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useIntersection } from "react-use";
 import { Title, UnitCart } from "../..";
@@ -11,18 +13,18 @@ interface Props {
 }
 
 export const UnitList: React.FC<Props> = ({ raceName, raceList, revers }) => {
-  const setActiveId = useStarcraftStore((state) => state.setActiveId);
-
-  const intersectionRef = React.useRef<HTMLDivElement>(null);
+  const intersectionRef = React.useRef<HTMLInputElement>(null);
   const intersection = useIntersection(intersectionRef, {
-    threshold: 0.4,
+    threshold: 0.3,
   });
+
+  const setActiveId = useStarcraftStore((state) => state.setActiveId);
 
   React.useEffect(() => {
     if (intersection?.isIntersecting) {
       setActiveId(raceName);
     }
-  }, [intersection?.isIntersecting]);
+  }, [intersection?.isIntersecting, raceName]);
 
   return (
     <div className="mt-12" id={raceName} ref={intersectionRef}>

@@ -1,17 +1,12 @@
-"use client";
-
 import React from "react";
 import { Filters, UnitGroup } from "../..";
-import { useStarcraftStore } from "@/store/starcraft";
+import { unitsGroupDTO } from "@/service/dto/starcraft.dto";
 
-export const ContentUnits: React.FC = () => {
-  const unitsGroup = useStarcraftStore().unitsGroup;
-  const setUnitsGroup = useStarcraftStore().setUnitsGroup;
+interface Props {
+  unitsGroup: unitsGroupDTO[];
+}
 
-  React.useEffect(() => {
-    setUnitsGroup();
-  }, []);
-
+export const ContentUnits: React.FC<Props> = ({ unitsGroup }) => {
   return (
     <div className="flex justify-around text-center">
       <UnitGroup unitsGroup={unitsGroup} revers={false} />

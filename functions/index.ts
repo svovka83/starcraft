@@ -2,6 +2,7 @@
 export { deleteGame } from "./server-functions/delete-game";
 export { createFighter } from "./server-functions/create-fighter";
 export { deleteFighter } from "./server-functions/delete-fighter";
+export { findUnits } from "./server-functions/find-units";
 
 // zustand-functions
 export { manaCounter } from "./zustand-functions/mana-counter";

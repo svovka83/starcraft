@@ -1,13 +1,16 @@
-import { unitsGroupDTO } from "./dto/starcraft.dto";
 import { axiosInstance } from "./instance";
-import { Category } from "@prisma/client";
+import { Category, Unit } from "@prisma/client";
 
 export const categories = async (): Promise<Category[]> => {
   const { data } = await axiosInstance.get<Category[]>("/starcraft/categories");
   return data;
 };
 
-export const unitsGroup = async (): Promise<unitsGroupDTO[]> => {
-  const { data } = await axiosInstance.get<unitsGroupDTO[]>("/starcraft/units");
+export const searchUnits = async (query: string): Promise<Unit[]> => {
+  const { data } = await axiosInstance.get<Unit[]>("/starcraft/unit/search", {
+    params: {
+      query,
+    },
+  });
   return data;
 };

@@ -1,12 +1,12 @@
-"use client";
-
 import React from "react";
 import { cn } from "@/lib/utils";
 import { FilterCheckbox, FilterCheckboxProps } from "./filter-checkbox";
 
 interface Props {
   title: string;
-  items: FilterCheckboxProps[]; // типізацію беремо з ./filter-checkbox компонента для чекбоксів
+  items: FilterCheckboxProps[];
+  selected: Set<string>;
+  onClickCheckbox: (value: string) => void;
   textColor?: string;
   className?: string;
 }
@@ -14,6 +14,8 @@ interface Props {
 export const GroupFiltersCheckbox: React.FC<Props> = ({
   title,
   items,
+  selected,
+  onClickCheckbox,
   textColor,
   className,
 }) => {
@@ -23,14 +25,14 @@ export const GroupFiltersCheckbox: React.FC<Props> = ({
         {title}
       </h2>
 
-      <div className="flex flex-wrap flex-row justify-center gap-8 mt-4">
+      <div className="flex flex-wrap flex-row justify-center gap-4 mt-4">
         {items.map((item, index) => (
           <FilterCheckbox
             key={index}
             text={item.text}
             value={item.value}
-            checked={item.checked}
-            onCheckedChange={(checked) => console.log(checked)}
+            selected={selected.has(item.value)}
+            onCheckedChange={() => onClickCheckbox(item.value)}
             textColor={textColor}
             className={className}
           />

@@ -48,6 +48,10 @@ html {
   font-family: var(--font-nunito), sans-serif;
 }
 
+.units {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
 .scrollbar::-webkit-scrollbar {
   width: 4px;
 }
