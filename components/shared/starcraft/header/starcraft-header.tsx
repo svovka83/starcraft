@@ -18,7 +18,7 @@ export const StarCraftHeader: React.FC = () => {
       <div className="flex items-center justify-between py-8 px-8">
         <LeftSide />
 
-        {/* <SearchUnits /> */}
+        <SearchUnits />
 
         <RightSide />
       </div>
