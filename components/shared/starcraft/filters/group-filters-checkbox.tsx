@@ -21,7 +21,7 @@ export const GroupFiltersCheckbox: React.FC<Props> = ({
 }) => {
   return (
     <div>
-      <h2 className={cn("border-t text-2xl font-bold mt-2 pt-1", textColor)}>
+      <h2 className={cn("border-t text-2xl font-bold mt-2 pt-1 pointer-events-none", textColor)}>
         {title}
       </h2>
 
