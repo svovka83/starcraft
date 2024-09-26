@@ -1,4 +1,5 @@
 import { axiosInstance } from "./instance";
+import { Unit } from "@prisma/client";
 
 export const register = async (username: string, password: string) => {
   const { data } = await axiosInstance.post("/users/register", {

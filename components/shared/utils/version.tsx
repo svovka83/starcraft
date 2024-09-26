@@ -2,19 +2,18 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-import { users } from "@/service/user";
+import { useUserStore } from "@/store/user";
 
 interface Props {
   className?: string;
 }
 
 export const Version: React.FC<Props> = ({ className }) => {
-  const [usersQuantity, setUsersQuantity] = React.useState<number>(0);
+  const usersQuantity = useUserStore().quantity;
+  const setUsersQuantity = useUserStore().setUsersQuantity;
 
   React.useEffect(() => {
-    users().then((data) => {
-      setUsersQuantity(data);
-    });
+    setUsersQuantity();
   }, []);
 
   return (
