@@ -26,7 +26,7 @@ export const user = async () => {
   return data;
 };
 
-export const users = async () => {
-  const { data } = await axiosInstance.get("/users");
+export const users = async (): Promise<number> => {
+  const { data } = await axiosInstance.get<number>("/users");
   return data;
 };
