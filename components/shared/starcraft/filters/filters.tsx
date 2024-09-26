@@ -17,8 +17,8 @@ export const Filters: React.FC<Props> = ({ quantity }) => {
   useQueryFilters(filters);
 
   return (
-    <div className="sticky top-[56px] w-[256px] h-[685px] text-center border-x-2">
-      <div className="flex gap-2 pl-2 text-3xl font-bold mt-8 text-violet-700">
+    <div className="sticky top-[56px] w-[256px] h-[597px] text-center border-x-2">
+      <div className="flex gap-2 pl-2 text-3xl font-bold mt-6 mb-4 text-violet-700">
         <h1>
           units quantity
         </h1>
@@ -50,8 +50,8 @@ export const Filters: React.FC<Props> = ({ quantity }) => {
         className="border-red-600 data-[state=checked]:bg-red-600"
       />
 
-      <div className="mt-5 border-y pb-7">
-        <h2 className="text-2xl font-bold pt-3 text-violet-700">price</h2>
+      <div className="mt-2 border-y pb-7">
+        <h2 className="text-2xl font-bold pt-1 text-violet-700">price</h2>
         <div className="flex justify-center gap-8 mx-8 mb-7">
           <Input
             type="number"

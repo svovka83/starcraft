@@ -26,7 +26,7 @@ export const UnitList: React.FC<Props> = ({ raceName, raceList }) => {
   }, [intersection?.isIntersecting, raceName]);
 
   return (
-    <div className="mt-12" id={raceName} ref={intersectionRef}>
+    <div className="mt-8" id={raceName} ref={intersectionRef}>
       <Title text={raceName} size="lg" />
 
       <div className="flex flex-wrap gap-4">

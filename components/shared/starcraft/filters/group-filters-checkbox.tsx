@@ -21,11 +21,11 @@ export const GroupFiltersCheckbox: React.FC<Props> = ({
 }) => {
   return (
     <div>
-      <h2 className={cn("border-t text-2xl font-bold mt-4 pt-3", textColor)}>
+      <h2 className={cn("border-t text-2xl font-bold mt-2 pt-1", textColor)}>
         {title}
       </h2>
 
-      <div className="flex flex-wrap flex-row justify-center gap-4 mt-4">
+      <div className="flex flex-wrap flex-row justify-center gap-4 mt-3">
         {items.map((item, index) => (
           <FilterCheckbox
             key={index}

@@ -18,7 +18,7 @@ export const UnitCart: React.FC<Props> = ({
   price,
 }) => {
   return (
-    <div className="w-[210px] h-[320px] text-[18px] text-center font-medium bg-violet-200 mt-12 rounded-md shadow-lg shadow-violet-200">
+    <div className="w-[210px] h-[320px] text-[18px] text-center font-medium bg-violet-200 mt-4 rounded-md shadow-lg shadow-violet-200">
       <h3 className="text-2xl text-fuchsia-500 py-1">{name}</h3>
       <img
         src={image}
