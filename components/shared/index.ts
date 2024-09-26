@@ -65,7 +65,6 @@ export { GroupFiltersCheckbox } from "./starcraft/filters/group-filters-checkbox
 export { RangeSlider } from "./starcraft/filters/range-slider";
 export { Footer } from "./starcraft/footer/footer";
 export { ContentUnits } from "./starcraft/content/content-units";
-export { UnitGroup } from "./starcraft/content/unit-group";
 export { UnitList } from "./starcraft/content/unit-list";
 export { UnitCart } from "./starcraft/content/unit-cart";
 export { WindowUpgradeBase } from "./game/upgrade-base/window-upgrade-base";

@@ -1,5 +1,4 @@
 import React from "react";
-import { cn } from "@/lib/utils";
 
 interface Props {
   name: string;
@@ -8,7 +7,6 @@ interface Props {
   health: number;
   attack: number;
   price: number;
-  revers?: boolean;
 }
 
 export const UnitCart: React.FC<Props> = ({
@@ -18,17 +16,14 @@ export const UnitCart: React.FC<Props> = ({
   health,
   attack,
   price,
-  revers,
 }) => {
   return (
-    <div className="w-[210px] h-[320px] text-[18px] font-medium bg-violet-200 mt-12 rounded-md shadow-lg shadow-violet-200">
+    <div className="w-[210px] h-[320px] text-[18px] text-center font-medium bg-violet-200 mt-12 rounded-md shadow-lg shadow-violet-200">
       <h3 className="text-2xl text-fuchsia-500 py-1">{name}</h3>
       <img
         src={image}
         alt="unit"
-        className={cn("w-[170px] h-[170px] bg-white mx-auto mb-6 rounded-md", {
-          "scale-x-[-1]": revers,
-        })}
+        className="w-[170px] h-[170px] bg-white mx-auto mb-6 rounded-md"
       />
       <div className="flex justify-around">
         <span className="text-green-700">health: {health}</span>

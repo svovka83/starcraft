@@ -6,7 +6,7 @@ import { Button } from "@/components/ui";
 import { useRouter } from "next/navigation";
 import { deleteGame } from "@/service/game";
 import toast from "react-hot-toast";
-import { game_over, game_over_sound } from "@/constants";
+import { button_click, game_over, game_over_sound } from "@/constants";
 import { useGameStore } from "@/store/game";
 import { useTriggerAnimate } from "@/store/trigger-animations";
 
@@ -37,6 +37,7 @@ export const GameOver: React.FC<Props> = ({ gameOver, setGameOver }) => {
   }, [gameOver]);
 
   const gameIsOver = () => {
+    button_click.play();
     deleteGame().then(() => {
       toast.success("Thanks for playing ❤️", {
         duration: 3000,

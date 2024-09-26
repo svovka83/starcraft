@@ -44,7 +44,7 @@ export const TERRAN = [
     image: "/images/imgTerran/banshee.png",
     mana: 2,
     health: 3,
-    attack: 3,
+    attack: 4,
     price: 7,
   },
   {

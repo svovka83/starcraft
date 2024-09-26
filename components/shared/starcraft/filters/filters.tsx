@@ -17,10 +17,13 @@ export const Filters: React.FC<Props> = ({ quantity }) => {
   useQueryFilters(filters);
 
   return (
-    <div className="sticky top-[56px] w-[34%] h-[605px] border-x-2">
-      <h1 className="text-3xl font-bold mt-8 text-violet-700">
-        units quantity {quantity}
-      </h1>
+    <div className="sticky top-[56px] w-[256px] h-[685px] text-center border-x-2">
+      <div className="flex gap-2 pl-2 text-3xl font-bold mt-8 text-violet-700">
+        <h1>
+          units quantity
+        </h1>
+        <span>{quantity}</span>
+      </div>
 
       <GroupFiltersCheckbox
         title="mana"

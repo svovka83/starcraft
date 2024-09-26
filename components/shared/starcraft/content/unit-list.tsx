@@ -9,13 +9,12 @@ import { Unit } from "@prisma/client";
 interface Props {
   raceName: string;
   raceList: Unit[];
-  revers?: boolean;
 }
 
-export const UnitList: React.FC<Props> = ({ raceName, raceList, revers }) => {
+export const UnitList: React.FC<Props> = ({ raceName, raceList }) => {
   const intersectionRef = React.useRef<HTMLInputElement>(null);
   const intersection = useIntersection(intersectionRef, {
-    threshold: 0.3,
+    threshold: 0.4,
   });
 
   const setActiveId = useStarcraftStore((state) => state.setActiveId);
@@ -30,26 +29,19 @@ export const UnitList: React.FC<Props> = ({ raceName, raceList, revers }) => {
     <div className="mt-12" id={raceName} ref={intersectionRef}>
       <Title text={raceName} size="lg" />
 
-      {raceList
-        .map((unit, index) => (
+      <div className="flex flex-wrap gap-4">
+        {raceList.map((unit) => (
           <UnitCart
-            key={index}
+            key={unit.id}
             name={unit.name}
             image={unit.image}
             mana={unit.mana}
             health={unit.health}
             attack={unit.attack}
             price={unit.price}
-            revers={revers}
           />
-        ))
-        .filter((_, index) => {
-          if (!revers) {
-            return index % 2 === 0;
-          } else {
-            return index % 2 !== 0;
-          }
-        })}
+        ))}
+      </div>
     </div>
   );
 };
