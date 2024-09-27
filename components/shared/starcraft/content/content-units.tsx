@@ -16,7 +16,7 @@ export const ContentUnits: React.FC<Props> = ({ unitsGroup }) => {
     <div className="flex gap-8">
       <Filters quantity={quantity} />
 
-      <div className="mb-12 pointer-events-none">
+      <div className="mb-12">
         {unitsGroup.map(
           (group) =>
             group.units.length > 0 && (

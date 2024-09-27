@@ -27,7 +27,7 @@ export const UnitList: React.FC<Props> = ({ raceName, raceList }) => {
 
   return (
     <div className="mt-8" id={raceName} ref={intersectionRef}>
-      <Title text={raceName} size="lg" />
+      <Title text={raceName} size="lg_craft" />
 
       <div className="flex flex-wrap gap-4">
         {raceList.map((unit) => (
