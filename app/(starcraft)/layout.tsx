@@ -12,10 +12,10 @@ export default function StarCraftLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="max-w-[1180px] mx-auto">
+    <div className="max-w-[1180px] mx-auto">
       <StarCraftHeader />
-      {children}
+      <main className="min-h-craft">{children}</main>
       <Footer />
-    </main>
+    </div>
   );
 }

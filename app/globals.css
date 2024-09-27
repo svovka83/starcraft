@@ -48,6 +48,10 @@ html {
   font-family: var(--font-nunito), sans-serif;
 }
 
+.min-h-craft {
+  min-height: calc(100vh - 245px);
+}
+
 .scrollbar::-webkit-scrollbar {
   width: 4px;
 }
