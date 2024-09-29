@@ -18,7 +18,7 @@ export const Version: React.FC<Props> = ({ className }) => {
 
   return (
     <span className={cn("text-white pointer-events-none", className)}>
-      version: 2.2.{usersQuantity}
+      version: 2.3.{usersQuantity}
     </span>
   );
 };
