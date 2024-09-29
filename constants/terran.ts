@@ -6,7 +6,7 @@ export const TERRAN = [
     health: 1,
     attack: 1,
     price: 1,
-  }, 
+  },
   {
     name: "marine",
     image: "/images/imgTerran/marine.png",
