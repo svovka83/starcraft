@@ -24,3 +24,4 @@ export {
 } from "./sounds";
 export { MANA, HEALTH, ATTACK } from "./checkbox";
 export { LEVELS } from "./levels";
+export { REGULATIONS } from "./regulations";

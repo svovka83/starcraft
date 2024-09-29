@@ -25,8 +25,8 @@ export const Login: React.FC<Props> = ({
 }) => {
   const form = useForm<FormLogin>({
     defaultValues: {
-      username: "Guest",
-      password: "starcraftguest",
+      username: "",
+      password: "",
     },
     resolver: zodResolver(formLoginSchema),
   });
