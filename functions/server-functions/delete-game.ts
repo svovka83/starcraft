@@ -1,7 +1,8 @@
 import { prisma } from "@/prisma/prisma-client";
 import { deleteFighter } from "..";
+import { Game } from "@prisma/client";
 
-export async function deleteGame(getGame: any) {
+export async function deleteGame(getGame: Game) {
   await prisma.game.update({
     where: {
       id: getGame.id,
