@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as User;
 
-    const user = await prisma.user.findFirst({
+    const user: User | null = await prisma.user.findFirst({
       where: {
         username: body.username,
       },

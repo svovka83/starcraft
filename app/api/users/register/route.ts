@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
     cookies().set("starcraftToken", token, { path: "/" });
 
-    const user = await prisma.user.create({
+    const user: User = await prisma.user.create({
       data: {
         username: body.username,
         password: hashedPassword,
