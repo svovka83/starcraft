@@ -73,3 +73,5 @@ export { UpgradeBase } from "./game/upgrade-base/upgrade-base";
 export { FireworksConfetti } from "./game/effect/fireworks-confetti";
 export { SearchUnits } from "./starcraft/header/search-units";
 export { Regulations } from "./starcraft/regulations/regulations";
+export { HelpButton } from "./game/menu/help-button";
+export { HelpRegulations } from "./game/menu/help-regulations";

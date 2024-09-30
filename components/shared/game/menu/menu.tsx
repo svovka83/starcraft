@@ -1,19 +1,14 @@
 import React from "react";
-import { DeleteGame, ExitGame, SaveGame, SoundGame } from "../..";
-import {
-  Button,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui";
+import { DeleteGame, ExitGame, HelpButton, SaveGame } from "../..";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui";
 import { button_click } from "@/constants";
 
 export const Menu: React.FC = () => {
   const [openMenu, setOpenMenu] = React.useState(false);
 
   const openCloseMenu = () => {
-    setOpenMenu(!openMenu);
     button_click.play();
+    setOpenMenu(!openMenu);
   };
 
   return (
@@ -24,10 +19,11 @@ export const Menu: React.FC = () => {
           Game menu
         </h2>
         <SaveGame setOpenMenu={setOpenMenu} />
-        <Button variant="success" disabled>
-          HELP
-        </Button>
+
+        <HelpButton setOpenMenu={setOpenMenu} />
+
         <DeleteGame />
+
         <ExitGame />
       </PopoverContent>
     </Popover>

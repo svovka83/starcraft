@@ -41,6 +41,7 @@ export const Regulations: React.FC = () => {
           onClick={() => setCounter(counter + 1)}
         />
       </div>
+
       <div className="mb-8 text-center text-2xl font-bold text-violet-700">
         {REGULATIONS.map((regulation) => (
           <span
