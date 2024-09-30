@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     const options = { expiresIn: "30d" };
     const token = jwt.sign(payload, secret, options);
 
-    cookies().set("starcraftToken", token, { path: "/" });
+    cookies().set("starcraftToken", token);
 
     const user: User = await prisma.user.create({
       data: {

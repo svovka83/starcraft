@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    cookies().set("starcraftToken", token, { path: "/" });
+    cookies().set("starcraftToken", token);
 
     const { password, ...rest } = user;
 
